@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 10vh;
+  background-color: #F6E8EA;
+  color: #985F99;
+}
+nav p{
+  font-size: 30px;
+  font-family: 'Fredericka the Great', cursive;
+}
