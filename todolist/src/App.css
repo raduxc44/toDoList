@@ -14,9 +14,14 @@ nav p{
   font-size: 30px;
   font-family: 'Fredericka the Great', cursive;
 }
+.main-content{
+  display: flex;
+}
+.menu-add{
+  width: 25%;
+}
 .menu {
   border: 1px solid red;
-  width: 25%;
   display: flex;
   font-size: 20px;
   flex-direction: column;
@@ -31,4 +36,38 @@ nav p{
 }
 .interest {
   font-size: 14px;
+}
+.add-butt{
+  border: 1px solid blue;
+  background-color: #F6E8EA;
+  height: 21.2vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #985F99;
+}
+.to-do-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 75%;
+}
+.to-do-container img{
+  width: 20px;
+}
+.todo{
+  width: 75%;
+  height: 5vh;
+  display: flex;
+  justify-content: space-around;
+}
+.one{
+  background-color: red;
+}
+.two{
+  background-color: yellow;
+}
+.three{
+  background-color: cyan;
 }
