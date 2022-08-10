@@ -27,13 +27,13 @@
     align-self: center;
     background-color: transparent;
     border-radius: 8%;
-    height: 3.5vh;
+    height: 3vh;
     font-size: 11px;
     font-weight: 600;
   }
   .details-high {
     color: #f96262d2;
-    border: 2px solid #f96262d2;
+    border: 1px solid #f96262d2;
   }
   .details-high:hover {
     color: white;
@@ -41,7 +41,7 @@
   }
   .details-mid {
     color: #fbc45ee0;
-    border: 2px solid #fbc45ee0;
+    border: 1px solid #fbc45ee0;
   }
   .details-mid:hover {
     color: white;
@@ -49,14 +49,11 @@
   }
   .details-low {
     color: #79ffffdf;
-    border: 2px solid #79ffffdf;
+    border: 1px solid #79ffffdf;
   }
   .details-low:hover {
     color: white;
     background-color: #79ffffdf;;
-  }
-  .fa-solid{
-    align-self: center;
   }
   .high-border{
     border: 3px solid #f96262d2;
@@ -67,21 +64,49 @@
   .low-border{
     border: 3px solid #79ffffdf;
   }
-  .high-check{
+
+
+
+  .check-container {
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5vh;
+  }
+  .check:hover {
+    display: block;
+  }
+  .check-container i{
+    visibility: hidden;
+  }
+  .check-container:hover i{
+    visibility: visible;
+  }
+
+  .high-container {
     color: #f96262d2;
     border-right: 3px solid #fe6464d2;
-    font-size: 3vh;
-    padding: 1vh;
   }
-  .mid-check{
-    color: #fbc45ee0;
+  .mid-container {
     border-right: 3px solid #fbc45ee0;
-    font-size: 3vh;
-    padding: 1vh;
+    color: #fbc45ee0;
   }
-  .low-check{
+  .low-container {
     color: #79ffffdf;
     border-right: 3px solid #79ffffdf;
-    font-size: 3vh;
-    padding: 1vh;
+  }
+
+  .fa-solid{
+    align-self: center;
+  }
+  .icon-high:hover {
+    color: #f96262d2;
+  }
+  .icon-mid:hover {
+    color: #fbc45ee0;
+  }
+  .icon-low:hover {
+    color: #79ffffdf;
   }
