@@ -1,4 +1,4 @@
-
+import './ToDoContainer.css'
 
 function ToDoContainer () {
     return (
@@ -9,10 +9,10 @@ function ToDoContainer () {
                     <p>Brush teeth</p>
                 </div>
                 <div className="todo-second-half">
-                    <p>details</p>
+                    <button className="details details-high">DETAILS</button>
                     <p>due-date</p>
-                    <p>edit-butt</p>
-                    <p>remove-butt</p>
+                    <i class="fa-solid fa-pencil"></i>
+                    <i class="fa-solid fa-ban"></i>
                 </div>
             </div>
             <div className="todo mid-border">
@@ -21,10 +21,10 @@ function ToDoContainer () {
                     <p>Brush teeth</p>
                 </div>
                 <div className="todo-second-half">
-                    <p>details</p>
+                    <button className="details details-mid">DETAILS</button>
                     <p>due-date</p>
-                    <p>edit-butt</p>
-                    <p>remove-butt</p>
+                    <i class="fa-solid fa-pencil"></i>
+                    <i class="fa-solid fa-ban"></i>
                 </div>
             </div>
             <div className="todo low-border">
@@ -33,10 +33,10 @@ function ToDoContainer () {
                     <p>Brush teeth</p>
                 </div>
                 <div className="todo-second-half">
-                    <p>details</p>
+                    <button className="details details-low">DETAILS</button>
                     <p>due-date</p>
-                    <p>edit-butt</p>
-                    <p>remove-butt</p>
+                    <i class="fa-solid fa-pencil"></i>
+                    <i class="fa-solid fa-ban"></i>
                 </div>
             </div>
         </div>

@@ -1,0 +1,10 @@
+.add-butt{
+    border: 1px solid blue;
+    background-color: #F6E8EA;
+    height: 21.2vh;
+    display: flex;
+    font-size: 1.5vh;
+    justify-content: center;
+    align-items: center;
+    color: #985F99;
+  }

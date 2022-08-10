@@ -1,0 +1,13 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 10vh;
+    background-color: #F6E8EA;
+    color: #985F99;
+  }
+  header p{
+    font-size: 5vh;
+    font-family: 'Fredericka the Great', cursive;
+  }

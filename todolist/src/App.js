@@ -1,16 +1,16 @@
 import './App.css';
+import Head from './Head';
 import Nav from './Nav';
-import Menu from './Menu';
 import Add from './Add';
 import ToDoContainer from './ToDoContainer';
 
 function App() {
   return (
     <div className="App">
-      <Nav />
+      <Head />
       <div className='main-content'>
         <div className='menu-add'>
-          <Menu />
+          <Nav />
           <Add />
         </div>
         <ToDoContainer />
