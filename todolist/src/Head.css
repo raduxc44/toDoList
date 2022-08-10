@@ -6,6 +6,8 @@ header{
     height: 10vh;
     background-color: #F6E8EA;
     color: #985F99;
+    position: relative;
+    z-index: 2;
   }
   header p{
     font-size: 5vh;

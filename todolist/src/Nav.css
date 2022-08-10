@@ -1,8 +1,11 @@
+
 .menu-add{
     width: 25%;
   }
 .menu {
     border: 1px solid red;
+    z-index: 2;
+    position: relative;
     display: flex;
     font-size: 20px;
     flex-direction: column;
