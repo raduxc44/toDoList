@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       < CreateOverlay />
-      <div className='main-page'>
+      <div id='main-page'>
       <Head />
       <div className='main-content'>
         <div className='menu-add'>

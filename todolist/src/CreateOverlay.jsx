@@ -7,6 +7,9 @@ function CreateOverlay () {
         let createOverlay = document.getElementsByClassName('create-overlay')[0];
         
         createOverlay.classList.remove('visible')
+        
+        let mainPage = document.getElementById('main-page')
+        mainPage.classList.remove('blur')
 
     }
 
@@ -31,19 +34,15 @@ function CreateOverlay () {
                     </ul>
                 </div>
                 <form>
-                    <div className='create-title'><textarea className='text-box' name="title" id="title" maxLength={40} required placeholder={'Title'}></textarea></div>
+                    <div><textarea className='text-box' name="title" id="title" maxLength={40} required placeholder={'Title'}></textarea></div>
                     <div className='create-details'>
                         <textarea name="details" className='text-box' id="details" placeholder='Details'></textarea>
                     </div>
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
-                        <input type="date" name="" id="" />
+                        <input type="date" name="due-date" id="due-date" />
                     </div>
                     <div className='priority-and-send'>
-
-
-
-
                         <div className='create-priority'>
                             <label htmlFor="create-priority">Priority: </label>
                             <div className='create-new-prio-butt create-new-prio-low'>
@@ -51,19 +50,18 @@ function CreateOverlay () {
                             </div>
                             <input type="radio" required name="create-new-priority" id="create-new-low" className='create-new-prio-input'/>
                             <div className='create-new-prio-butt create-new-prio-mid'>
-                                <label htmlFor="create-new-mid create-new-prio-butt">Mid</label>
+                                <label htmlFor="create-new-mid">Mid</label>
                             </div>
                             <input type="radio" required name='create-new-priority' id='create-new-mid' className='create-new-prio-input'/>
                             <div className='create-new-prio-butt create-new-prio-high'>
-                                <label htmlFor="create-new-high create-new-prio-butt">High</label>
+                                <label htmlFor="create-new-high">High</label>
                             </div>
                             <input type="radio" required name="create-new-priority" id="create-new high" className='create-new-prio-input'/>
                         </div>
                         <div className='create-submit'>
                             <button type='submit'>Add</button>
                         </div>
-                    </div>
-                    
+                    </div> 
                 </form>
             </div>
         </div>
