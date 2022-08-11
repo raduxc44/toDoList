@@ -8,14 +8,16 @@ import CreateOverlay from './CreateOverlay'
 function App() {
   return (
     <div className="App">
-      <Head />
       < CreateOverlay />
+      <div className='main-page'>
+      <Head />
       <div className='main-content'>
         <div className='menu-add'>
           <Nav />
           <Add />
         </div>
         <ToDoContainer />
+      </div>
       </div>
     </div>
   );

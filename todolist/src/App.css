@@ -2,5 +2,10 @@
   box-sizing: border-box;
 }
 .main-content{
+  position: relative;
+  z-index: 2;
   display: flex;
+}
+.blur {
+  filter: blur(1vh);
 }

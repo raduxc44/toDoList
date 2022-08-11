@@ -1,9 +1,141 @@
 .create-overlay{
     position: fixed;
-    z-index: 4;
+    z-index: 3;
     display: flex;
     flex-direction: column;
     top: 0;
     left: 0;
-    background-color: gray;
+    width: 75vh;
+    height: 50vh;
+    margin: 25vh 55vh;
+    background-color: #F6E8EA;
+    border: 1px solid red;
+    visibility: hidden;
+    font-family: "Chelsea Market", cursive;
+    border-radius: 0.5vh;
 }
+.visible {
+    visibility: visible;
+}
+.create-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2vh;
+    background-color: #985F99;
+}
+.create-close-butt{
+    cursor: pointer;
+}
+.create-main-content{
+    display: flex;
+    height: 100%;
+}
+.create-sidebar{
+    padding: 2vh 1vh 2vh 1vh;
+    font-size: 2.5vh;
+    margin-right: 2vh;
+    border-right: 1px solid #985F99;
+}
+.create-sidebar ul {
+    list-style-type: none;
+    padding: 2vh;
+}
+form {
+    padding-top: 3vh;
+}
+.text-box {
+    background-color: transparent;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+}
+.create-details {
+    width: 50vh;
+    height: 15vh;
+    margin-bottom: 10vh;
+}
+#title {
+    width: 50vh;
+}
+#details {
+    background-color: transparent;
+    border: none;
+    resize: none;
+    width: inherit;
+    height: inherit;
+    outline: none;
+    margin-bottom: 10vh;
+}
+
+.create-date{
+    margin-bottom: 1.5vh;
+}
+.priority-and-send {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.create-priority {
+    display: flex;
+    align-items: inherit;
+}
+.create-priority label {
+    margin-right: 2vh;
+}
+.create-priority input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+.create-new-prio-butt{
+    margin-right: 2vh;
+    display: flex;
+    width: 7vh;
+    height: 3vh;
+    justify-content: center;
+    align-items: center;
+}
+.create-new-prio-butt label {
+    margin: 0;
+}
+.create-new-prio-low {
+    border: 2px solid #79ffffdf;
+    color: #79ffffdf;
+}
+.create-new-prio-low:hover {
+    background-color: #79ffffdf;
+    color: white;
+}
+.create-new-prio-mid {
+    border: 2px solid #fbc45ee0;
+    color: #fbc45ee0;
+}
+.create-new-prio-mid:hover {
+    background-color: #fbc45ee0;
+    color: white;
+}
+
+.create-new-prio-high:hover {
+    background-color: #f96262d2;
+    color: white;
+}
+.create-new-prio-butt label {
+    margin: 0;
+}
+.create-new-prio-high {
+    border: 2px solid #f96262d2;
+    color: #f96262d2;
+    padding: 0.2vh 1.4vh;
+}
+.create-new-prio-high label 
+.create-new-prio-input {
+    display: none;
+}
+/* .to-do-container{
+#f96262d2
+#fbc45ee0
+#79ffffdf  */
