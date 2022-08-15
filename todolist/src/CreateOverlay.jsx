@@ -1,7 +1,8 @@
 import './CreateOverlay.css'
 
-function CreateOverlay () {
+function CreateOverlay ({inputTitle ,setInputTitle, todos, setTodos}) {
 
+    // Disables the entire overlay
     function removeOverlay () {
 
         let createOverlay = document.getElementsByClassName('create-overlay')[0];
@@ -12,6 +13,20 @@ function CreateOverlay () {
         mainPage.classList.remove('blur')
 
     }
+
+    // Creates the todo object when the form is submitted
+
+    const handleSubmit = e => {
+
+        e.preventDefault();
+        setTodos([...todos, {title: inputTitle, id: Math.floor(Math.random() * 1000) }])
+    
+      };
+    
+      //Selects the title target
+      const inputTitleHandler = e => {
+        setInputTitle(e.target.value)
+      }
 
     return(
         <div className="create-overlay">
@@ -33,8 +48,8 @@ function CreateOverlay () {
                         </li>
                     </ul>
                 </div>
-                <form>
-                    <div><textarea className='text-box' name="title" id="title" maxLength={40} required placeholder={'Title'}></textarea></div>
+                <form onSubmit={handleSubmit}>
+                    <div><textarea className='text-box' value={inputTitle} name="title" id="title" onChange={inputTitleHandler} maxLength={40} required placeholder={'Title'}></textarea></div>
                     <div className='create-details'>
                         <textarea name="details" className='text-box' id="details" placeholder='Details'></textarea>
                     </div>
@@ -56,7 +71,7 @@ function CreateOverlay () {
                             <div className='create-new-prio-butt create-new-prio-high'>
                                 <label htmlFor="create-new-high">High</label>
                             </div>
-                            <input type="radio" required name="create-new-priority" id="create-new high" className='create-new-prio-input'/>
+                            <input type="radio" required name="create-new-priority" id="create-new-high" className='create-new-prio-input'/>
                         </div>
                         <div className='create-submit'>
                             <button type='submit'>Add</button>
