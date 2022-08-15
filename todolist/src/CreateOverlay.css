@@ -39,6 +39,9 @@
     list-style-type: none;
     padding: 2vh;
 }
+.create-sidebar li:hover {
+    color: #985F99;
+}
 
 form {
     padding-top: 3vh;
@@ -143,6 +146,9 @@ form {
 .create-submit:hover {
     background-color: transparent;
     border: 1px solid #985F99;
+}
+.create-submit button {
+    width: 100%;
 }
 .create-submit button:hover {
     color: #985F99;
