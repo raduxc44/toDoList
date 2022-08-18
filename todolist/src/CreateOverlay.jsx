@@ -11,6 +11,7 @@ function CreateOverlay ({inputTitle ,setInputTitle, todos, setTodos}) {
         
         let mainPage = document.getElementById('main-page')
         mainPage.classList.remove('blur')
+        mainPage.classList.remove('avoid-clicks')
 
     }
 

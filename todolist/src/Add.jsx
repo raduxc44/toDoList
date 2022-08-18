@@ -8,6 +8,7 @@ function Add() {
         createOverlay.classList.add('visible')
         let mainPage = document.getElementById('main-page');
         mainPage.classList.add('blur');
+        mainPage.classList.add('avoid-clicks')
 
     }
 

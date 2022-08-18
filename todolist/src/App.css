@@ -9,6 +9,9 @@
 .blur {
   filter: blur(1vh);
 }
+.avoid-clicks {
+  pointer-events: none;
+}
 .App{
   display: flex;
   justify-content: center;

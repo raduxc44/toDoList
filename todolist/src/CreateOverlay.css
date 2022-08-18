@@ -1,6 +1,6 @@
 .create-overlay{
     position: fixed;
-    z-index: 3;
+    z-index: 5;
     width: 75vh;
     height: 50vh;
     background-color: #F6E8EA;
