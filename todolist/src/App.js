@@ -24,7 +24,9 @@ function App() {
         <div className="to-do-container">
           {todos.map((todo) => 
           (<ToDo 
-            title={todo.title}  
+            title={todo.title}
+            key= {todo.key}
+            layout={todo.layout}
             details={todo.details}
           />))}
         </div>

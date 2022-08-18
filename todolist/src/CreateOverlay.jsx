@@ -20,8 +20,20 @@ function CreateOverlay ({inputTitle ,setInputTitle, todos, setTodos}) {
     const handleSubmit = e => {
 
         e.preventDefault();
-        setTodos([...todos, {title: inputTitle, id: Math.floor(Math.random() * 1000) }])
-    
+
+        // Checks the priority so it can add the correct styling to the toDo
+        let lowPriority = document.getElementById('create-new-low');
+        if (lowPriority.checked) {
+            setTodos([...todos, {title: inputTitle, key: Math.floor(Math.random() * 1000), layout: 'low'}])
+        }
+        let midPriority = document.getElementById('create-new-mid');
+        if (midPriority.checked) {
+            setTodos([...todos, {title : inputTitle, key: Math.floor(Math.random() * 1000), layout: 'mid'}])
+        }
+        let highPriority = document.getElementById('create-new-high');
+        if (highPriority.checked) {
+            setTodos([...todos, {title : inputTitle, key: Math.floor(Math.random() * 1000), layout: 'high'}])
+        }
       };
     
       //Selects the title target
