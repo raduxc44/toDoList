@@ -15,6 +15,34 @@ function CreateOverlay ({inputTitle ,setInputTitle, todos, setTodos}) {
 
     }
 
+    // Applies styling to the selected priority
+    const checkIfActive = () => {
+
+        let lowPrioInput = document.getElementById('create-new-low');
+        let lowPrioContainer = document.getElementsByClassName('create-new-prio-low')[0];
+        let midPrioInput = document.getElementById('create-new-mid');
+        let midPrioContainer = document.getElementsByClassName('create-new-prio-mid')[0];
+        let highPrioInput = document.getElementById('create-new-high');
+        let highPrioContainer = document.getElementsByClassName('create-new-prio-high')[0];
+
+        if (lowPrioInput.checked) {   
+            lowPrioContainer.classList.add('create-new-prio-low-active');
+            midPrioContainer.classList.remove('create-new-prio-mid-active');
+            highPrioContainer.classList.remove('create-new-prio-high-active');
+        }
+        else if (midPrioInput.checked) {
+            lowPrioContainer.classList.remove('create-new-prio-low-active');
+            midPrioContainer.classList.add('create-new-prio-mid-active');
+            highPrioContainer.classList.remove('create-new-prio-high-active');
+        }
+        else if (highPrioInput.checked) {
+            lowPrioContainer.classList.remove('create-new-prio-low-active');
+            midPrioContainer.classList.remove('create-new-prio-mid-active');
+            highPrioContainer.classList.add('create-new-prio-high-active')
+        }
+        
+    }
+
     // Creates the todo object when the form is submitted
 
     const handleSubmit = e => {
@@ -76,15 +104,15 @@ function CreateOverlay ({inputTitle ,setInputTitle, todos, setTodos}) {
                             <div className='create-new-prio-butt create-new-prio-low'>
                                 <label htmlFor="create-new-low">Low</label>
                             </div>
-                            <input type="radio" required name="create-new-priority" id="create-new-low" className='create-new-prio-input'/>
+                            <input onClick={checkIfActive} type="radio" required name="create-new-priority" id="create-new-low" className='create-new-prio-input'/>
                             <div className='create-new-prio-butt create-new-prio-mid'>
                                 <label htmlFor="create-new-mid">Mid</label>
                             </div>
-                            <input type="radio" required name='create-new-priority' id='create-new-mid' className='create-new-prio-input'/>
+                            <input onClick={checkIfActive} type="radio" required name='create-new-priority' id='create-new-mid' className='create-new-prio-input'/>
                             <div className='create-new-prio-butt create-new-prio-high'>
                                 <label htmlFor="create-new-high">High</label>
                             </div>
-                            <input type="radio" required name="create-new-priority" id="create-new-high" className='create-new-prio-input'/>
+                            <input onClick={checkIfActive} type="radio" required name="create-new-priority" id="create-new-high" className='create-new-prio-input'/>
                         </div>
                         <div className='create-submit'>
                             <button type='submit'>Add</button>

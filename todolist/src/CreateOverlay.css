@@ -108,6 +108,10 @@ form {
     background-color: #79ffffdf;
     color: white;
 }
+.create-new-prio-low-active {
+    background-color: #79ffffdf;
+    color: white;
+}
 .create-new-prio-mid {
     border: 2px solid #fbc45ee0;
     color: #fbc45ee0;
@@ -116,11 +120,19 @@ form {
     background-color: #fbc45ee0;
     color: white;
 }
+.create-new-prio-mid-active {
+    background-color: #fbc45ee0;
+    color: white;
+}
 .create-new-prio-high {
     border: 2px solid #f96262d2;
     color: #f96262d2;
 }
 .create-new-prio-high:hover {
+    background-color: #f96262d2;
+    color: white;
+}
+.create-new-prio-high-active {
     background-color: #f96262d2;
     color: white;
 }
