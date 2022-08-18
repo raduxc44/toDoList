@@ -100,6 +100,11 @@
     border-right: 3px solid #79ffffdf;
   }
 
+  .date-container {
+      width: 50%;
+    font-size: 12px;
+  }
+
   .fa-solid{
     align-self: center;
   }

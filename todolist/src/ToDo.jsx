@@ -12,7 +12,7 @@ function ToDo (props) {
             </div>
             <div className="todo-second-half">
                 <button className={`details details-${props.layout}`}>DETAILS</button>
-                <p>due-date</p>
+                <p className='date-container'>{props.date}</p>
                 <i class={`fa-solid fa-pencil icon-${props.layout}`}></i>
                 <i class={`fa-solid fa-ban icon-${props.layout}`}></i>
             </div>

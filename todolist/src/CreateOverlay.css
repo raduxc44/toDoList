@@ -139,6 +139,10 @@ form {
 .create-new-prio-butt label {
     margin: 0;
 }
+.prio-label {
+    width: 100%;
+    text-align: center;
+}
 .create-submit{
     margin-right: 3vh;
     background-color: #985F99;

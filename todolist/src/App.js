@@ -9,11 +9,12 @@ import { useState } from 'react';
 function App() {
 
   const [inputTitle, setInputTitle] = useState('');
-  const [todos, setTodos] = useState([])
+  const [date, setDate] = useState('No due date');
+  const [todos, setTodos] = useState([]);
 
   return (
     <div className="App">
-      < CreateOverlay inputTitle={inputTitle} setInputTitle={setInputTitle} todos={todos} setTodos={setTodos}/>
+      < CreateOverlay inputTitle={inputTitle} setInputTitle={setInputTitle} date={date} setDate={setDate} todos={todos} setTodos={setTodos}/>
       <div id='main-page'>
       <Head />
       <div className='main-content'>
@@ -25,6 +26,7 @@ function App() {
           {todos.map((todo) => 
           (<ToDo 
             title={todo.title}
+            date={todo.date}
             key= {todo.key}
             layout={todo.layout}
             details={todo.details}
