@@ -3,6 +3,7 @@ import Head from './Head';
 import Nav from './Nav';
 import Add from './Add';
 import ToDo from './ToDo';
+import Details from './Details';
 import CreateOverlay from './CreateOverlay'
 import { useState } from 'react';
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       < CreateOverlay inputTitle={inputTitle} setInputTitle={setInputTitle} date={date} setDate={setDate} todos={todos} setTodos={setTodos}/>
+      < Details />
       <div id='main-page'>
       <Head />
       <div className='main-content'>

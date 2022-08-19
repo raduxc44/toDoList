@@ -11,6 +11,7 @@
 }
 .avoid-clicks {
   pointer-events: none;
+  user-select: none;
 }
 .App{
   display: flex;

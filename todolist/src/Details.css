@@ -1,0 +1,30 @@
+.details-overlay {
+    position: fixed;
+    z-index: 5;
+    width: 75vh;
+    height: 38vh;
+    max-height: 45vh;
+    font-family: 'Chelsea Market', cursive;
+    background-color: #f6E8EA;
+    border: 3px solid #985F99;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5vh 1.5vh;
+    border-radius: 1vh;
+}
+.visible {
+    visibility: visible;
+}
+.invisible {
+    visibility: hidden;
+}
+.details-content {
+    padding-left: 4vh;
+}
+.details-info {
+    display: flex;
+    gap: 3vh;
+}
+.details-close {
+    cursor: pointer;
+}
