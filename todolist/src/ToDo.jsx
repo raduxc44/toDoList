@@ -1,6 +1,14 @@
 import './ToDo.css'
 
-function ToDo (props) {
+function ToDo (props, {todos, setTodos}) {
+
+    function removeToDo () {
+
+        // let removeButtonArray = document.getElementsByClassName('remove-button');
+        // let toDo = document.getElementsByClassName('todo')[0];
+        // toDo.remove()
+    }
+
 
     return (
         <div className={`todo ${props.layout}-border`}>
@@ -14,7 +22,7 @@ function ToDo (props) {
                 <button className={`details details-${props.layout}`}>DETAILS</button>
                 <p className='date-container'>{props.date}</p>
                 <i class={`fa-solid fa-pencil icon-${props.layout}`}></i>
-                <i class={`fa-solid fa-ban icon-${props.layout}`}></i>
+                <i onClick={removeToDo} class={`remove-button fa-solid fa-ban icon-${props.layout}`}></i>
             </div>
         </div>
     )
