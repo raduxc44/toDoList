@@ -13,18 +13,18 @@ function ToDo (props) {
     }
 
     return (
-        <div className={`todo ${props.layout}-border`}>
+        <div className={`todo ${props.priority}-border`}>
             <div className="todo-first-half">
-                <div className={`${props.layout}-container check-container`}>
-                    <i class={`fa-solid fa-check ${props.layout}-check`}></i>
+                <div className={`${props.priority}-container check-container`}>
+                    <i class={`fa-solid fa-check ${props.priority}-check`}></i>
                 </div>
                 <p>{props.title}</p>
             </div>
             <div className="todo-second-half">
-                <button onClick={openDetails} className={`details details-${props.layout}`}>DETAILS</button>
+                <button onClick={openDetails} className={`details details-${props.priority}`}>DETAILS</button>
                 <p className='date-container'>{props.date}</p>
-                <i class={`fa-solid fa-pencil icon-${props.layout}`}></i>
-                <i class={`fa-solid fa-ban icon-${props.layout}`}></i>
+                <i class={`fa-solid fa-pencil icon-${props.priority}`}></i>
+                <i class={`fa-solid fa-ban icon-${props.priority}`}></i>
             </div>
         </div>
     )

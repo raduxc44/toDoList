@@ -20,20 +20,19 @@ function Details (props) {
                 <div className="todo-details">
                     <div className="details-info">
                         <p><strong>Project:</strong></p>
-                        <p>Demo</p>
+                        <p>{props.title}</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Priority:</strong></p>
-                        <p>Demo prio</p>
+                        <p>{props.priority}</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Due Date:</strong></p>
-                        <p>demo date</p>
+                        <p>{props.date}</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Details:</strong></p>
-                        <p>demo details
-                        </p>
+                        <p>{props.details}</p>
                     </div>
                 </div>
             </div>

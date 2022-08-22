@@ -10,13 +10,27 @@ import { useState } from 'react';
 function App() {
 
   const [inputTitle, setInputTitle] = useState('');
+  const [inputDetails, setInputDetails] = useState('')
   const [date, setDate] = useState('No due date');
   const [todos, setTodos] = useState([]);
 
   return (
     <div className="App">
-      < CreateOverlay inputTitle={inputTitle} setInputTitle={setInputTitle} date={date} setDate={setDate} todos={todos} setTodos={setTodos}/>
-      < Details />
+      < CreateOverlay 
+      inputTitle={inputTitle} 
+      setInputTitle={setInputTitle} 
+      date={date} 
+      setDate={setDate} 
+      todos={todos} 
+      setTodos={setTodos}
+      />
+      {todos.map((todo) =>
+       (<Details 
+          title={todo.title}
+          date={todo.date}
+          key= {todo.key}
+          priority={todo.priority}
+          details={todo.details} />))}
       <div id='main-page'>
       <Head />
       <div className='main-content'>
@@ -30,7 +44,7 @@ function App() {
             title={todo.title}
             date={todo.date}
             key= {todo.key}
-            layout={todo.layout}
+            priority={todo.priority}
             details={todo.details}
           />))}
         </div>

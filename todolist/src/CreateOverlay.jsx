@@ -52,21 +52,25 @@ function CreateOverlay ({inputTitle ,setInputTitle, date, setDate, todos, setTod
         // Checks the priority so it can add the correct styling to the toDo
         let lowPriority = document.getElementById('create-new-low');
         if (lowPriority.checked) {
-            setTodos([...todos, {title: inputTitle, date: date, key: Math.floor(Math.random() * 1000), layout: 'low'}])
+            setTodos([...todos, {title: inputTitle, date: date, key: Math.floor(Math.random() * 1000), priority: 'low'}])
         }
         let midPriority = document.getElementById('create-new-mid');
         if (midPriority.checked) {
-            setTodos([...todos, {title : inputTitle, date: date, key: Math.floor(Math.random() * 1000), layout: 'mid'}])
+            setTodos([...todos, {title : inputTitle, date: date, key: Math.floor(Math.random() * 1000), priority: 'mid'}])
         }
         let highPriority = document.getElementById('create-new-high');
         if (highPriority.checked) {
-            setTodos([...todos, {title : inputTitle, date: date, key: Math.floor(Math.random() * 1000), layout: 'high'}])
+            setTodos([...todos, {title : inputTitle, date: date, key: Math.floor(Math.random() * 1000), priority: 'high'}])
         }
       };
     
       //Targets the title selected by the user in the form
       const inputTitleHandler = e => {
         setInputTitle(e.target.value)
+      }
+
+      const inputDetailsHandler = e => {
+
       }
 
       //Targets the data selected by the user in the form
