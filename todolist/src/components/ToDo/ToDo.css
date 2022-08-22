@@ -31,6 +31,7 @@
     border-radius: 8%;
     height: 3vh;
     font-size: 11px;
+    cursor: pointer;
     font-weight: 600;
   }
   .details-high {
@@ -76,13 +77,12 @@
     justify-content: center;
     align-items: center;
     font-size: 3.5vh;
+    cursor: pointer;
   }
   .check:hover {
     display: block;
   }
-  .check-container i{
-    visibility: hidden;
-  }
+  
   .check-container:hover i{
     visibility: visible;
   }
@@ -107,6 +107,12 @@
 
   .fa-solid{
     align-self: center;
+  }
+  .fa-pencil{
+    cursor: pointer;
+  }
+  .fa-ban {
+    cursor: pointer;
   }
   .icon-high:hover {
     color: #f96262d2;

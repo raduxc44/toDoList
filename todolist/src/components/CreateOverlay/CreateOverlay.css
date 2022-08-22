@@ -71,6 +71,9 @@ form {
 .create-date{
     margin-bottom: 1.5vh;
 }
+#due-date {
+    cursor: pointer;
+}
 
 .priority-and-send {
     display: flex;
@@ -142,6 +145,7 @@ form {
 .prio-label {
     width: 100%;
     text-align: center;
+    cursor: pointer;
 }
 .create-submit{
     margin-right: 3vh;
@@ -158,6 +162,7 @@ form {
     border: none;
     color: #F6E8EA;
     font-family: "Chelsea Market", cursive;
+    cursor: pointer;
 }
 .create-submit:hover {
     background-color: transparent;

@@ -1,6 +1,6 @@
 import './CreateOverlay.css'
 
-function CreateOverlay ({inputTitle ,setInputTitle, inputDetails, setInputDetails, date, setDate, todos, setTodos}) {
+function CreateOverlay ({currentKey, setCurrentKey, inputTitle ,setInputTitle, inputDetails, setInputDetails, date, setDate, todos, setTodos}) {
 
     // Disables the entire overlay
     function removeOverlay () {
@@ -53,15 +53,18 @@ function CreateOverlay ({inputTitle ,setInputTitle, inputDetails, setInputDetail
         // Checks the priority so it can add the correct styling to the toDo
         let lowPriority = document.getElementById('create-new-low');
         if (lowPriority.checked) {
-            setTodos([...todos, {title: inputTitle, details: inputDetails, date: date, key: Math.floor(Math.random() * 1000), priority: 'low'}])
+            setTodos([...todos, {title: inputTitle, details: inputDetails, key: currentKey, date: date, priority: 'low'}])
+            setCurrentKey(currentKey => currentKey + 1)
         }
         let midPriority = document.getElementById('create-new-mid');
         if (midPriority.checked) {
-            setTodos([...todos, {title : inputTitle, details: inputDetails, date: date, key: Math.floor(Math.random() * 1000), priority: 'mid'}])
+            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date, priority: 'mid'}])
+            setCurrentKey(currentKey => currentKey + 1)
         }
         let highPriority = document.getElementById('create-new-high');
         if (highPriority.checked) {
-            setTodos([...todos, {title : inputTitle, details: inputDetails, date: date, key: Math.floor(Math.random() * 1000), priority: 'high'}])
+            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date, priority: 'high'}])
+            setCurrentKey(currentKey => currentKey + 1)
         }
       };
     
@@ -103,7 +106,7 @@ function CreateOverlay ({inputTitle ,setInputTitle, inputDetails, setInputDetail
                 <form onSubmit={handleSubmit}>
                     <div><textarea className='text-box' value={inputTitle} name="title" id="title" onChange={inputTitleHandler} maxLength={40} required placeholder={'Title'}></textarea></div>
                     <div className='create-details'>
-                        <textarea name="details" maxLength={25} className='text-box' id="details" onChange={inputDetailsHandler} placeholder='Details'></textarea>
+                        <textarea name="details" maxLength={40} className='text-box' id="details" onChange={inputDetailsHandler} placeholder='Details'></textarea>
                     </div>
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
