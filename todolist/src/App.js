@@ -18,7 +18,9 @@ function App() {
     <div className="App">
       < CreateOverlay 
       inputTitle={inputTitle} 
-      setInputTitle={setInputTitle} 
+      setInputTitle={setInputTitle}
+      inputDetails={inputDetails}
+      setInputDetails={setInputDetails}
       date={date} 
       setDate={setDate} 
       todos={todos} 
@@ -30,7 +32,8 @@ function App() {
           date={todo.date}
           key= {todo.key}
           priority={todo.priority}
-          details={todo.details} />))}
+          details={todo.details} 
+          />))}
       <div id='main-page'>
       <Head />
       <div className='main-content'>
