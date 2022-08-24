@@ -78,7 +78,7 @@ function App() {
       todos={todos} 
       setTodos={setTodos}
       />
-      {selectedToDo && (<Details  {...selectedToDo}/>)}
+      {selectedToDo && (<Details  {...selectedToDo} setSelectedToDo={setSelectedToDo}/>)}
       <div id='main-page'>
       <Head />
       <div className='main-content'>
