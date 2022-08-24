@@ -1,0 +1,175 @@
+.edit-overlay{
+    position: fixed;
+    z-index: 5;
+    width: 75vh;
+    height: 50vh;
+    background-color: #F6E8EA;
+    visibility: hidden;
+    font-family: "Chelsea Market", cursive;
+}
+.visible {
+    visibility: visible;
+}
+
+.create-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2vh;
+    background-color: #985F99;
+    border-radius: 1vh 1vh 0 0;
+}
+.create-close-butt{
+    cursor: pointer;
+}
+
+.create-main-content{
+    display: flex;
+    justify-content: center;
+    height: 85%;
+    border: 2px solid #985F99;
+    border-radius: 0 0 1vh 1vh;
+}
+.create-sidebar{
+    padding: 2vh 1vh 2vh 1vh;
+    font-size: 2.5vh;
+    margin-right: 2vh;
+    border-right: 1px solid #985F99;
+}
+.create-sidebar ul {
+    list-style-type: none;
+    padding: 2vh;
+}
+.create-sidebar li:hover {
+    color: #985F99;
+}
+
+form {
+    padding-top: 3vh;
+    width: 70vh;
+}
+.text-box {
+    background-color: transparent;
+    background-color: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    width: inherit
+}
+.create-details {
+    height: 15vh;
+    margin-bottom: 10vh;
+}
+#title {
+    width: 50vh;
+}
+#details {
+    height: inherit;
+    margin-bottom: 10vh;
+    width: 100%;
+}
+
+.create-date{
+    margin-bottom: 1.5vh;
+}
+#due-date {
+    cursor: pointer;
+}
+
+.priority-and-send {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.create-priority {
+    display: flex;
+    align-items: inherit;
+}
+.create-priority label {
+    margin-right: 2vh;
+}
+.create-priority input{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+.create-new-prio-butt{
+    margin-right: 2vh;
+    display: flex;
+    width: 7vh;
+    height: 3vh;
+    justify-content: center;
+    align-items: center;
+}
+.create-new-prio-low {
+    border: 2px solid #79ffffdf;
+    color: #79ffffdf;
+}
+.create-new-prio-low:hover {
+    background-color: #79ffffdf;
+    color: white;
+}
+.create-new-prio-low-active {
+    background-color: #79ffffdf;
+    color: white;
+}
+.create-new-prio-mid {
+    border: 2px solid #fbc45ee0;
+    color: #fbc45ee0;
+}
+.create-new-prio-mid:hover {
+    background-color: #fbc45ee0;
+    color: white;
+}
+.create-new-prio-mid-active {
+    background-color: #fbc45ee0;
+    color: white;
+}
+.create-new-prio-high {
+    border: 2px solid #f96262d2;
+    color: #f96262d2;
+}
+.create-new-prio-high:hover {
+    background-color: #f96262d2;
+    color: white;
+}
+.create-new-prio-high-active {
+    background-color: #f96262d2;
+    color: white;
+}
+.create-new-prio-butt label {
+    margin: 0;
+}
+.prio-label {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+.create-submit-edit{
+    background-color: #985F99;
+    border-radius: 5%;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    
+}
+.create-submit-edit button {
+    background-color: transparent;
+    border: none;
+    color: #F6E8EA;
+    font-family: "Chelsea Market", cursive;
+    cursor: pointer;
+}
+.create-submit-edit:hover {
+    background-color: transparent;
+    border: 1px solid #985F99;
+}
+.create-submit-edit button {
+    width: 100%;
+}
+.create-submit-edit button:hover {
+    color: #985F99;
+}

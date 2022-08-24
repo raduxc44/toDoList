@@ -1,6 +1,6 @@
 import './ToDo.css'
 
-function ToDo ({checked, priority, title, checkButton, date, showDetails, deleteToDo}) {
+function ToDo ({checked, priority, title, checkButton, date, showDetails, showEdit ,deleteToDo}) {
 
     return (
         <div className={`todo ${priority}-border`}>
@@ -13,8 +13,8 @@ function ToDo ({checked, priority, title, checkButton, date, showDetails, delete
             <div className="todo-second-half">
                 <button onClick={showDetails} className={`details details-${priority}`}>DETAILS</button>
                 <p className='date-container'>{date}</p>
-                <i className={`fa-solid fa-pencil icon-${priority}`}></i>
-                <i id onClick={deleteToDo} className={`fa-solid fa-ban icon-${priority}`}></i>
+                <i onClick={showEdit} className={`fa-solid fa-pencil icon-${priority}`}></i>
+                <i onClick={deleteToDo} className={`fa-solid fa-ban icon-${priority}`}></i>
             </div>
         </div>
     )

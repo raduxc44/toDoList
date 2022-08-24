@@ -5,6 +5,7 @@ import Add from './components/Add/Add';
 import ToDo from './components/ToDo/ToDo';
 import Details from './components/Details/Details';
 import CreateOverlay from './components/CreateOverlay/CreateOverlay'
+import Edit from './components/Edit/Edit';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -72,6 +73,15 @@ function App() {
   //   );
   // }
   // console.log(todos.filter((todo) => todo.checked).length);
+
+    function showEdit() {
+      let editOverlay = document.getElementsByClassName('edit-overlay')[0];
+      editOverlay.classList.add('visible')
+      let mainPage = document.getElementById('main-page');
+      mainPage.classList.add('blur');
+      mainPage.classList.add('avoid-clicks')
+    }
+
   return (
     <div className="App">
       <CreateOverlay 
@@ -87,6 +97,7 @@ function App() {
       setTodos={setTodos}
       />
       {selectedToDo && (<Details  {...selectedToDo} setSelectedToDo={setSelectedToDo}/>)}
+      <Edit />
       <div id='main-page'>
       <Head />
       <div className='main-content'>
@@ -99,6 +110,7 @@ function App() {
           (<ToDo 
             {...todo}
             key={index}
+            showEdit= {() => showEdit(index)}
             showDetails={() => showDetails(index)}
             deleteToDo= {() => deleteToDo(index)}
             // checkButton={() => checkButton(i)}
