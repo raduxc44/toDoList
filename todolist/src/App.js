@@ -41,7 +41,9 @@ function App() {
 }]);
 
   // Saves the selected todo by it's details button in the selectedToDo state
-  const showDetails = (index) =>  {setSelectedToDo(todos[index])};
+  function showDetails (index) {
+    setSelectedToDo(todos[index])
+  };
   
   // if a toDo has been selected, each time it gets refreshed, the details Overlay gets rendered with the correct props
   // also, the main page content gets disabled and blurred
@@ -54,6 +56,11 @@ function App() {
     mainPage.classList.add('avoid-clicks')
    }
   }, [selectedToDo]);
+
+  // the function return the the todos left after the deletion
+    function deleteToDo (index) {
+      setTodos(todos.filter((todo, todoIndex) => todoIndex !== index))
+    }
   // function checkButton(todoIndex) {
   //   setTodos(
   //     todos.reduce((a, $, i) => {
@@ -93,6 +100,7 @@ function App() {
             {...todo}
             key={index}
             showDetails={() => showDetails(index)}
+            deleteToDo= {() => deleteToDo(index)}
             // checkButton={() => checkButton(i)}
           />))}
         </div>
