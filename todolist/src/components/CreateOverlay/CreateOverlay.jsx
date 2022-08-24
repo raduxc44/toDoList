@@ -54,17 +54,17 @@ function CreateOverlay ({currentKey, setCurrentKey, inputTitle ,setInputTitle, i
         // Checks the priority so it can add the correct styling to the toDo
         let lowPriority = document.getElementById('create-new-low');
         if (lowPriority.checked) {
-            setTodos([...todos, {title: inputTitle, details: inputDetails, key: currentKey, date: date, priority: 'low'}])
+            setTodos([...todos, {title: inputTitle, details: inputDetails, key: currentKey, date: date.split("-").reverse().join("-"), priority: 'low'}])
             setCurrentKey(currentKey => currentKey + 1)
         }
         let midPriority = document.getElementById('create-new-mid');
         if (midPriority.checked) {
-            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date, priority: 'mid'}])
+            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date.split("-").reverse().join("-"), priority: 'mid'}])
             setCurrentKey(currentKey => currentKey + 1)
         }
         let highPriority = document.getElementById('create-new-high');
         if (highPriority.checked) {
-            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date, priority: 'high'}])
+            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date.split("-").reverse().join("-"), priority: 'high'}])
             setCurrentKey(currentKey => currentKey + 1)
         }
       };
