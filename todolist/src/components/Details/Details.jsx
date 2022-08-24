@@ -1,6 +1,6 @@
 import './Details.css'
 
-function Details (props) {
+function Details ({title, priority, date, details, selectedToDo ,setSelectedToDo}) {
 
     function removeDetails () {
 
@@ -10,35 +10,37 @@ function Details (props) {
         let mainPage = document.getElementById('main-page')
         mainPage.classList.remove('blur')
         mainPage.classList.remove('avoid-clicks')
+        setSelectedToDo('')
 
     }
 
     return(
-        <div className="details-overlay invisible   ">
+        <>
+        <div className="details-overlay invisible">
             <div className='details-content'>
-                <h2>{props.title}</h2>
+                <h2>{title}</h2>
                 <div className="todo-details">
                     <div className="details-info">
                         <p><strong>Project:</strong></p>
-                        <p>{props.title}</p>
+                        <p>Dummy Project</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Priority:</strong></p>
-                        <p>{props.priority}</p>
+                        <p>{priority}</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Due Date:</strong></p>
-                        <p>{props.date}</p>
+                        <p>{date}</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Details:</strong></p>
-                        <p>{props.details}</p>
+                        <p>{details}</p>
                     </div>
                 </div>
             </div>
             <div onClick={removeDetails} className='details-close'>X</div>
         </div>
-
+        </>
     ) 
 }
 

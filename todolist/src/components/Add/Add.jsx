@@ -14,7 +14,7 @@ function Add() {
 
     return(
         <div className="add-butt" onClick={createToDo}>
-            <i class="fa-solid fa-calendar-plus fa-5x"></i>
+            <i className="fa-solid fa-calendar-plus fa-5x"></i>
         </div>
     )
 }

@@ -101,8 +101,8 @@
   }
 
   .date-container {
-      width: 50%;
     font-size: 12px;
+    width: 80px;
   }
 
   .fa-solid{
