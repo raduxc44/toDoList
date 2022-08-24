@@ -82,68 +82,69 @@ form {
     align-items: center;
 }
 
-.create-priority {
+.edit-priority {
     display: flex;
     align-items: inherit;
 }
-.create-priority label {
+.edit-priority label {
     margin-right: 2vh;
 }
-.create-priority input{
+.edit-priority input{
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
     -o-appearance: none;
     appearance: none;
 }
-.create-new-prio-butt{
+.edit-new-prio-butt{
     margin-right: 2vh;
     display: flex;
     width: 7vh;
     height: 3vh;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
-.create-new-prio-low {
+.edit-new-prio-low {
     border: 2px solid #79ffffdf;
     color: #79ffffdf;
 }
-.create-new-prio-low:hover {
+.edit-new-prio-low:hover {
     background-color: #79ffffdf;
     color: white;
 }
-.create-new-prio-low-active {
+.edit-new-prio-low-active {
     background-color: #79ffffdf;
     color: white;
 }
-.create-new-prio-mid {
+.edit-new-prio-mid {
     border: 2px solid #fbc45ee0;
     color: #fbc45ee0;
 }
-.create-new-prio-mid:hover {
+.edit-new-prio-mid:hover {
     background-color: #fbc45ee0;
     color: white;
 }
-.create-new-prio-mid-active {
+.edit-new-prio-mid-active {
     background-color: #fbc45ee0;
     color: white;
 }
-.create-new-prio-high {
+.edit-new-prio-high {
     border: 2px solid #f96262d2;
     color: #f96262d2;
 }
-.create-new-prio-high:hover {
+.edit-new-prio-high:hover {
     background-color: #f96262d2;
     color: white;
 }
-.create-new-prio-high-active {
+.edit-new-prio-high-active {
     background-color: #f96262d2;
     color: white;
 }
-.create-new-prio-butt label {
+.edit-new-prio-butt label {
     margin: 0;
 }
-.prio-label {
+.edit-prio-label {
     width: 100%;
     text-align: center;
     cursor: pointer;
