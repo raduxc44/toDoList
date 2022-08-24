@@ -1,6 +1,6 @@
 import './ToDo.css'
 
-function ToDo ({checked, priority, title, checkButton, deleteTodo, date, showDetails}) {
+function ToDo ({checked, priority, title, checkButton, date, showDetails, deleteTodo}) {
 
     return (
         <div className={`todo ${priority}-border`}>

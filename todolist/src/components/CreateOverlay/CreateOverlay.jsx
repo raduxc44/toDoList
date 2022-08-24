@@ -1,6 +1,17 @@
 import './CreateOverlay.css'
 
-function CreateOverlay ({currentKey, setCurrentKey, inputTitle ,setInputTitle, inputDetails, setInputDetails, date, setDate, todos, setTodos}) {
+function CreateOverlay ({
+    currentKey, 
+    setCurrentKey, 
+    inputTitle,
+    setInputTitle, 
+    inputDetails, 
+    setInputDetails, 
+    date, 
+    setDate, 
+    todos, 
+    setTodos
+}) {
 
     // Disables the entire overlay
     function removeOverlay () {

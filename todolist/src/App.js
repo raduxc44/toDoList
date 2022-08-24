@@ -39,11 +39,12 @@ function App() {
   "details": "details3",
   "checked": false,
 }]);
-  // function deleteTodo(todoIndex) {
-  //   setTodos(todos.filter((v, i) => i !== todoIndex));
-  // }
+
+  // Saves the selected todo by it's details button in the selectedToDo state
   const showDetails = (index) =>  {setSelectedToDo(todos[index])};
   
+  // if a toDo has been selected, each time it gets refreshed, the details Overlay gets rendered with the correct props
+  // also, the main page content gets disabled and blurred
   useEffect (() => {
     if(selectedToDo) {
     let detailsOverlay = document.getElementsByClassName('details-overlay')[0];
@@ -92,7 +93,6 @@ function App() {
             {...todo}
             key={index}
             showDetails={() => showDetails(index)}
-            // deleteTodo={() => deleteTodo(i)}
             // checkButton={() => checkButton(i)}
           />))}
         </div>
