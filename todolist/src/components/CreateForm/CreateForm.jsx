@@ -1,6 +1,6 @@
-import './CreateOverlay.css'
+import './CreateForm.css'
 
-function CreateOverlay ({
+function CreateForm ({
     currentId, 
     setCurrentId, 
     inputTitle,
@@ -14,12 +14,12 @@ function CreateOverlay ({
 }) {
 
 
-    // Disables the entire overlay
-    function removeOverlay () {
+    // Disables the entire form
+    function removeForm () {
 
-        let createOverlay = document.getElementsByClassName('create-overlay')[0];
+        let createForm = document.getElementsByClassName('create-form')[0];
         
-        createOverlay.classList.remove('visible')
+        createForm.classList.remove('visible')
         
         let mainPage = document.getElementById('main-page')
         mainPage.classList.remove('blur')
@@ -94,10 +94,10 @@ function CreateOverlay ({
       }
 
     return(
-        <div className="create-overlay">
+        <div className="create-form">
             <div className='create-nav'>
                 <h3>Create a new ToDo</h3>
-                <div className="create-close-butt" onClick={removeOverlay}>X</div>
+                <div className="create-close-butt" onClick={removeForm}>X</div>
             </div>
             <div className='create-main-content'>
                 <div className='create-sidebar'>
@@ -116,7 +116,7 @@ function CreateOverlay ({
                 <form onSubmit={handleSubmit}>
                     <div><textarea className='text-box' value={inputTitle} name="title" id="title" onChange={inputTitleHandler} maxLength={40} required placeholder={'Title'}></textarea></div>
                     <div className='create-details'>
-                        <textarea name="details" maxLength={40} className='text-box' id="details" onChange={inputDetailsHandler} placeholder='Details'></textarea>
+                        <textarea name="details" maxLength={40} className='text-box' id="details" onChange={inputDetailsHandler} placeholder='Details' required></textarea>
                     </div>
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
@@ -149,4 +149,4 @@ function CreateOverlay ({
 
 }
 
-export default CreateOverlay
+export default CreateForm
