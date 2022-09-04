@@ -1,8 +1,8 @@
 import './CreateOverlay.css'
 
 function CreateOverlay ({
-    currentKey, 
-    setCurrentKey, 
+    currentId, 
+    setCurrentId, 
     inputTitle,
     setInputTitle, 
     inputDetails, 
@@ -76,8 +76,8 @@ function CreateOverlay ({
             priority = "high";
         }
 
-        setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date, priority }])
-        setCurrentKey(currentKey => currentKey + 1)
+        setTodos([...todos, {title : inputTitle, details: inputDetails, id: currentId, date, priority }])
+        setCurrentId(currentId => currentId + 1)
       };
     
       //Targets the title selected by the user in the form

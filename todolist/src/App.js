@@ -14,14 +14,14 @@ function App() {
   const [inputDetails, setInputDetails] = useState('');
   const [inputEditTitle, setInputEditTitle] = useState();
   const [inputEditDetails, setInputEditDetails] = useState();
-  const [currentKey, setCurrentKey] = useState(0);
+  const [currentId, setCurrentId] = useState(0);
   const [date, setDate] = useState();
   const [selectedToDoDetails, setSelectedToDoDetails] = useState()
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState()
   const [modifiedToDo, setModifiedToDo] = useState()
   const [todos, setTodos] = useState(
 [{
-  "key" : 1,
+  "id" : 1,
   "title": "Brush Teeth",
   "date": "2022-10-15",
   "priority": "mid",
@@ -29,7 +29,7 @@ function App() {
   "checked": false,
 },
 {
-  "key" : 2,
+  "id" : 2,
   "title": "Wash the dog",
   "date": "2022-12-01",
   "priority": "low",
@@ -37,7 +37,7 @@ function App() {
   "checked": true,
 },
 {
-  "key" : 3,
+  "id" : 3,
   "title": "Mow the lawn",
   "date": "2022-06-05",
   "priority": "high",
@@ -104,8 +104,8 @@ function App() {
       setInputTitle={setInputTitle}
       inputDetails={inputDetails}
       setInputDetails={setInputDetails}
-      currentKey={currentKey}
-      setCurrentKey={setCurrentKey}
+      currentId={currentId}
+      setCurrentId={setCurrentId}
       date={date} 
       setDate={setDate} 
       todos={todos} 
@@ -134,7 +134,7 @@ function App() {
           {todos.map((todo, index) => 
           (<ToDo 
             {...todo}
-            key={index}
+            id={index}
             showEdit= {() => showEdit(index)}
             showDetails={() => showDetails(index)}
             deleteToDo= {() => deleteToDo(index)}

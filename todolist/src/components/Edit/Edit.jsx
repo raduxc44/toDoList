@@ -91,7 +91,7 @@ function Edit ({
         const result = [];
 
         for (let i = 0; i < todos.length; i++) {
-            if (i + 1 === selectedToDoForEdit.key) {
+            if (i + 1 === selectedToDoForEdit.id) {
                 result.push({ ...todos[i], title: inputEditTitle, details: inputEditDetails, priority, date });
             } else {
                 result.push(todos[i]);
