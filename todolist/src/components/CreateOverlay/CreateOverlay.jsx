@@ -75,11 +75,9 @@ function CreateOverlay ({
         if (highPriority.checked) {
             priority = "high";
         }
-
-        setTodos([...todos, {title : inputTitle, details: inputDetails, id: currentId, date, priority }])
+        setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }])
         setCurrentId(currentId => currentId + 1)
       };
-    
       //Targets the title selected by the user in the form
       const inputTitleHandler = e => {
         setInputTitle(e.target.value)
