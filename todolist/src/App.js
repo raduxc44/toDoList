@@ -11,10 +11,14 @@ import { useState, useEffect } from 'react';
 function App() {
 
   const [inputTitle, setInputTitle] = useState('');
-  const [inputDetails, setInputDetails] = useState('')
-  const [currentKey, setCurrentKey] = useState(0)
+  const [inputDetails, setInputDetails] = useState('');
+  const [inputEditTitle, setInputEditTitle] = useState();
+  const [inputEditDetails, setInputEditDetails] = useState();
+  const [currentKey, setCurrentKey] = useState(0);
   const [date, setDate] = useState('No due date');
-  const [selectedToDo, setSelectedToDo] = useState()
+  const [selectedToDoDetails, setSelectedToDoDetails] = useState()
+  const [selectedToDoForEdit, setselectedToDoForEdit] = useState()
+  const [modifiedToDo, setModifiedToDo] = useState()
   const [todos, setTodos] = useState(
 [{
   "key" : 1,
@@ -43,20 +47,20 @@ function App() {
 
   // Saves the selected todo by it's details button in the selectedToDo state
   function showDetails (index) {
-    setSelectedToDo(todos[index])
+    setSelectedToDoDetails(todos[index])
   };
   
   // if a toDo has been selected, each time it gets refreshed, the details Overlay gets rendered with the correct props
   // also, the main page content gets disabled and blurred
   useEffect (() => {
-    if(selectedToDo) {
+    if(selectedToDoDetails) {
     let detailsOverlay = document.getElementsByClassName('details-overlay')[0];
     detailsOverlay.classList.remove('invisible')
     let mainPage = document.getElementById('main-page');
     mainPage.classList.add('blur');
     mainPage.classList.add('avoid-clicks')
    }
-  }, [selectedToDo]);
+  }, [selectedToDoDetails]);
 
   // the function return the the todos left after the deletion
     function deleteToDo (index) {
@@ -74,13 +78,21 @@ function App() {
   // }
   // console.log(todos.filter((todo) => todo.checked).length);
 
-    function showEdit() {
+    // Picks a todo for editing and shows the edit overlay with it's data
+
+    function showEdit(index) {
+      setselectedToDoForEdit(todos[index])
+    }
+
+    useEffect (() => {
+      if(selectedToDoForEdit) {
       let editOverlay = document.getElementsByClassName('edit-overlay')[0];
       editOverlay.classList.add('visible')
       let mainPage = document.getElementById('main-page');
       mainPage.classList.add('blur');
       mainPage.classList.add('avoid-clicks')
-    }
+      }
+    }, [selectedToDoForEdit])
 
   return (
     <div className="App">
@@ -96,8 +108,18 @@ function App() {
       todos={todos} 
       setTodos={setTodos}
       />
-      {selectedToDo && (<Details  {...selectedToDo} setSelectedToDo={setSelectedToDo}/>)}
-      <Edit />
+      {selectedToDoDetails && (<Details  {...selectedToDoDetails} setSelectedToDoDetails={setSelectedToDoDetails}/>)}
+      {selectedToDoForEdit && (<Edit {...selectedToDoForEdit} 
+                                selectedToDoForEdit={selectedToDoForEdit} 
+                                modifiedToDo={modifiedToDo} 
+                                setModifiedToDo={setModifiedToDo} 
+                                todos={todos} setTodos={setTodos} 
+                                inputEditTitle={inputEditTitle} 
+                                setInputEditTitle={setInputEditTitle} 
+                                inputEditDetails={inputEditDetails} 
+                                setInputEditDetails={setInputEditDetails}
+                                setDate={setDate} 
+                                setselectedToDoForEdit={setselectedToDoForEdit}/>)}
       <div id='main-page'>
       <Head />
       <div className='main-content'>

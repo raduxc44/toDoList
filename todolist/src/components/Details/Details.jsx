@@ -1,6 +1,6 @@
 import './Details.css'
 
-function Details ({title, priority, date, details, selectedToDo ,setSelectedToDo}) {
+function Details ({title, priority, date, details, setSelectedToDoDetails}) {
 
     function removeDetails () {
 
@@ -10,7 +10,7 @@ function Details ({title, priority, date, details, selectedToDo ,setSelectedToDo
         let mainPage = document.getElementById('main-page')
         mainPage.classList.remove('blur')
         mainPage.classList.remove('avoid-clicks')
-        setSelectedToDo('')
+        setSelectedToDoDetails('')
 
     }
 
