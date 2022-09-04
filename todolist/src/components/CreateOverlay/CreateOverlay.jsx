@@ -24,7 +24,6 @@ function CreateOverlay ({
         let mainPage = document.getElementById('main-page')
         mainPage.classList.remove('blur')
         mainPage.classList.remove('avoid-clicks')
-        console.log(todos)
 
     }
 
@@ -61,23 +60,24 @@ function CreateOverlay ({
     const handleSubmit = e => {
 
         e.preventDefault();
+        let priority;
 
         // Checks the priority so it can add the correct styling to the toDo
         let lowPriority = document.getElementById('create-new-low');
         if (lowPriority.checked) {
-            setTodos([...todos, {title: inputTitle, details: inputDetails, key: currentKey, date: date.split("-").reverse().join("-"), priority: 'low'}])
-            setCurrentKey(currentKey => currentKey + 1)
+            priority = "low";
         }
         let midPriority = document.getElementById('create-new-mid');
         if (midPriority.checked) {
-            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date.split("-").reverse().join("-"), priority: 'mid'}])
-            setCurrentKey(currentKey => currentKey + 1)
+            priority = "mid";
         }
         let highPriority = document.getElementById('create-new-high');
         if (highPriority.checked) {
-            setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date: date.split("-").reverse().join("-"), priority: 'high'}])
-            setCurrentKey(currentKey => currentKey + 1)
+            priority = "high";
         }
+
+        setTodos([...todos, {title : inputTitle, details: inputDetails, key: currentKey, date, priority }])
+        setCurrentKey(currentKey => currentKey + 1)
       };
     
       //Targets the title selected by the user in the form
@@ -122,7 +122,7 @@ function CreateOverlay ({
                     </div>
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
-                        <input value={date} onChange={dateHandler} type="date" name="due-date" id="due-date" />
+                        <input value={date} onChange={dateHandler} type="date" name="due-date" id="due-date" required />
                     </div>
                     <div className='priority-and-send'>
                         <div className='create-priority'>
