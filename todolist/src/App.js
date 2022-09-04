@@ -1,10 +1,9 @@
 import './App.css';
 import Head from './components/Head/Head';
 import Nav from './components/Nav/Nav';
-import Add from './components/Add/Add';
 import ToDo from './components/ToDo/ToDo';
 import Details from './components/Details/Details';
-import CreateOverlay from './components/CreateOverlay/CreateOverlay'
+import CreateForm from './components/CreateForm/CreateForm'
 import Edit from './components/Edit/Edit';
 import { useState, useEffect } from 'react';
 
@@ -101,7 +100,7 @@ function App() {
 
   return (
     <div className="App">
-      <CreateOverlay 
+      <CreateForm 
       inputTitle={inputTitle} 
       setInputTitle={setInputTitle}
       inputDetails={inputDetails}
@@ -126,12 +125,11 @@ function App() {
                                 setDate={setDate} 
                                 setSelectedToDoForEdit={setSelectedToDoForEdit}/>)}
       <div id='main-page'>
-      <Head />
-      <div className='main-content'>
-        <div className='menu-add'>
+      <div className='menu-add'>
           <Nav />
-          <Add />
-        </div>
+      </div>
+      <div className='main-content'>
+        <Head />
         <div className="to-do-container">
           {todos.map((todo, index) => 
           (<ToDo 
