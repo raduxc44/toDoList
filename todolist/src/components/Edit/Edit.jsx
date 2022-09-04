@@ -1,25 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './Edit.css'
 
 function Edit ({
-    title, 
-    details, 
-    date,
-    setDate,
     priority, 
     selectedToDoForEdit,
-    setselectedToDoForEdit,
-    modifiedToDo,
+    setSelectedToDoForEdit,
+    // modifiedToDo,
     setModifiedToDo, 
     todos, 
     setTodos, 
-    currentKey, 
-    setCurrentKey, 
     inputEditDetails,
     setInputEditDetails, 
     inputEditTitle,
     setInputEditTitle}) {
 
+    const [date, setDate] = useState(selectedToDoForEdit.date);
+    
     function removeEditOverlay() {
 
         let editOverlay = document.getElementsByClassName('edit-overlay')[0];
@@ -28,8 +24,7 @@ function Edit ({
         let mainPage = document.getElementById('main-page')
         mainPage.classList.remove('blur')
         mainPage.classList.remove('avoid-clicks')
-        setselectedToDoForEdit()
-
+        setSelectedToDoForEdit()
     }
 
     // Gets the previously set priority of the ToDo and applies styling to the corresponding priority
@@ -90,14 +85,27 @@ function Edit ({
       }
 
     const dateHandler = e => {
-        if(e.target.value) {setDate(e.target.value)} else {setDate('No due date')}
-      }
+        setDate(e.target.value);
+    }
+    const replaceTodo = (priority, date) => {
+        const result = [];
+
+        for (let i = 0; i < todos.length; i++) {
+            if (i + 1 === selectedToDoForEdit.key) {
+                result.push({ ...todos[i], title: inputEditTitle, details: inputEditDetails, priority, date });
+            } else {
+                result.push(todos[i]);
+            }
+        }
+
+        return result;
+    };
 
     const handleEditSubmit = e => {
 
         e.preventDefault()
-        removeEditOverlay()
-        console.log(todos)
+        // console.log(todos)
+        
         // Checks the priority so it can add the correct styling to the toDo
 
         let lowPriority = document.getElementById('edit-new-low');
@@ -114,11 +122,14 @@ function Edit ({
         }
 
         // ISSUE ! The modifiedToDo state doesn't get updated until the function runs for the 2nd time | TO FIX!
-        setModifiedToDo({title : inputEditTitle, details: inputEditDetails, date: date.split("-").reverse().join("-"), priority: priority})
         // Ask how and WHY it works!!!
-        if(modifiedToDo)setTodos(todos => todos, todos.splice(selectedToDoForEdit.key - 1, 1, modifiedToDo))
-        console.log(modifiedToDo)
+         setTodos(replaceTodo(priority, date))
+        // console.log(modifiedToDo)
+        
+        removeEditOverlay()
       };
+
+    //   useEffect(() => {setTodos(todos => todos, todos.splice(selectedToDoForEdit.key - 1, 1, modifiedToDo))}, [setTodos ,todos ,modifiedToDo, selectedToDoForEdit.key])
       
 
 return (
@@ -130,13 +141,15 @@ return (
             </div>
             <div className='create-main-content'>
                 <form onSubmit={handleEditSubmit}>
-                    <div><textarea className='text-box' name="title" id="title" maxLength={40} required onChange={inputTitleHandler} defaultValue={title}></textarea></div>
+                    <div>
+                        <textarea className='text-box' name="title" id="title" maxLength={40} required value={inputEditTitle} onChange={inputTitleHandler} />
+                    </div>
                     <div className='create-details'>
-                        <textarea name="details" maxLength={40} className='text-box' id="details" defaultValue={details} onChange={inputDetailsHandler} ></textarea>
+                        <textarea name="details" maxLength={40} className='text-box' id="details" value={inputEditDetails} onChange={inputDetailsHandler} />
                     </div>
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
-                        <input type="date" name="due-date" id="due-date" defaultValue={date} onChange={dateHandler}/>
+                        <input type="date" name="due-date" id="due-date" value={date} onChange={dateHandler}/>
                     </div>
                     <div className='priority-and-send'>
                         <div className='edit-priority'>

@@ -11,7 +11,7 @@ function ToDo ({checked, priority, title, checkButton, date, showDetails, showEd
             </div>
             <div className="todo-second-half">
                 <button onClick={showDetails} className={`details details-${priority}`}>DETAILS</button>
-                <p className='date-container'>{date}</p>
+                <p className='date-container'>{date.split("-").reverse().join("-")}</p>
                 <i onClick={showEdit} className={`fa-solid fa-pencil icon-${priority}`}></i>
                 <i onClick={deleteToDo} className={`fa-solid fa-ban icon-${priority}`}></i>
             </div>

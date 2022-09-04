@@ -15,15 +15,15 @@ function App() {
   const [inputEditTitle, setInputEditTitle] = useState();
   const [inputEditDetails, setInputEditDetails] = useState();
   const [currentKey, setCurrentKey] = useState(0);
-  const [date, setDate] = useState('No due date');
+  const [date, setDate] = useState();
   const [selectedToDoDetails, setSelectedToDoDetails] = useState()
-  const [selectedToDoForEdit, setselectedToDoForEdit] = useState()
+  const [selectedToDoForEdit, setSelectedToDoForEdit] = useState()
   const [modifiedToDo, setModifiedToDo] = useState()
   const [todos, setTodos] = useState(
 [{
   "key" : 1,
   "title": "Brush Teeth",
-  "date": "15-10-2022",
+  "date": "2022-10-15",
   "priority": "mid",
   "details": "details1",
   "checked": false,
@@ -31,7 +31,7 @@ function App() {
 {
   "key" : 2,
   "title": "Wash the dog",
-  "date": "01-12-2022",
+  "date": "2022-12-01",
   "priority": "low",
   "details": "details2",
   "checked": true,
@@ -39,7 +39,7 @@ function App() {
 {
   "key" : 3,
   "title": "Mow the lawn",
-  "date": "05-06-2022",
+  "date": "2022-06-05",
   "priority": "high",
   "details": "details3",
   "checked": false,
@@ -49,7 +49,13 @@ function App() {
   function showDetails (index) {
     setSelectedToDoDetails(todos[index])
   };
-  
+  function showEdit(index) {
+    const item = todos[index];
+
+    setSelectedToDoForEdit(item);
+    setInputEditDetails(item.details);
+    setInputEditTitle(item.title);
+  }
   // if a toDo has been selected, each time it gets refreshed, the details Overlay gets rendered with the correct props
   // also, the main page content gets disabled and blurred
   useEffect (() => {
@@ -80,9 +86,6 @@ function App() {
 
     // Picks a todo for editing and shows the edit overlay with it's data
 
-    function showEdit(index) {
-      setselectedToDoForEdit(todos[index])
-    }
 
     useEffect (() => {
       if(selectedToDoForEdit) {
@@ -119,7 +122,7 @@ function App() {
                                 inputEditDetails={inputEditDetails} 
                                 setInputEditDetails={setInputEditDetails}
                                 setDate={setDate} 
-                                setselectedToDoForEdit={setselectedToDoForEdit}/>)}
+                                setSelectedToDoForEdit={setSelectedToDoForEdit}/>)}
       <div id='main-page'>
       <Head />
       <div className='main-content'>
