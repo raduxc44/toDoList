@@ -157,15 +157,15 @@ return (
                             <div className='edit-new-prio-butt edit-new-prio-low'>
                                 <label className='edit-prio-label' htmlFor="edit-new-low">Low</label>
                             </div>
-                            <input onClick={checkIfActive} type="radio" required name="edit-new-priority" id="edit-new-low" className='edit-new-prio-input'/>
+                            <input onClick={checkIfActive} type="radio" name="edit-new-priority" id="edit-new-low" className='edit-new-prio-input'/>
                             <div className='edit-new-prio-butt edit-new-prio-mid'>
                                 <label className='edit-prio-label' htmlFor="edit-new-mid">Mid</label>
                             </div>
-                            <input onClick={checkIfActive} type="radio" required name='edit-new-priority' id='edit-new-mid' className='edit-new-prio-input'/>
+                            <input onClick={checkIfActive} type="radio" name='edit-new-priority' id='edit-new-mid' className='edit-new-prio-input'/>
                             <div className='edit-new-prio-butt edit-new-prio-high'>
                                 <label className='edit-prio-label' htmlFor="edit-new-high">High</label>
                             </div>
-                            <input onClick={checkIfActive} type="radio" required name="edit-new-priority" id="edit-new-high" className='edit-new-prio-input'/>
+                            <input onClick={checkIfActive} type="radio" name="edit-new-priority" id="edit-new-high" className='edit-new-prio-input'/>
                         </div>
                         <div className='create-submit-edit'>
                             <button type='submit'>Confirm Edit</button>
