@@ -14,7 +14,7 @@ function App() {
   const [inputDetails, setInputDetails] = useState('');
   const [inputEditTitle, setInputEditTitle] = useState();
   const [inputEditDetails, setInputEditDetails] = useState();
-  const [currentId, setCurrentId] = useState(0);
+  const [currentId, setCurrentId] = useState(4);
   const [date, setDate] = useState();
   const [selectedToDoDetails, setSelectedToDoDetails] = useState()
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState()
@@ -49,6 +49,8 @@ function App() {
   function showDetails (index) {
     setSelectedToDoDetails(todos[index])
   };
+
+
   function showEdit(index) {
     const item = todos[index];
 
