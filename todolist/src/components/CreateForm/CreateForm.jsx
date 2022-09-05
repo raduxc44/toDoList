@@ -100,23 +100,10 @@ function CreateForm ({
                 <div className="create-close-butt" onClick={removeForm}>X</div>
             </div>
             <div className='create-main-content'>
-                <div className='create-sidebar'>
-                    <ul>
-                        <li>
-                            <p>ToDo</p>
-                        </li>
-                        <li>
-                            <p>Interest</p>
-                        </li>
-                        <li>
-                            <p>Note</p>
-                        </li>
-                    </ul>
-                </div>
                 <form onSubmit={handleSubmit}>
                     <div><textarea className='text-box' value={inputTitle} name="title" id="title" onChange={inputTitleHandler} maxLength={40} required placeholder={'Title'}></textarea></div>
                     <div className='create-details'>
-                        <textarea name="details" maxLength={40} className='text-box' id="details" onChange={inputDetailsHandler} placeholder='Details' required></textarea>
+                        <textarea name="details" maxLength={55} className='text-box' id="details" onChange={inputDetailsHandler} placeholder='Details' required></textarea>
                     </div>
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
