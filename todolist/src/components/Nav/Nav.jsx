@@ -1,6 +1,6 @@
 import './Nav.css'
 
-function Nav () {
+function Nav ({checkedCounter}) {
 
     function createToDo() {
         
@@ -15,10 +15,26 @@ function Nav () {
 
     return(
         <div className="menu">
-            <div className="menu-div-active home">Home</div>
-            <div className="today">Today</div>
-            <div className="this-week">Week</div>
-            <div className="this-month">Month</div>
+            <div className="category-active category">
+                <p>Home</p>     
+            </div>
+            <div className="today category">
+                <p>Today</p>
+            </div>
+            <div className="this-week category">
+                <p>Week</p>
+            </div>
+            <div className="this-month category">
+                <p>Month</p>
+            </div>
+            <div className='completed category'>
+                <p>Completed</p>
+                <div className='check-counter'>{checkedCounter}</div>
+            </div>
+            <div className='uncomplete category'>
+                <p>Uncomplete</p>
+                <div className='check-counter'>{checkedCounter}</div>
+                </div>
             <i onClick={createToDo} className="fa-solid add-butt fa-calendar-plus fa-5x"></i>
         </div>
     )

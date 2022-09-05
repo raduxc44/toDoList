@@ -18,6 +18,7 @@ function App() {
   const [selectedToDoDetails, setSelectedToDoDetails] = useState()
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState()
   const [modifiedToDo, setModifiedToDo] = useState()
+  const [checkedCounter, setCheckedCounter] = useState(0)
   const [todos, setTodos] = useState(
 [{
   "id" : 1,
@@ -33,7 +34,7 @@ function App() {
   "date": "2022-12-01",
   "priority": "low",
   "details": "details2",
-  "checked": true,
+  "checked": false,
 },
 {
   "id" : 3,
@@ -81,7 +82,11 @@ function App() {
       let updatedTodos = [];
       for(let i = 0; i < todos.length; i++) {
         let checkedTodo = todos[i];
-        if(i === todoIndex) {checkedTodo.checked = !checkedTodo.checked;}
+        if(i === todoIndex) {
+          checkedTodo.checked = !checkedTodo.checked;
+          if(checkedTodo.checked) {setCheckedCounter(prevCheckedCounter => prevCheckedCounter + 1)}
+          else {setCheckedCounter(prevCheckedCounter => prevCheckedCounter - 1)}
+        }
         updatedTodos.push(checkedTodo)
       }
       setTodos(updatedTodos)
@@ -151,7 +156,7 @@ function App() {
                                 setSelectedToDoForEdit={setSelectedToDoForEdit}/>)}
       <div id='main-page'>
       <div className='menu-add'>
-          <Nav />
+          <Nav checkedCounter={checkedCounter}/>
       </div>
       <div className='main-content'>
         <Head />

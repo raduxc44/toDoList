@@ -6,25 +6,46 @@
 .menu {
     display: flex;
     height: inherit;
-    font-size: 25px;
+    font-size: 20px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6vh;
-    padding: 5vh;
+    padding: 10vh 0;
     background-color: #F6E8EA;
     font-family: 'Chelsea Market', cursive;
 }
+.menu p {
+  margin: 0;
+}
+.category {
+  display: flex;
+  align-items: center;
+  gap: 2vh;
+}
 
-.menu div:hover {
+.check-counter {
+  font-size: 3vh;
+  background-color: #985F99;
+  color: #F6E8EA;
+  border-radius: 5vh;
+  height: 5vh;
+  width: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.check-counter:hover{
+  color: #F6E8EA;
+}
+.category:hover {
     color: #985F99;
 }
 
-.menu-div-active{
+.category-active{
     color: #985F99;
     font-size: 35px;
 }
-
 .add-butt{
     background-color: #F6E8EA;
     display: flex;
