@@ -9,16 +9,20 @@
     font-size: 25px;
     flex-direction: column;
     align-items: center;
-    gap: 5vh;
+    justify-content: center;
+    gap: 6vh;
     padding: 5vh;
     background-color: #F6E8EA;
     font-family: 'Chelsea Market', cursive;
 }
-.home{
-    font-size: 30px;
+
+.menu div:hover {
+    color: #985F99;
 }
-.interest {
-    font-size: 14px;
+
+.menu-div-active{
+    color: #985F99;
+    font-size: 35px;
 }
 
 .add-butt{
@@ -31,4 +35,8 @@
     cursor: pointer;
     height: 20vh;
     top: 0;
+  }
+
+  .add-butt:hover {
+    font-size: 12vh;
   }
