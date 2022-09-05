@@ -73,17 +73,42 @@ function App() {
     function deleteToDo (index) {
       setTodos(todos.filter((todo, todoIndex) => todoIndex !== index))
     }
-  // function checkButton(todoIndex) {
-  //   setTodos(
-  //     todos.reduce((a, $, i) => {
-  //       const checkedToDo = todos[i];
-  //       if (i === todoIndex) checkedToDo.checked = !checkedToDo.checked;
-  //       a.push(checkedToDo)
-  //       return a;
-  //     }, [])
-  //   );
+
+  // The function gets the selected to do and adds a checked property to it, returning an updated array
+
+    function checkButton(todoIndex) {
+      
+      let updatedTodos = [];
+      for(let i = 0; i < todos.length; i++) {
+        let checkedTodo = todos[i];
+        if(i === todoIndex) {checkedTodo.checked = !checkedTodo.checked;}
+        updatedTodos.push(checkedTodo)
+      }
+      setTodos(updatedTodos)
+      console.log(todos.filter((todo) => todo.checked).length);
+    }
+
+
+    // function renderTodos() {
+  //   // Category filters
+  //   let filteredTodos = todos;
+
+  //   if (category === "checked") {
+  //     filteredTodos = filteredTodos.filter(todoItem => todoItem.checked);
+  //   }
+
+  //   // Renders
+  //   return filteredTodos.map((todo, index) => 
+  //         (<ToDo 
+  //           {...todo}
+  //           id={index}
+  //           checkButton= {() => checkButton(index)}
+  //           showEdit= {() => showEdit(index)}
+  //           showDetails={() => showDetails(index)}
+  //           deleteToDo= {() => deleteToDo(index)}
+  //         />))
   // }
-  // console.log(todos.filter((todo) => todo.checked).length);
+
 
     // Picks a todo for editing and shows the edit overlay with it's data
 
@@ -138,7 +163,7 @@ function App() {
             showEdit= {() => showEdit(index)}
             showDetails={() => showDetails(index)}
             deleteToDo= {() => deleteToDo(index)}
-            // checkButton={() => checkButton(i)}
+            checkButton={() => checkButton(index)}
           />))}
         </div>
       </div>
