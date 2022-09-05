@@ -145,7 +145,7 @@ return (
                         <textarea className='text-box' name="title" id="title" maxLength={40} required value={inputEditTitle} onChange={inputTitleHandler} />
                     </div>
                     <div className='create-details'>
-                        <textarea name="details" maxLength={40} className='text-box' id="details" value={inputEditDetails} onChange={inputDetailsHandler} />
+                        <textarea name="details" maxLength={55} className='text-box' id="details" value={inputEditDetails} onChange={inputDetailsHandler} />
                     </div>
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
