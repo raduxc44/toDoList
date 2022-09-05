@@ -21,16 +21,12 @@ function Details ({title, priority, date, details, setSelectedToDoDetails}) {
                 <h2>{title}</h2>
                 <div className="todo-details">
                     <div className="details-info">
-                        <p><strong>Project:</strong></p>
-                        <p>Dummy Project</p>
-                    </div>
-                    <div className="details-info">
                         <p><strong>Priority:</strong></p>
                         <p>{priority}</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Due Date:</strong></p>
-                        <p>{date}</p>
+                        <p>{date.split('-').reverse().join('-')}</p>
                     </div>
                     <div className="details-info">
                         <p><strong>Details:</strong></p>

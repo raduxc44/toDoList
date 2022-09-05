@@ -20,6 +20,9 @@
 }
 .details-content {
     padding-left: 4vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
 }
 .details-info {
     display: flex;
@@ -27,4 +30,8 @@
 }
 .details-close {
     cursor: pointer;
+    height: 3vh;
+}
+.details-close:hover {
+    color: #985F99;
 }
