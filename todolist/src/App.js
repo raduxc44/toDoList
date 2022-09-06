@@ -3,7 +3,7 @@ import Head from './components/Head/Head';
 import Nav from './components/Nav/Nav';
 import ToDo from './components/ToDo/ToDo';
 import Details from './components/Details/Details';
-import CreateForm from './components/CreateForm/CreateForm'
+import CreateForm from './components/CreateForm/CreateForm';
 import Edit from './components/Edit/Edit';
 import { useState, useEffect } from 'react';
 
@@ -15,10 +15,11 @@ function App() {
   const [inputEditDetails, setInputEditDetails] = useState();
   const [currentId, setCurrentId] = useState(4);
   const [date, setDate] = useState();
-  const [selectedToDoDetails, setSelectedToDoDetails] = useState()
-  const [selectedToDoForEdit, setSelectedToDoForEdit] = useState()
-  const [modifiedToDo, setModifiedToDo] = useState()
-  const [checkedCounter, setCheckedCounter] = useState(0)
+  const [selectedToDoDetails, setSelectedToDoDetails] = useState();
+  const [selectedToDoForEdit, setSelectedToDoForEdit] = useState();
+  const [modifiedToDo, setModifiedToDo] = useState();
+  const [completeCounter, setCompleteCounter] = useState(0);
+  const [incompleteCounter, setIncompleteCounter] = useState(3);
   const [todos, setTodos] = useState(
 [{
   "id" : 1,
@@ -47,7 +48,7 @@ function App() {
 
   // Saves the selected todo by it's details button in the selectedToDo state
   function showDetails (index) {
-    setSelectedToDoDetails(todos[index])
+    setSelectedToDoDetails(todos[index]);
   };
 
 
@@ -63,16 +64,21 @@ function App() {
   useEffect (() => {
     if(selectedToDoDetails) {
     let detailsOverlay = document.getElementsByClassName('details-overlay')[0];
-    detailsOverlay.classList.remove('invisible')
+    detailsOverlay.classList.remove('invisible');
     let mainPage = document.getElementById('main-page');
     mainPage.classList.add('blur');
-    mainPage.classList.add('avoid-clicks')
+    mainPage.classList.add('avoid-clicks');
    }
   }, [selectedToDoDetails]);
 
   // the function return the the todos left after the deletion
     function deleteToDo (index) {
-      setTodos(todos.filter((todo, todoIndex) => todoIndex !== index))
+      setTodos(todos.filter((todo, todoIndex) => todoIndex !== index));
+      let selected = todos.filter((todo, todoIndex) => todoIndex === index);
+      for(let i = 0; i < selected.length; i++) {
+        if(selected[i].checked) setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
+        else                    setIncompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
+      }
     }
 
   // The function gets the selected to do and adds a checked property to it, returning an updated array
@@ -84,13 +90,18 @@ function App() {
         let checkedTodo = todos[i];
         if(i === todoIndex) {
           checkedTodo.checked = !checkedTodo.checked;
-          if(checkedTodo.checked) {setCheckedCounter(prevCheckedCounter => prevCheckedCounter + 1)}
-          else {setCheckedCounter(prevCheckedCounter => prevCheckedCounter - 1)}
+          if(checkedTodo.checked) {
+            setCompleteCounter(prevCompletedCounter => prevCompletedCounter + 1)
+            setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter - 1)
+          }
+          else {
+            setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
+            setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter + 1)
+          }
         }
-        updatedTodos.push(checkedTodo)
+        updatedTodos.push(checkedTodo);
       }
-      setTodos(updatedTodos)
-      console.log(todos.filter((todo) => todo.checked).length);
+      setTodos(updatedTodos);
     }
 
 
@@ -121,48 +132,50 @@ function App() {
     useEffect (() => {
       if(selectedToDoForEdit) {
       let editOverlay = document.getElementsByClassName('edit-overlay')[0];
-      editOverlay.classList.add('visible')
+      editOverlay.classList.add('visible');
       let mainPage = document.getElementById('main-page');
       mainPage.classList.add('blur');
-      mainPage.classList.add('avoid-clicks')
+      mainPage.classList.add('avoid-clicks');
       }
     }, [selectedToDoForEdit])
 
   return (
     <div className="App">
       <CreateForm 
-      inputTitle={inputTitle} 
+      inputTitle={inputTitle}
       setInputTitle={setInputTitle}
       inputDetails={inputDetails}
       setInputDetails={setInputDetails}
       currentId={currentId}
       setCurrentId={setCurrentId}
-      date={date} 
-      setDate={setDate} 
-      todos={todos} 
+      date={date}
+      setDate={setDate}
+      todos={todos}
       setTodos={setTodos}
+      incompleteCounter={incompleteCounter}
+      setIncompleteCounter={setIncompleteCounter}
       />
       {selectedToDoDetails && (<Details  {...selectedToDoDetails} setSelectedToDoDetails={setSelectedToDoDetails}/>)}
-      {selectedToDoForEdit && (<Edit {...selectedToDoForEdit} 
-                                selectedToDoForEdit={selectedToDoForEdit} 
-                                modifiedToDo={modifiedToDo} 
-                                setModifiedToDo={setModifiedToDo} 
-                                todos={todos} setTodos={setTodos} 
-                                inputEditTitle={inputEditTitle} 
-                                setInputEditTitle={setInputEditTitle} 
-                                inputEditDetails={inputEditDetails} 
+      {selectedToDoForEdit && (<Edit {...selectedToDoForEdit}
+                                selectedToDoForEdit={selectedToDoForEdit}
+                                modifiedToDo={modifiedToDo}
+                                setModifiedToDo={setModifiedToDo}
+                                todos={todos} setTodos={setTodos}
+                                inputEditTitle={inputEditTitle}
+                                setInputEditTitle={setInputEditTitle}
+                                inputEditDetails={inputEditDetails}
                                 setInputEditDetails={setInputEditDetails}
-                                setDate={setDate} 
+                                setDate={setDate}
                                 setSelectedToDoForEdit={setSelectedToDoForEdit}/>)}
       <div id='main-page'>
       <div className='menu-add'>
-          <Nav checkedCounter={checkedCounter}/>
+          <Nav  completeCounter={completeCounter} incompleteCounter={incompleteCounter}/>
       </div>
       <div className='main-content'>
         <Head />
         <div className="to-do-container">
-          {todos.map((todo, index) => 
-          (<ToDo 
+          {todos.map((todo, index) =>
+          (<ToDo
             {...todo}
             id={index}
             showEdit= {() => showEdit(index)}

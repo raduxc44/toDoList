@@ -1,6 +1,6 @@
 import './Nav.css'
 
-function Nav ({checkedCounter}) {
+function Nav ({completeCounter, incompleteCounter}) {
 
     function createToDo() {
         
@@ -11,7 +11,6 @@ function Nav ({checkedCounter}) {
         mainPage.classList.add('avoid-clicks')
 
     }
-
 
     return(
         <div className="menu">
@@ -29,11 +28,11 @@ function Nav ({checkedCounter}) {
             </div>
             <div className='completed category'>
                 <p>Completed</p>
-                <div className='check-counter'>{checkedCounter}</div>
+                <div className='check-counter'>{completeCounter}</div>
             </div>
             <div className='uncomplete category'>
                 <p>Uncomplete</p>
-                <div className='check-counter'>{checkedCounter}</div>
+                <div className='check-counter'>{incompleteCounter}</div>
                 </div>
             <i onClick={createToDo} className="fa-solid add-butt fa-calendar-plus fa-5x"></i>
         </div>

@@ -10,7 +10,9 @@ function CreateForm ({
     date, 
     setDate, 
     todos, 
-    setTodos
+    setTodos,
+    incompleteCounter,
+    setIncompleteCounter
 }) {
 
 
@@ -77,6 +79,7 @@ function CreateForm ({
         }
         setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }])
         setCurrentId(currentId => currentId + 1)
+        setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter + 1)
       };
       //Targets the title selected by the user in the form
       const inputTitleHandler = e => {
