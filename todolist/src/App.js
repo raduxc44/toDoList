@@ -20,11 +20,12 @@ function App() {
   const [modifiedToDo, setModifiedToDo] = useState();
   const [completeCounter, setCompleteCounter] = useState(0);
   const [incompleteCounter, setIncompleteCounter] = useState(3);
+  const [thisMonthCounter, setThisMonthCounter] = useState(1)
   const [todos, setTodos] = useState(
 [{
   "id" : 1,
   "title": "Brush Teeth",
-  "date": "2022-10-15",
+  "date": "2022-09-15",
   "priority": "mid",
   "details": "details1",
   "checked": false,
@@ -105,25 +106,58 @@ function App() {
     }
 
 
-    // function renderTodos() {
-  //   // Category filters
-  //   let filteredTodos = todos;
+    function checkCategory() {
+    // Category filters
+    let todayTodos = [];
+    let weekTodos = [];
+    let monthTodos = []
 
-  //   if (category === "checked") {
-  //     filteredTodos = filteredTodos.filter(todoItem => todoItem.checked);
-  //   }
+    let todoDate;
+    let todoMonth;
 
-  //   // Renders
-  //   return filteredTodos.map((todo, index) => 
-  //         (<ToDo 
-  //           {...todo}
-  //           id={index}
-  //           checkButton= {() => checkButton(index)}
-  //           showEdit= {() => showEdit(index)}
-  //           showDetails={() => showDetails(index)}
-  //           deleteToDo= {() => deleteToDo(index)}
-  //         />))
-  // }
+    let currentDate = new Date();
+
+    for(let i = 0; i < todos.length; i++) {
+
+      // //Today check
+
+      // if(todos[i].date[8] === '0') {
+      //   todoDate = todos[i].date[9];
+      // }
+      // else {
+      //   todoDate = todos[i].date[8] + todos[i].date[9] 
+      // }
+
+      // console.log(todoDate)
+
+
+      //Month check
+      if(todos[i].date[5] === '0') {
+        todoMonth = todos[i].date[6] - 1;
+      }
+      else {
+        todoMonth = todos[i].date[5] + todos[i].date[6] - 1;
+      }
+      if(todoMonth === currentDate.getMonth()) {
+        monthTodos.push(todos[i])
+      }
+    }
+    console.log(monthTodos)
+    // if (category === "checked") {
+    //   filteredTodos = filteredTodos.filter(todoItem => todoItem.checked);
+    // }
+
+    // // Renders
+    // return filteredTodos.map((todo, index) => 
+    //       (<ToDo 
+    //         {...todo}
+    //         id={index}
+    //         checkButton= {() => checkButton(index)}
+    //         showEdit= {() => showEdit(index)}
+    //         showDetails={() => showDetails(index)}
+    //         deleteToDo= {() => deleteToDo(index)}
+    //       />))
+  }
 
 
     // Picks a todo for editing and shows the edit overlay with it's data
@@ -169,7 +203,7 @@ function App() {
                                 setSelectedToDoForEdit={setSelectedToDoForEdit}/>)}
       <div id='main-page'>
       <div className='menu-add'>
-          <Nav  completeCounter={completeCounter} incompleteCounter={incompleteCounter}/>
+          <Nav thisMonthCounter={thisMonthCounter} completeCounter={completeCounter} incompleteCounter={incompleteCounter}/>
       </div>
       <div className='main-content'>
         <Head />
@@ -186,6 +220,7 @@ function App() {
         </div>
       </div>
       </div>
+            <div><button onClick={checkCategory}>Check Category</button></div>
     </div>
   );
 }

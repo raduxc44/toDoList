@@ -1,6 +1,6 @@
 import './Nav.css'
 
-function Nav ({completeCounter, incompleteCounter}) {
+function Nav ({thisMonthCounter, completeCounter, incompleteCounter}) {
 
     function createToDo() {
         
@@ -25,6 +25,7 @@ function Nav ({completeCounter, incompleteCounter}) {
             </div>
             <div className="this-month category">
                 <p>Month</p>
+                <div className='check-counter'>{thisMonthCounter}</div>
             </div>
             <div className='completed category'>
                 <p>Completed</p>
