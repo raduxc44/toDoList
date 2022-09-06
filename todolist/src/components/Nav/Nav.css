@@ -17,6 +17,7 @@
 }
 .menu p {
   margin: 0;
+  cursor: pointer;
 }
 .category {
   display: flex;
@@ -31,6 +32,7 @@
   border-radius: 5vh;
   height: 5vh;
   width: 5vh;
+  user-select: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +41,7 @@
   color: #F6E8EA;
 }
 .category:hover {
-    color: #985F99;
+  color: #985F99;
 }
 
 .category-active{
