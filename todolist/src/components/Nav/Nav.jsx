@@ -1,6 +1,13 @@
 import './Nav.css'
 
-function Nav ({thisMonthCounter, completeCounter, incompleteCounter}) {
+function Nav ({
+    openHome, 
+    openToday, 
+    openMonth, 
+    openYear,
+    completeCounter, 
+    incompleteCounter
+}) {
 
     function createToDo() {
         
@@ -14,25 +21,24 @@ function Nav ({thisMonthCounter, completeCounter, incompleteCounter}) {
 
     return(
         <div className="menu">
-            <div className="category-active category">
+            <div onClick={openHome} className="category-active category home-category">
                 <p>Home</p>     
             </div>
-            <div className="today category">
+            <div onClick={openToday} className="category today-category">
                 <p>Today</p>
             </div>
-            <div className="this-month category">
+            <div onClick={openMonth} className="month-category category">
                 <p>Month</p>
             </div>
-            <div className="this-year category">
+            <div onClick={openYear} className="year-category category">
                 <p>Year</p>
-                <div className='check-counter'>{thisMonthCounter}</div>
             </div>
             <div className='completed category'>
                 <p>Completed</p>
                 <div className='check-counter'>{completeCounter}</div>
             </div>
             <div className='uncomplete category'>
-                <p>Uncomplete</p>
+                <p>Incomplete</p>
                 <div className='check-counter'>{incompleteCounter}</div>
                 </div>
             <i onClick={createToDo} className="fa-solid add-butt fa-calendar-plus fa-5x"></i>

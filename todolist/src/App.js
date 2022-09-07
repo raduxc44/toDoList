@@ -20,7 +20,6 @@ function App() {
   const [modifiedToDo, setModifiedToDo] = useState();
   const [completeCounter, setCompleteCounter] = useState(0);
   const [incompleteCounter, setIncompleteCounter] = useState(3);
-  const [thisMonthCounter, setThisMonthCounter] = useState(1)
   const [todayTodos, setTodayTodos] = useState([]);
   const [monthTodos, setMonthTodos] = useState([]);
   const [yearTodos, setYearTodos] = useState([]);
@@ -128,7 +127,7 @@ function App() {
     for(let i = 0; i < todos.length; i++) {
 
       //Today check
-      if(todos[i].date === currentDay) {
+      if(todos[i].date === currentDay && !todayTodos.includes(todos[i])) {
         setTodayTodos(prevTodayTodos => [...prevTodayTodos, todos[i]]);
       }
 
@@ -139,7 +138,7 @@ function App() {
       else {
         todoMonth = todos[i].date[5] + todos[i].date[6] - 1;
       }
-      if(todoMonth === currentDate.getMonth() && monthTodos.length === 0) {
+      if(todoMonth === currentDate.getMonth() && !monthTodos.includes(todos[i])) {
         setMonthTodos(prevMonthsTodos => [...prevMonthsTodos, todos[i]]);
       }
 
@@ -148,32 +147,140 @@ function App() {
       
       todoYear = `${todos[i].date[0]}${todos[i].date[1]}${todos[i].date[2]}${todos[i].date[3]}`;
       currentYear = `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`;
-      if(currentYear === todoYear && yearTodos.length === 0) {
+      if(currentYear === todoYear && !yearTodos.includes(todos[i])) {
         setYearTodos(prevYearTodos => [...prevYearTodos, todos[i]]);
       }
 
     }
-    console.log(todayTodos);
-    console.log(monthTodos);
-    console.log(yearTodos);
-
     
     // if (category === "checked") {
     //   filteredTodos = filteredTodos.filter(todoItem => todoItem.checked);
     // }
 
     // // Renders
-    return todayTodos.map((todo, index) => 
-          (<ToDo 
-            {...todo}
-            id={index}
-            checkButton= {() => checkButton(index)}
-            showEdit= {() => showEdit(index)}
-            showDetails={() => showDetails(index)}
-            deleteToDo= {() => deleteToDo(index)}
-          />))
   }
 
+  function openHome () {
+    
+    checkCategory();
+
+    let homeButton = document.getElementsByClassName('home-category')[0];
+    let todayButton = document.getElementsByClassName('today-category')[0];
+    let monthButton = document.getElementsByClassName('month-category')[0];
+    let yearButton = document.getElementsByClassName('year-category')[0];
+
+    let homeTodos = document.getElementsByClassName('home')[0];
+    let todayTodos = document.getElementsByClassName('today')[0];
+    let monthTodos = document.getElementsByClassName('month')[0];
+    let yearTodos = document.getElementsByClassName('year')[0];
+
+    homeButton.classList.add('category-active');
+    todayButton.classList.remove('category-active');
+    monthButton.classList.remove('category-active');
+    yearButton.classList.remove('category-active');
+
+    homeTodos.classList.add('display-show')
+    todayTodos.classList.remove('display-show');
+    monthTodos.classList.remove('display-show');
+    yearTodos.classList.remove('display-show');
+
+    todayTodos.classList.add('display-hide');
+    monthTodos.classList.add('display-hide');
+    yearTodos.classList.add('display-hide');
+
+  }
+
+  function openToday () {
+
+    checkCategory();
+
+    let homeButton = document.getElementsByClassName('home-category')[0];
+    let todayButton = document.getElementsByClassName('today-category')[0];
+    let monthButton = document.getElementsByClassName('month-category')[0];
+    let yearButton = document.getElementsByClassName('year-category')[0];
+
+    let homeTodos = document.getElementsByClassName('home')[0];
+    let todayTodos = document.getElementsByClassName('today')[0];
+    let monthTodos = document.getElementsByClassName('month')[0];
+    let yearTodos = document.getElementsByClassName('year')[0];
+
+    homeButton.classList.remove('category-active');
+    todayButton.classList.add('category-active');
+    monthButton.classList.remove('category-active');
+    yearButton.classList.remove('category-active');
+
+    homeTodos.classList.remove('display-show');
+    todayTodos.classList.add('display-show');
+    monthTodos.classList.remove('display-show');
+    yearTodos.classList.remove('display-show');
+
+    homeTodos.classList.add('display-hide');
+    todayTodos.classList.remove('display-hide');
+    monthTodos.classList.add('display-hide');
+    yearTodos.classList.add('display-hide');
+  }
+
+  function openMonth () {
+
+    checkCategory();
+
+    let homeButton = document.getElementsByClassName('home-category')[0];
+    let todayButton = document.getElementsByClassName('today-category')[0];
+    let monthButton = document.getElementsByClassName('month-category')[0];
+    let yearButton = document.getElementsByClassName('year-category')[0];
+
+    let homeTodos = document.getElementsByClassName('home')[0];
+    let todayTodos = document.getElementsByClassName('today')[0];
+    let monthTodos = document.getElementsByClassName('month')[0];
+    let yearTodos = document.getElementsByClassName('year')[0];
+
+    homeButton.classList.remove('category-active');
+    todayButton.classList.remove('category-active');
+    monthButton.classList.add('category-active');
+    yearButton.classList.remove('category-active');
+
+    homeTodos.classList.remove('display-show');
+    todayTodos.classList.remove('display-show');
+    monthTodos.classList.add('display-show');
+    yearTodos.classList.remove('display-show');
+
+    homeTodos.classList.add('display-hide');
+    todayTodos.classList.add('display-hide');
+    monthTodos.classList.remove('display-hide');
+    yearTodos.classList.add('display-hide');
+
+    }
+
+  function openYear () {
+
+    checkCategory();
+
+    let homeButton = document.getElementsByClassName('home-category')[0];
+    let todayButton = document.getElementsByClassName('today-category')[0];
+    let monthButton = document.getElementsByClassName('month-category')[0];
+    let yearButton = document.getElementsByClassName('year-category')[0];
+  
+    let homeTodos = document.getElementsByClassName('home')[0];
+    let todayTodos = document.getElementsByClassName('today')[0];
+    let monthTodos = document.getElementsByClassName('month')[0];
+    let yearTodos = document.getElementsByClassName('year')[0];
+  
+    homeButton.classList.remove('category-active');
+    todayButton.classList.remove('category-active');
+    monthButton.classList.remove('category-active');
+    yearButton.classList.add('category-active');
+  
+    homeTodos.classList.remove('display-show');
+    todayTodos.classList.remove('display-show');
+    monthTodos.classList.remove('display-show');
+    yearTodos.classList.add('display-show');
+  
+    homeTodos.classList.add('display-hide');
+    todayTodos.classList.add('display-hide');
+    monthTodos.classList.add('display-hide');
+    yearTodos.classList.remove('display-hide');
+  
+    }
 
     // Picks a todo for editing and shows the edit overlay with it's data
 
@@ -219,31 +326,77 @@ function App() {
       <div id='main-page'>
       <div className='menu-add'>
           <Nav 
-          thisMonthCounter={thisMonthCounter} 
           completeCounter={completeCounter} 
           incompleteCounter={incompleteCounter}
           todos={todos}
           todayTodos={todayTodos}
           monthTodos={monthTodos}
           yearTodos={yearTodos}
+          openHome={openHome}
+          openToday={openToday}
+          openMonth={openMonth}
+          openYear={openYear}
           />
       </div>
       <div className='main-content'>
-        <Head />
-        <div className="to-do-container">
-          {todos.map((todo, index) =>
-          (<ToDo
-            {...todo}
-            id={index}
-            showEdit= {() => showEdit(index)}
-            showDetails={() => showDetails(index)}
-            deleteToDo= {() => deleteToDo(index)}
-            checkButton={() => checkButton(index)}
-          />))}
+        <div className='home display-show'>
+          <Head />
+          <div className="to-do-container">
+            {todos.map((todo, index) =>
+            (<ToDo
+              {...todo}
+              id={index}
+              showEdit= {() => showEdit(index)}
+              showDetails={() => showDetails(index)}
+              deleteToDo= {() => deleteToDo(index)}
+              checkButton={() => checkButton(index)}
+            />))}
+          </div>
+        </div>
+        <div className='today display-hide'>
+          <Head />
+          <div className='to-do-container'>
+            {todayTodos.map((todo, index) =>
+            (<ToDo
+              {...todo}
+              id={index}
+              showEdit= {() => showEdit(index)}
+              showDetails={() => showDetails(index)}
+              deleteToDo= {() => deleteToDo(index)}
+              checkButton={() => checkButton(index)}
+            />))}
+          </div>
+        </div>
+        <div className='month display-hide'>
+          <Head />
+          <div className='to-do-container'>
+            {monthTodos.map((todo, index) =>
+            (<ToDo
+              {...todo}
+              id={index}
+              showEdit= {() => showEdit(index)}
+              showDetails={() => showDetails(index)}
+              deleteToDo= {() => deleteToDo(index)}
+              checkButton={() => checkButton(index)}
+            />))}
+          </div>
+        </div>
+        <div className='year display-hide'>
+          <Head />
+          <div className='to-do-container'>
+            {yearTodos.map((todo, index) =>
+            (<ToDo
+              {...todo}
+              id={index}
+              showEdit= {() => showEdit(index)}
+              showDetails={() => showDetails(index)}
+              deleteToDo= {() => deleteToDo(index)}
+              checkButton={() => checkButton(index)}
+            />))}
+          </div>
         </div>
       </div>
       </div>
-            <div><button onClick={checkCategory}>Check Category</button></div>
     </div>
   );
 }
