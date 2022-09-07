@@ -5,6 +5,8 @@ function Nav ({
     openToday, 
     openMonth, 
     openYear,
+    openComplete,
+    openIncomplete,
     completeCounter, 
     incompleteCounter
 }) {
@@ -33,11 +35,11 @@ function Nav ({
             <div onClick={openYear} className="year-category category">
                 <p>Year</p>
             </div>
-            <div className='completed category'>
+            <div onClick={openComplete} className='complete-category category'>
                 <p>Completed</p>
                 <div className='check-counter'>{completeCounter}</div>
             </div>
-            <div className='uncomplete category'>
+            <div className='incomplete-category category'>
                 <p>Incomplete</p>
                 <div className='check-counter'>{incompleteCounter}</div>
                 </div>

@@ -23,6 +23,8 @@ function App() {
   const [todayTodos, setTodayTodos] = useState([]);
   const [monthTodos, setMonthTodos] = useState([]);
   const [yearTodos, setYearTodos] = useState([]);
+  const [completeTodos, setCompleteTodos] = useState([]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
   const [todos, setTodos] = useState(
 [{
   "id" : 1,
@@ -50,13 +52,13 @@ function App() {
 }]);
 
   // Saves the selected todo by it's details button in the selectedToDo state
-  function showDetails (index) {
-    setSelectedToDoDetails(todos[index]);
+  function showDetails (arr, index) {
+    setSelectedToDoDetails(arr[index]);
   };
 
 
-  function showEdit(index) {
-    const item = todos[index];
+  function showEdit(arr, index) {
+    const item = arr[index];
 
     setSelectedToDoForEdit(item);
     setInputEditDetails(item.details);
@@ -75,9 +77,13 @@ function App() {
   }, [selectedToDoDetails]);
 
   // the function return the the todos left after the deletion
-    function deleteToDo (index) {
-      setTodos(todos.filter((todo, todoIndex) => todoIndex !== index));
-      let selected = todos.filter((todo, todoIndex) => todoIndex === index);
+    function deleteToDo (arr, index) {
+    if(arr === todos) {setTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
+    else if(arr === todayTodos) {setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
+    else if(arr === monthTodos) {setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
+    else if(arr === yearTodos)  {setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
+    else if(arr === completeTodos) {setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
+      let selected = arr.filter((todo, todoIndex) => todoIndex === index);
       for(let i = 0; i < selected.length; i++) {
         if(selected[i].checked) setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
         else                    setIncompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
@@ -86,11 +92,11 @@ function App() {
 
   // The function gets the selected to do and adds a checked property to it, returning an updated array
 
-    function checkButton(todoIndex) {
+    function checkButton(arr, todoIndex) {
       
       let updatedTodos = [];
-      for(let i = 0; i < todos.length; i++) {
-        let checkedTodo = todos[i];
+      for(let i = 0; i < arr.length; i++) {
+        let checkedTodo = arr[i];
         if(i === todoIndex) {
           checkedTodo.checked = !checkedTodo.checked;
           if(checkedTodo.checked) {
@@ -151,6 +157,15 @@ function App() {
         setYearTodos(prevYearTodos => [...prevYearTodos, todos[i]]);
       }
 
+      // Complete check
+
+      if(todos[i].checked && !completeTodos.includes(todos[i])) {
+        setCompleteTodos(prevCompleteTodos => [...prevCompleteTodos, todos[i]]);
+      }
+      else if(!todos[i].checked && incompleteTodos.includes(todos[i])) {
+        setIncompleteTodos(prevIncompleteTodos => [...prevIncompleteTodos, todos[i]]);
+      }
+
     }
     
     // if (category === "checked") {
@@ -168,25 +183,35 @@ function App() {
     let todayButton = document.getElementsByClassName('today-category')[0];
     let monthButton = document.getElementsByClassName('month-category')[0];
     let yearButton = document.getElementsByClassName('year-category')[0];
+    let completeButton = document.getElementsByClassName('complete-category')[0];
+    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
 
     let homeTodos = document.getElementsByClassName('home')[0];
     let todayTodos = document.getElementsByClassName('today')[0];
     let monthTodos = document.getElementsByClassName('month')[0];
     let yearTodos = document.getElementsByClassName('year')[0];
+    let completeTodos = document.getElementsByClassName('complete')[0];
+    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
 
     homeButton.classList.add('category-active');
     todayButton.classList.remove('category-active');
     monthButton.classList.remove('category-active');
     yearButton.classList.remove('category-active');
+    completeButton.classList.remove('category-active');
+    incompleteButton.classList.remove('category-active');
 
     homeTodos.classList.add('display-show')
     todayTodos.classList.remove('display-show');
     monthTodos.classList.remove('display-show');
     yearTodos.classList.remove('display-show');
+    completeTodos.classList.remove('display-show');
+    incompleteTodos.classList.remove('display-show');
 
     todayTodos.classList.add('display-hide');
     monthTodos.classList.add('display-hide');
     yearTodos.classList.add('display-hide');
+    completeTodos.classList.add('display-hide');
+    incompleteTodos.classList.add('display-hide');
 
   }
 
@@ -198,26 +223,36 @@ function App() {
     let todayButton = document.getElementsByClassName('today-category')[0];
     let monthButton = document.getElementsByClassName('month-category')[0];
     let yearButton = document.getElementsByClassName('year-category')[0];
+    let completeButton = document.getElementsByClassName('complete-category')[0];
+    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
 
     let homeTodos = document.getElementsByClassName('home')[0];
     let todayTodos = document.getElementsByClassName('today')[0];
     let monthTodos = document.getElementsByClassName('month')[0];
     let yearTodos = document.getElementsByClassName('year')[0];
+    let completeTodos = document.getElementsByClassName('complete')[0];
+    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
 
     homeButton.classList.remove('category-active');
     todayButton.classList.add('category-active');
     monthButton.classList.remove('category-active');
     yearButton.classList.remove('category-active');
+    completeButton.classList.remove('category-active');
+    incompleteButton.classList.remove('category-active');
 
     homeTodos.classList.remove('display-show');
     todayTodos.classList.add('display-show');
     monthTodos.classList.remove('display-show');
     yearTodos.classList.remove('display-show');
+    completeTodos.classList.remove('display-show');
+    incompleteTodos.classList.remove('display-show');
 
     homeTodos.classList.add('display-hide');
     todayTodos.classList.remove('display-hide');
     monthTodos.classList.add('display-hide');
     yearTodos.classList.add('display-hide');
+    completeTodos.classList.add('display-hide');
+    incompleteTodos.classList.add('display-hide');
   }
 
   function openMonth () {
@@ -228,26 +263,36 @@ function App() {
     let todayButton = document.getElementsByClassName('today-category')[0];
     let monthButton = document.getElementsByClassName('month-category')[0];
     let yearButton = document.getElementsByClassName('year-category')[0];
+    let completeButton = document.getElementsByClassName('complete-category')[0];
+    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
 
     let homeTodos = document.getElementsByClassName('home')[0];
     let todayTodos = document.getElementsByClassName('today')[0];
     let monthTodos = document.getElementsByClassName('month')[0];
     let yearTodos = document.getElementsByClassName('year')[0];
+    let completeTodos = document.getElementsByClassName('complete')[0];
+    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
 
     homeButton.classList.remove('category-active');
     todayButton.classList.remove('category-active');
     monthButton.classList.add('category-active');
     yearButton.classList.remove('category-active');
+    completeButton.classList.remove('category-active');
+    incompleteButton.classList.remove('category-active');
 
     homeTodos.classList.remove('display-show');
     todayTodos.classList.remove('display-show');
     monthTodos.classList.add('display-show');
     yearTodos.classList.remove('display-show');
+    completeTodos.classList.remove('display-show');
+    incompleteTodos.classList.remove('display-show');
 
     homeTodos.classList.add('display-hide');
     todayTodos.classList.add('display-hide');
     monthTodos.classList.remove('display-hide');
     yearTodos.classList.add('display-hide');
+    completeTodos.classList.add('display-hide');
+    incompleteTodos.classList.add('display-hide');
 
     }
 
@@ -259,29 +304,79 @@ function App() {
     let todayButton = document.getElementsByClassName('today-category')[0];
     let monthButton = document.getElementsByClassName('month-category')[0];
     let yearButton = document.getElementsByClassName('year-category')[0];
+    let completeButton = document.getElementsByClassName('complete-category')[0];
+    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
   
     let homeTodos = document.getElementsByClassName('home')[0];
     let todayTodos = document.getElementsByClassName('today')[0];
     let monthTodos = document.getElementsByClassName('month')[0];
     let yearTodos = document.getElementsByClassName('year')[0];
+    let completeTodos = document.getElementsByClassName('complete')[0];
+    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
   
     homeButton.classList.remove('category-active');
     todayButton.classList.remove('category-active');
     monthButton.classList.remove('category-active');
     yearButton.classList.add('category-active');
+    completeButton.classList.remove('category-active');
+    incompleteButton.classList.remove('category-active');
   
     homeTodos.classList.remove('display-show');
     todayTodos.classList.remove('display-show');
     monthTodos.classList.remove('display-show');
     yearTodos.classList.add('display-show');
+    completeTodos.classList.remove('display-show');
+    incompleteTodos.classList.remove('display-show');
   
     homeTodos.classList.add('display-hide');
     todayTodos.classList.add('display-hide');
     monthTodos.classList.add('display-hide');
     yearTodos.classList.remove('display-hide');
+    completeTodos.classList.add('display-hide');
+    incompleteTodos.classList.add('display-hide');
   
     }
 
+  function openComplete () {
+
+    checkCategory();
+  
+    let homeButton = document.getElementsByClassName('home-category')[0];
+    let todayButton = document.getElementsByClassName('today-category')[0];
+    let monthButton = document.getElementsByClassName('month-category')[0];
+    let yearButton = document.getElementsByClassName('year-category')[0];
+    let completeButton = document.getElementsByClassName('complete-category')[0];
+    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
+    
+    let homeTodos = document.getElementsByClassName('home')[0];
+    let todayTodos = document.getElementsByClassName('today')[0];
+    let monthTodos = document.getElementsByClassName('month')[0];
+    let yearTodos = document.getElementsByClassName('year')[0];
+    let completeTodos = document.getElementsByClassName('complete')[0];
+    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
+    
+    homeButton.classList.remove('category-active');
+    todayButton.classList.remove('category-active');
+    monthButton.classList.remove('category-active');
+    yearButton.classList.remove('category-active');
+    completeButton.classList.add('category-active');
+    incompleteButton.classList.remove('category-active');
+    
+    homeTodos.classList.remove('display-show');
+    todayTodos.classList.remove('display-show');
+    monthTodos.classList.remove('display-show');
+    yearTodos.classList.remove('display-show');
+    completeTodos.classList.add('display-show');
+    incompleteTodos.classList.remove('display-show');
+    
+    homeTodos.classList.add('display-hide');
+    todayTodos.classList.add('display-hide');
+    monthTodos.classList.add('display-hide');
+    yearTodos.classList.add('display-hide');
+    completeTodos.classList.remove('display-hide');
+    incompleteTodos.classList.add('display-hide');
+    
+  }
     // Picks a todo for editing and shows the edit overlay with it's data
 
 
@@ -336,6 +431,7 @@ function App() {
           openToday={openToday}
           openMonth={openMonth}
           openYear={openYear}
+          openComplete={openComplete}
           />
       </div>
       <div className='main-content'>
@@ -346,10 +442,10 @@ function App() {
             (<ToDo
               {...todo}
               id={index}
-              showEdit= {() => showEdit(index)}
-              showDetails={() => showDetails(index)}
-              deleteToDo= {() => deleteToDo(index)}
-              checkButton={() => checkButton(index)}
+              showEdit= {() => showEdit(todos, index)}
+              showDetails={() => showDetails(todos, index)}
+              deleteToDo= {() => deleteToDo(todos, index)}
+              checkButton={() => checkButton(todos, index)}
             />))}
           </div>
         </div>
@@ -360,10 +456,10 @@ function App() {
             (<ToDo
               {...todo}
               id={index}
-              showEdit= {() => showEdit(index)}
-              showDetails={() => showDetails(index)}
-              deleteToDo= {() => deleteToDo(index)}
-              checkButton={() => checkButton(index)}
+              showEdit= {() => showEdit(todayTodos, index)}
+              showDetails={() => showDetails(todayTodos, index)}
+              deleteToDo= {() => deleteToDo(todayTodos, index)}
+              checkButton={() => checkButton(todayTodos, index)}
             />))}
           </div>
         </div>
@@ -374,10 +470,10 @@ function App() {
             (<ToDo
               {...todo}
               id={index}
-              showEdit= {() => showEdit(index)}
-              showDetails={() => showDetails(index)}
-              deleteToDo= {() => deleteToDo(index)}
-              checkButton={() => checkButton(index)}
+              showEdit= {() => showEdit(monthTodos ,index)}
+              showDetails={() => showDetails(monthTodos ,index)}
+              deleteToDo= {() => deleteToDo(monthTodos ,index)}
+              checkButton={() => checkButton(monthTodos ,index)}
             />))}
           </div>
         </div>
@@ -388,10 +484,38 @@ function App() {
             (<ToDo
               {...todo}
               id={index}
-              showEdit= {() => showEdit(index)}
-              showDetails={() => showDetails(index)}
-              deleteToDo= {() => deleteToDo(index)}
-              checkButton={() => checkButton(index)}
+              showEdit= {() => showEdit(yearTodos, index)}
+              showDetails={() => showDetails(yearTodos, index)}
+              deleteToDo= {() => deleteToDo(yearTodos, index)}
+              checkButton={() => checkButton(yearTodos, index)}
+            />))}
+          </div>
+        </div>
+        <div className='complete display-hide'>
+          <Head />
+          <div className='to-do-container'>
+            {completeTodos.map((todo, index) =>
+            (<ToDo
+              {...todo}
+              id={index}
+              showEdit= {() => showEdit(completeTodos, index)}
+              showDetails={() => showDetails(completeTodos, index)}
+              deleteToDo= {() => deleteToDo(completeTodos, index)}
+              checkButton={() => checkButton(completeTodos, index)}
+            />))}
+          </div>
+        </div>
+        <div className='incomplete display-hide'>
+          <Head />
+          <div className='to-do-container'>
+            {incompleteTodos.map((todo, index) =>
+            (<ToDo
+              {...todo}
+              id={index}
+              showEdit= {() => showEdit(incompleteTodos, index)}
+              showDetails={() => showDetails(incompleteTodos, index)}
+              deleteToDo= {() => deleteToDo(incompleteTodos, index)}
+              checkButton={() => checkButton(incompleteTodos, index)}
             />))}
           </div>
         </div>
