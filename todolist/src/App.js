@@ -41,7 +41,7 @@ function App() {
 {
   "id" : 3,
   "title": "Mow the lawn",
-  "date": "2022-06-05",
+  "date": "2022-06-07",
   "priority": "high",
   "details": "details3",
   "checked": false,
@@ -109,27 +109,28 @@ function App() {
     function checkCategory() {
     // Category filters
     let todayTodos = [];
-    let weekTodos = [];
-    let monthTodos = []
+    let monthTodos = [];
+    let yearTodos = [];
 
     let todoDate;
     let todoMonth;
+    let todoYear;
 
     let currentDate = new Date();
 
     for(let i = 0; i < todos.length; i++) {
 
-      // //Today check
+      //Today check
 
-      // if(todos[i].date[8] === '0') {
-      //   todoDate = todos[i].date[9];
-      // }
-      // else {
-      //   todoDate = todos[i].date[8] + todos[i].date[9] 
-      // }
-
-      // console.log(todoDate)
-
+      if(todos[i].date[8] === '0') {
+        todoDate = todos[i].date[9];
+      }
+      else {
+        todoDate = todos[i].date[8] + todos[i].date[9] 
+      }
+      if(todoDate === currentDate.getDate().toString()) {
+        todayTodos.push(todos[i])
+      }
 
       //Month check
       if(todos[i].date[5] === '0') {
@@ -141,8 +142,12 @@ function App() {
       if(todoMonth === currentDate.getMonth()) {
         monthTodos.push(todos[i])
       }
+
+      // Year check
+      
     }
-    console.log(monthTodos)
+
+    
     // if (category === "checked") {
     //   filteredTodos = filteredTodos.filter(todoItem => todoItem.checked);
     // }

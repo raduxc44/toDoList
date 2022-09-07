@@ -63,6 +63,7 @@ function CreateForm ({
 
         e.preventDefault();
         let priority;
+        let dateWarning = document.getElementsByClassName('create-date-warn')[0]
 
         // Checks the priority so it can add the correct styling to the toDo
         let lowPriority = document.getElementById('create-new-low');
@@ -77,9 +78,18 @@ function CreateForm ({
         if (highPriority.checked) {
             priority = "high";
         }
-        setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }])
-        setCurrentId(currentId => currentId + 1)
-        setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter + 1)
+        
+        let selectedYear = Number(date[0] + date[1] + date[2] + date[3])
+        console.log(selectedYear)
+        if(selectedYear >= 2022){
+            dateWarning.style.visibility = 'hidden'
+            setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }])
+            setCurrentId(currentId => currentId + 1)
+            setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter + 1)
+        }
+        else{
+            dateWarning.style.visibility = 'visible'
+        }
       };
       //Targets the title selected by the user in the form
       const inputTitleHandler = e => {
@@ -111,6 +121,7 @@ function CreateForm ({
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
                         <input value={date} onChange={dateHandler} type="date" name="due-date" id="due-date" required />
+                        <p className='create-date-warn'>Please enter a valid date!</p>
                     </div>
                     <div className='priority-and-send'>
                         <div className='create-priority'>

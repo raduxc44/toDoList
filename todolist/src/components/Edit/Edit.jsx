@@ -90,6 +90,7 @@ function Edit ({
     const replaceTodo = (priority, date) => {
         const result = [];
 
+
         for (let i = 0; i < todos.length; i++) {
             if (i + 1 === selectedToDoForEdit.id) {
                 result.push({ ...todos[i], title: inputEditTitle, details: inputEditDetails, priority, date });
@@ -104,7 +105,7 @@ function Edit ({
     const handleEditSubmit = e => {
 
         e.preventDefault()
-        // console.log(todos)
+        let dateWarning = document.getElementsByClassName('edit-date-warn')[0]
         
         // Checks the priority so it can add the correct styling to the toDo
 
@@ -123,10 +124,17 @@ function Edit ({
 
         // ISSUE ! The modifiedToDo state doesn't get updated until the function runs for the 2nd time | TO FIX!
         // Ask how and WHY it works!!!
-         setTodos(replaceTodo(priority, date))
+        let selectedYear = Number(date[0] + date[1] + date[2] + date[3])
+        console.log(selectedYear)
+        if(selectedYear >= 2022) {
+            dateWarning.style.visibility = 'hidden'
+            setTodos(replaceTodo(priority, date))
+            removeEditOverlay()
+        }
+        else {
+            dateWarning.style.visibility = 'visible'
+        }
         // console.log(modifiedToDo)
-        
-        removeEditOverlay()
       };
 
     //   useEffect(() => {setTodos(todos => todos, todos.splice(selectedToDoForEdit.key - 1, 1, modifiedToDo))}, [setTodos ,todos ,modifiedToDo, selectedToDoForEdit.key])
@@ -150,6 +158,7 @@ return (
                     <div className='create-date'>
                         <label htmlFor="create-date">Due date: </label>
                         <input type="date" name="due-date" id="due-date" value={date} onChange={dateHandler}/>
+                        <p className='edit-date-warn'>Please enter a valid date!</p>
                     </div>
                     <div className='priority-and-send'>
                         <div className='edit-priority'>

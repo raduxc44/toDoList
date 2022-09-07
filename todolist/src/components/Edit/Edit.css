@@ -56,9 +56,11 @@ form {
     outline: none;
     width: inherit
 }
-.create-details {
+.create-details-edit {
     height: 15vh;
-    margin-bottom: 10vh;
+}
+.edit-date-warn {
+    visibility: hidden;
 }
 #title {
     width: 50vh;

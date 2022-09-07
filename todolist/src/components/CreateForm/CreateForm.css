@@ -57,7 +57,7 @@ form {
 }
 .create-details {
     height: 15vh;
-    margin-bottom: 10vh;
+    margin-bottom: 8vh;
 }
 #title {
     width: 50vh;
@@ -69,10 +69,17 @@ form {
 }
 
 .create-date{
-    margin-bottom: 1.5vh;
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    height: 4vh;
+}
+.create-date-warn {
+    visibility: hidden;
 }
 #due-date {
     cursor: pointer;
+    height: 50%;
 }
 
 .priority-and-send {
