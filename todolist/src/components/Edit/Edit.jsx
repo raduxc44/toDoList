@@ -125,8 +125,7 @@ function Edit ({
         // ISSUE ! The modifiedToDo state doesn't get updated until the function runs for the 2nd time | TO FIX!
         // Ask how and WHY it works!!!
         let selectedYear = Number(date[0] + date[1] + date[2] + date[3])
-        console.log(selectedYear)
-        if(selectedYear >= 2022) {
+        if(selectedYear >= 2022 && selectedYear < 2100) {
             dateWarning.style.visibility = 'hidden'
             setTodos(replaceTodo(priority, date))
             removeEditOverlay()

@@ -78,10 +78,10 @@ function CreateForm ({
         if (highPriority.checked) {
             priority = "high";
         }
-        
+
         let selectedYear = Number(date[0] + date[1] + date[2] + date[3])
         console.log(selectedYear)
-        if(selectedYear >= 2022){
+        if(selectedYear >= 2022 && selectedYear < 2100){
             dateWarning.style.visibility = 'hidden'
             setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }])
             setCurrentId(currentId => currentId + 1)
