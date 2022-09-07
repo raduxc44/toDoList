@@ -20,11 +20,11 @@ function Nav ({thisMonthCounter, completeCounter, incompleteCounter}) {
             <div className="today category">
                 <p>Today</p>
             </div>
-            <div className="this-week category">
-                <p>Week</p>
-            </div>
             <div className="this-month category">
                 <p>Month</p>
+            </div>
+            <div className="this-year category">
+                <p>Year</p>
                 <div className='check-counter'>{thisMonthCounter}</div>
             </div>
             <div className='completed category'>

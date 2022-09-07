@@ -21,11 +21,14 @@ function App() {
   const [completeCounter, setCompleteCounter] = useState(0);
   const [incompleteCounter, setIncompleteCounter] = useState(3);
   const [thisMonthCounter, setThisMonthCounter] = useState(1)
+  const [todayTodos, setTodayTodos] = useState([]);
+  const [monthTodos, setMonthTodos] = useState([]);
+  const [yearTodos, setYearTodos] = useState([]);
   const [todos, setTodos] = useState(
 [{
   "id" : 1,
   "title": "Brush Teeth",
-  "date": "2022-09-15",
+  "date": "2023-09-15",
   "priority": "mid",
   "details": "details1",
   "checked": false,
@@ -41,7 +44,7 @@ function App() {
 {
   "id" : 3,
   "title": "Mow the lawn",
-  "date": "2022-06-07",
+  "date": "2022-09-07",
   "priority": "high",
   "details": "details3",
   "checked": false,
@@ -108,28 +111,25 @@ function App() {
 
     function checkCategory() {
     // Category filters
-    let todayTodos = [];
-    let monthTodos = [];
-    let yearTodos = [];
-
-    let todoDate;
     let todoMonth;
     let todoYear;
 
+    // Brings the full date in yyyy-mm-dd format
     let currentDate = new Date();
+    let isoDate = currentDate.toISOString();
+    let isoTodayArr = [];
+    let currentDay;
+    let currentYear;
+    for(let i = 0; i < isoDate.length - 14; i++) {
+      isoTodayArr.push(isoDate[i]);
+      currentDay= isoTodayArr.join('').toString();
+    }
 
     for(let i = 0; i < todos.length; i++) {
 
       //Today check
-
-      if(todos[i].date[8] === '0') {
-        todoDate = todos[i].date[9];
-      }
-      else {
-        todoDate = todos[i].date[8] + todos[i].date[9] 
-      }
-      if(todoDate === currentDate.getDate().toString()) {
-        todayTodos.push(todos[i])
+      if(todos[i].date === currentDay) {
+        setTodayTodos(prevTodayTodos => [...prevTodayTodos, todos[i]]);
       }
 
       //Month check
@@ -139,13 +139,23 @@ function App() {
       else {
         todoMonth = todos[i].date[5] + todos[i].date[6] - 1;
       }
-      if(todoMonth === currentDate.getMonth()) {
-        monthTodos.push(todos[i])
+      if(todoMonth === currentDate.getMonth() && monthTodos.length === 0) {
+        setMonthTodos(prevMonthsTodos => [...prevMonthsTodos, todos[i]]);
       }
 
+      
       // Year check
       
+      todoYear = `${todos[i].date[0]}${todos[i].date[1]}${todos[i].date[2]}${todos[i].date[3]}`;
+      currentYear = `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`;
+      if(currentYear === todoYear && yearTodos.length === 0) {
+        setYearTodos(prevYearTodos => [...prevYearTodos, todos[i]]);
+      }
+
     }
+    console.log(todayTodos);
+    console.log(monthTodos);
+    console.log(yearTodos);
 
     
     // if (category === "checked") {
@@ -153,15 +163,15 @@ function App() {
     // }
 
     // // Renders
-    // return filteredTodos.map((todo, index) => 
-    //       (<ToDo 
-    //         {...todo}
-    //         id={index}
-    //         checkButton= {() => checkButton(index)}
-    //         showEdit= {() => showEdit(index)}
-    //         showDetails={() => showDetails(index)}
-    //         deleteToDo= {() => deleteToDo(index)}
-    //       />))
+    return todayTodos.map((todo, index) => 
+          (<ToDo 
+            {...todo}
+            id={index}
+            checkButton= {() => checkButton(index)}
+            showEdit= {() => showEdit(index)}
+            showDetails={() => showDetails(index)}
+            deleteToDo= {() => deleteToDo(index)}
+          />))
   }
 
 
@@ -208,7 +218,15 @@ function App() {
                                 setSelectedToDoForEdit={setSelectedToDoForEdit}/>)}
       <div id='main-page'>
       <div className='menu-add'>
-          <Nav thisMonthCounter={thisMonthCounter} completeCounter={completeCounter} incompleteCounter={incompleteCounter}/>
+          <Nav 
+          thisMonthCounter={thisMonthCounter} 
+          completeCounter={completeCounter} 
+          incompleteCounter={incompleteCounter}
+          todos={todos}
+          todayTodos={todayTodos}
+          monthTodos={monthTodos}
+          yearTodos={yearTodos}
+          />
       </div>
       <div className='main-content'>
         <Head />
