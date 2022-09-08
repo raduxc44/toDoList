@@ -45,7 +45,7 @@ function App() {
 {
   "id" : 3,
   "title": "Mow the lawn",
-  "date": "2022-09-07",
+  "date": "2022-09-08",
   "priority": "high",
   "details": "details3",
   "checked": false,
@@ -78,11 +78,11 @@ function App() {
 
   // the function return the the todos left after the deletion
     function deleteToDo (arr, index) {
-    if(arr === todos) {setTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
-    else if(arr === todayTodos) {setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
-    else if(arr === monthTodos) {setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
-    else if(arr === yearTodos)  {setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
-    else if(arr === completeTodos) {setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index))}
+    setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
       let selected = arr.filter((todo, todoIndex) => todoIndex === index);
       for(let i = 0; i < selected.length; i++) {
         if(selected[i].checked) setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
@@ -110,7 +110,11 @@ function App() {
         }
         updatedTodos.push(checkedTodo);
       }
-      setTodos(updatedTodos);
+      if      (arr === todos)           setTodos(updatedTodos);
+      else if (arr === todayTodos)      setTodayTodos(updatedTodos);
+      else if (arr === monthTodos)      setMonthTodos(updatedTodos);
+      else if (arr === yearTodos)       setYearTodos(updatedTodos);
+      else if (arr === completeTodos)   setCompleteTodos(updatedTodos);
     }
 
 
@@ -165,14 +169,7 @@ function App() {
       else if(!todos[i].checked && incompleteTodos.includes(todos[i])) {
         setIncompleteTodos(prevIncompleteTodos => [...prevIncompleteTodos, todos[i]]);
       }
-
     }
-    
-    // if (category === "checked") {
-    //   filteredTodos = filteredTodos.filter(todoItem => todoItem.checked);
-    // }
-
-    // // Renders
   }
 
   function openHome () {
@@ -207,11 +204,14 @@ function App() {
     completeTodos.classList.remove('display-show');
     incompleteTodos.classList.remove('display-show');
 
+    homeTodos.classList.remove('display-hide')
     todayTodos.classList.add('display-hide');
     monthTodos.classList.add('display-hide');
     yearTodos.classList.add('display-hide');
     completeTodos.classList.add('display-hide');
     incompleteTodos.classList.add('display-hide');
+
+    console.log(todos)
 
   }
 
