@@ -82,7 +82,7 @@ function CreateForm ({
 
         if(selectedYear >= 2022 && selectedYear < 2100){
             dateWarning.style.visibility = 'hidden';
-            setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }]);
+            setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority}]);
             setCurrentId(currentId => currentId + 1);
             setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter + 1);
         }

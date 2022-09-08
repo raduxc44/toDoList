@@ -39,7 +39,7 @@ function Nav ({
                 <p>Completed</p>
                 <div className='check-counter'>{completeCounter}</div>
             </div>
-            <div className='incomplete-category category'>
+            <div onClick={openIncomplete} className='incomplete-category category'>
                 <p>Incomplete</p>
                 <div className='check-counter'>{incompleteCounter}</div>
                 </div>

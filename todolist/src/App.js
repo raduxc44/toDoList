@@ -19,7 +19,7 @@ function App() {
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState();
   const [modifiedToDo, setModifiedToDo] = useState();
   const [completeCounter, setCompleteCounter] = useState(1);
-  const [incompleteCounter, setIncompleteCounter] = useState(4);
+  const [incompleteCounter, setIncompleteCounter] = useState(3);
   const [todayTodos, setTodayTodos] = useState([]);
   const [monthTodos, setMonthTodos] = useState([]);
   const [yearTodos, setYearTodos] = useState([]);
@@ -32,7 +32,7 @@ function App() {
   "date": "2023-09-15",
   "priority": "mid",
   "details": "details1",
-  "checked": false,
+  "checked": true,
 },
 {
   "id" : 2,
@@ -40,7 +40,7 @@ function App() {
   "date": "2022-12-01",
   "priority": "low",
   "details": "details2",
-  "checked": false,
+  "checked": true,
 },
 {
   "id" : 3,
@@ -48,7 +48,7 @@ function App() {
   "date": "2022-09-08",
   "priority": "high",
   "details": "details4",
-  "checked": false,
+  "checked": true,
 },
 {
   "id" : 4,
@@ -90,46 +90,51 @@ function App() {
     
       let selectedTodo = arr[index];
 
+      if  (selectedTodo.checked) {setCompleteCounter(prevCompleteCounter => prevCompleteCounter - 1)}
+      else                       {setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter - 1)}
+
     if(arr === todos) {
       setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
       if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
       if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
-      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
-      if(completeTodos.includes(selectedTodo)) setYearTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
+      /*works*/  if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
     };
     if(arr === todayTodos) {
       setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      //if(todos.includes(selectedTodo)) {console.log('a')  ;setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]))};
-      //if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
-      //if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
-      //if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
+      if(todos.includes(selectedTodo)) {console.log('a')  ;setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]))};
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
     }
     if(arr === monthTodos) {
-      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
       setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
     }
     if(arr === yearTodos) {
-      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
       setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
     }
     if(arr === completeTodos) {
-      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
       setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
     }
+    
     console.log(selectedTodo)
     console.log(todos)
     console.log(todayTodos)
     console.log(monthTodos)
     console.log(yearTodos)
+    console.log(incompleteTodos)
   }
 
   // The function gets the selected to do and adds a checked property to it, returning an updated array
@@ -157,6 +162,16 @@ function App() {
       else if (arr === monthTodos)      setMonthTodos(updatedTodos);
       else if (arr === yearTodos)       setYearTodos(updatedTodos);
       else if (arr === completeTodos)   setCompleteTodos(updatedTodos);
+
+      for(let i = 0; i < todos.length; i++) {
+        if(!todos[i].checked && completeTodos.includes(todos[i])) {
+          console.log('a')
+          setCompleteTodos(completeTodos.splice(completeTodos[todos[i]], 1));
+        } 
+        if(todos[i].checked && incompleteTodos.includes(todos[i])) {
+          setIncompleteTodos(incompleteTodos.splice(incompleteTodos[todos[i]], 1));
+        }
+      }
     }
 
     function checkCategory() {
@@ -207,8 +222,11 @@ function App() {
       if(todos[i].checked && !completeTodos.includes(todos[i])) {
         setCompleteTodos(prevCompleteTodos => [...prevCompleteTodos, todos[i]]);
       }
-      else if(!todos[i].checked && incompleteTodos.includes(todos[i])) {
+      else if(!todos[i].checked && !incompleteTodos.includes(todos[i])) {
         setIncompleteTodos(prevIncompleteTodos => [...prevIncompleteTodos, todos[i]]);
+        // if(!todos[i].checked && incompleteTodos.includes(todos[i])) {
+        //   setIncompleteTodos(incompleteTodos.splice(incompleteTodos[todos[i]], 1));
+        // }
       }
     }
   }
@@ -418,6 +436,47 @@ function App() {
     incompleteTodos.classList.add('display-hide');
     
   }
+
+  function openIncomplete () {
+
+    checkCategory();
+  
+    let homeButton = document.getElementsByClassName('home-category')[0];
+    let todayButton = document.getElementsByClassName('today-category')[0];
+    let monthButton = document.getElementsByClassName('month-category')[0];
+    let yearButton = document.getElementsByClassName('year-category')[0];
+    let completeButton = document.getElementsByClassName('complete-category')[0];
+    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
+    
+    let homeTodos = document.getElementsByClassName('home')[0];
+    let todayTodos = document.getElementsByClassName('today')[0];
+    let monthTodos = document.getElementsByClassName('month')[0];
+    let yearTodos = document.getElementsByClassName('year')[0];
+    let completeTodos = document.getElementsByClassName('complete')[0];
+    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
+    
+    homeButton.classList.remove('category-active');
+    todayButton.classList.remove('category-active');
+    monthButton.classList.remove('category-active');
+    yearButton.classList.remove('category-active');
+    completeButton.classList.remove('category-active');
+    incompleteButton.classList.add('category-active');
+    
+    homeTodos.classList.remove('display-show');
+    todayTodos.classList.remove('display-show');
+    monthTodos.classList.remove('display-show');
+    yearTodos.classList.remove('display-show');
+    completeTodos.classList.remove('display-show');
+    incompleteTodos.classList.add('display-show');
+    
+    homeTodos.classList.add('display-hide');
+    todayTodos.classList.add('display-hide');
+    monthTodos.classList.add('display-hide');
+    yearTodos.classList.add('display-hide');
+    completeTodos.classList.add('display-hide');
+    incompleteTodos.classList.remove('display-hide');
+    
+  }
     // Picks a todo for editing and shows the edit overlay with it's data
 
 
@@ -479,6 +538,7 @@ function App() {
           openMonth={openMonth}
           openYear={openYear}
           openComplete={openComplete}
+          openIncomplete={openIncomplete}
           />
       </div>
       <div className='main-content'>
