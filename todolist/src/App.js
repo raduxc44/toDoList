@@ -13,13 +13,13 @@ function App() {
   const [inputDetails, setInputDetails] = useState('');
   const [inputEditTitle, setInputEditTitle] = useState();
   const [inputEditDetails, setInputEditDetails] = useState();
-  const [currentId, setCurrentId] = useState(4);
+  const [currentId, setCurrentId] = useState(5);
   const [date, setDate] = useState();
   const [selectedToDoDetails, setSelectedToDoDetails] = useState();
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState();
   const [modifiedToDo, setModifiedToDo] = useState();
-  const [completeCounter, setCompleteCounter] = useState(0);
-  const [incompleteCounter, setIncompleteCounter] = useState(3);
+  const [completeCounter, setCompleteCounter] = useState(1);
+  const [incompleteCounter, setIncompleteCounter] = useState(4);
   const [todayTodos, setTodayTodos] = useState([]);
   const [monthTodos, setMonthTodos] = useState([]);
   const [yearTodos, setYearTodos] = useState([]);
@@ -44,12 +44,21 @@ function App() {
 },
 {
   "id" : 3,
-  "title": "Mow the lawn",
+  "title": "Homework",
   "date": "2022-09-08",
   "priority": "high",
-  "details": "details3",
+  "details": "details4",
   "checked": false,
-}]);
+},
+{
+  "id" : 4,
+  "title": "Walk the dog",
+  "date": "2022-09-08",
+  "priority": "high",
+  "details": "details5",
+  "checked": true,
+}
+]);
 
   // Saves the selected todo by it's details button in the selectedToDo state
   function showDetails (arr, index) {
@@ -78,17 +87,50 @@ function App() {
 
   // the function return the the todos left after the deletion
     function deleteToDo (arr, index) {
-    setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-    setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-    setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-    setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-    setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      let selected = arr.filter((todo, todoIndex) => todoIndex === index);
-      for(let i = 0; i < selected.length; i++) {
-        if(selected[i].checked) setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
-        else                    setIncompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
-      }
+    
+      let selectedTodo = arr[index];
+
+    if(arr === todos) {
+      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
+      if(completeTodos.includes(selectedTodo)) setYearTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
+    };
+    if(arr === todayTodos) {
+      setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      //if(todos.includes(selectedTodo)) {console.log('a')  ;setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]))};
+      //if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
+      //if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
+      //if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
     }
+    if(arr === monthTodos) {
+      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    }
+    if(arr === yearTodos) {
+      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    }
+    if(arr === completeTodos) {
+      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    }
+    console.log(selectedTodo)
+    console.log(todos)
+    console.log(todayTodos)
+    console.log(monthTodos)
+    console.log(yearTodos)
+  }
 
   // The function gets the selected to do and adds a checked property to it, returning an updated array
 
@@ -116,7 +158,6 @@ function App() {
       else if (arr === yearTodos)       setYearTodos(updatedTodos);
       else if (arr === completeTodos)   setCompleteTodos(updatedTodos);
     }
-
 
     function checkCategory() {
     // Category filters
@@ -390,6 +431,9 @@ function App() {
       }
     }, [selectedToDoForEdit])
 
+    checkCategory();
+
+
   return (
     <div className="App">
       <CreateForm 
@@ -405,6 +449,7 @@ function App() {
       setTodos={setTodos}
       incompleteCounter={incompleteCounter}
       setIncompleteCounter={setIncompleteCounter}
+      checkCategory={checkCategory}
       />
       {selectedToDoDetails && (<Details  {...selectedToDoDetails} setSelectedToDoDetails={setSelectedToDoDetails}/>)}
       {selectedToDoForEdit && (<Edit {...selectedToDoForEdit}
@@ -417,7 +462,9 @@ function App() {
                                 inputEditDetails={inputEditDetails}
                                 setInputEditDetails={setInputEditDetails}
                                 setDate={setDate}
-                                setSelectedToDoForEdit={setSelectedToDoForEdit}/>)}
+                                setSelectedToDoForEdit={setSelectedToDoForEdit}
+                                checkCategory={checkCategory}
+                                />)}
       <div id='main-page'>
       <div className='menu-add'>
           <Nav 

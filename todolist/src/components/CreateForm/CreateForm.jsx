@@ -12,7 +12,8 @@ function CreateForm ({
     todos, 
     setTodos,
     incompleteCounter,
-    setIncompleteCounter
+    setIncompleteCounter,
+    checkCategory
 }) {
 
 
@@ -26,7 +27,6 @@ function CreateForm ({
         let mainPage = document.getElementById('main-page')
         mainPage.classList.remove('blur')
         mainPage.classList.remove('avoid-clicks')
-
     }
 
     // Applies styling to the selected priority
@@ -63,8 +63,7 @@ function CreateForm ({
 
         e.preventDefault();
         let priority;
-        let dateWarning = document.getElementsByClassName('create-date-warn')[0]
-
+        let dateWarning = document.getElementsByClassName('create-date-warn')[0];
         // Checks the priority so it can add the correct styling to the toDo
         let lowPriority = document.getElementById('create-new-low');
         if (lowPriority.checked) {
@@ -80,16 +79,17 @@ function CreateForm ({
         }
 
         let selectedYear = Number(date[0] + date[1] + date[2] + date[3])
-        console.log(selectedYear)
+
         if(selectedYear >= 2022 && selectedYear < 2100){
-            dateWarning.style.visibility = 'hidden'
-            setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }])
-            setCurrentId(currentId => currentId + 1)
-            setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter + 1)
+            dateWarning.style.visibility = 'hidden';
+            setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority }]);
+            setCurrentId(currentId => currentId + 1);
+            setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter + 1);
         }
         else{
-            dateWarning.style.visibility = 'visible'
+            dateWarning.style.visibility = 'visible';
         }
+        removeForm();
       };
       //Targets the title selected by the user in the form
       const inputTitleHandler = e => {

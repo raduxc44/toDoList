@@ -12,7 +12,9 @@ function Edit ({
     inputEditDetails,
     setInputEditDetails, 
     inputEditTitle,
-    setInputEditTitle}) {
+    setInputEditTitle,
+    checkCategory
+}) {
 
     const [date, setDate] = useState(selectedToDoForEdit.date);
     
@@ -122,18 +124,16 @@ function Edit ({
             priority = 'high'
         }
 
-        // ISSUE ! The modifiedToDo state doesn't get updated until the function runs for the 2nd time | TO FIX!
-        // Ask how and WHY it works!!!
         let selectedYear = Number(date[0] + date[1] + date[2] + date[3])
         if(selectedYear >= 2022 && selectedYear < 2100) {
-            dateWarning.style.visibility = 'hidden'
-            setTodos(replaceTodo(priority, date))
-            removeEditOverlay()
+            dateWarning.style.visibility = 'hidden';
+            setTodos(replaceTodo(priority, date));
+            removeEditOverlay();
+            checkCategory();
         }
         else {
             dateWarning.style.visibility = 'visible'
         }
-        // console.log(modifiedToDo)
       };
 
     //   useEffect(() => {setTodos(todos => todos, todos.splice(selectedToDoForEdit.key - 1, 1, modifiedToDo))}, [setTodos ,todos ,modifiedToDo, selectedToDoForEdit.key])
