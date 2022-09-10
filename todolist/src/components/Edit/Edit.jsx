@@ -9,6 +9,16 @@ function Edit ({
     setModifiedToDo, 
     todos, 
     setTodos, 
+    todayTodos,
+    setTodayTodos,
+    monthTodos,
+    setMonthTodos,
+    yearTodos,
+    setYearTodos,
+    completeTodos,
+    setCompleteTodos,
+    incompleteTodos,
+    setIncompleteTodos,
     inputEditDetails,
     setInputEditDetails, 
     inputEditTitle,
@@ -128,16 +138,19 @@ function Edit ({
         if(selectedYear >= 2022 && selectedYear < 2100) {
             dateWarning.style.visibility = 'hidden';
             setTodos(replaceTodo(priority, date));
+            if(todayTodos.includes(selectedToDoForEdit)) {setTodayTodos(todayTodos.filter((todo, index) => index === todayTodos[selectedToDoForEdit]))}
+            if(monthTodos.includes(selectedToDoForEdit)) {setMonthTodos(monthTodos.filter((todo, index) => index === monthTodos[selectedToDoForEdit]))}
+            if(yearTodos.includes(selectedToDoForEdit)) {setYearTodos(yearTodos.filter((todo, index) => index === yearTodos[selectedToDoForEdit]))}
+            if(completeTodos.includes(selectedToDoForEdit)) {setCompleteTodos(completeTodos.filter((todo, index) => index === completeTodos[selectedToDoForEdit]))}
+            if(incompleteTodos.includes(selectedToDoForEdit)) {setIncompleteTodos(incompleteTodos.filter((todo, index) => index === incompleteTodos[selectedToDoForEdit]))}
+
             removeEditOverlay();
             checkCategory();
         }
         else {
             dateWarning.style.visibility = 'visible'
         }
-      };
-
-    //   useEffect(() => {setTodos(todos => todos, todos.splice(selectedToDoForEdit.key - 1, 1, modifiedToDo))}, [setTodos ,todos ,modifiedToDo, selectedToDoForEdit.key])
-      
+      };      
 
 return (
     <>

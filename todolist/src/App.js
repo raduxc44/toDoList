@@ -6,6 +6,7 @@ import Details from './components/Details/Details';
 import CreateForm from './components/CreateForm/CreateForm';
 import Edit from './components/Edit/Edit';
 import { useState, useEffect } from 'react';
+import { setYear } from 'date-fns';
 
 function App() {
 
@@ -18,8 +19,8 @@ function App() {
   const [selectedToDoDetails, setSelectedToDoDetails] = useState();
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState();
   const [modifiedToDo, setModifiedToDo] = useState();
-  const [completeCounter, setCompleteCounter] = useState(1);
-  const [incompleteCounter, setIncompleteCounter] = useState(3);
+  const [completeCounter, setCompleteCounter] = useState(2);
+  const [incompleteCounter, setIncompleteCounter] = useState(2);
   const [todayTodos, setTodayTodos] = useState([]);
   const [monthTodos, setMonthTodos] = useState([]);
   const [yearTodos, setYearTodos] = useState([]);
@@ -32,7 +33,7 @@ function App() {
   "date": "2023-09-15",
   "priority": "mid",
   "details": "details1",
-  "checked": true,
+  "checked": false,
 },
 {
   "id" : 2,
@@ -48,7 +49,7 @@ function App() {
   "date": "2022-09-10",
   "priority": "high",
   "details": "details4",
-  "checked": true,
+  "checked": false,
 },
 {
   "id" : 4,
@@ -72,6 +73,7 @@ function App() {
     setSelectedToDoForEdit(item);
     setInputEditDetails(item.details);
     setInputEditTitle(item.title);
+    console.log(item)
   }
   // if a toDo has been selected, each time it gets refreshed, the details Overlay gets rendered with the correct props
   // also, the main page content gets disabled and blurred
@@ -141,13 +143,6 @@ function App() {
       if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter(todo => todo !== selectedTodo));
       if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
     }
-    
-    console.log(selectedTodo)
-    console.log(todos)
-    console.log(todayTodos)
-    console.log(monthTodos)
-    console.log(yearTodos)
-    console.log(incompleteTodos)
   }
 
   // The function gets the selected to do and adds a checked property to it, returning an updated array
@@ -534,6 +529,16 @@ function App() {
                                 setDate={setDate}
                                 setSelectedToDoForEdit={setSelectedToDoForEdit}
                                 checkCategory={checkCategory}
+                                todayTodos={todayTodos}
+                                setTodayTodos={setTodayTodos}
+                                monthTodos={monthTodos}
+                                setMonthTodos={setMonthTodos}
+                                yearTodos={yearTodos}
+                                setYearTodos={setYearTodos}
+                                completeTodos={completeTodos}
+                                setCompleteTodos={setCompleteTodos}
+                                incompleteTodos={incompleteTodos}
+                                setIncompleteTodos={setIncompleteTodos}
                                 />)}
       <div id='main-page'>
       <div className='menu-add'>
