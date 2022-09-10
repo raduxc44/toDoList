@@ -209,6 +209,14 @@ function App() {
         setTodayTodos(prevTodayTodos => [...prevTodayTodos, todos[i]]);
       }
 
+      // Year check
+      
+      todoYear = `${todos[i].date[0]}${todos[i].date[1]}${todos[i].date[2]}${todos[i].date[3]}`;
+      currentYear = `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`;
+      if(currentYear === todoYear && !yearTodos.includes(todos[i])) {
+        setYearTodos(prevYearTodos => [...prevYearTodos, todos[i]]);
+      }
+
       //Month check
       if(todos[i].date[5] === '0') {
         todoMonth = todos[i].date[6] - 1;
@@ -216,17 +224,8 @@ function App() {
       else {
         todoMonth = todos[i].date[5] + todos[i].date[6] - 1;
       }
-      if(todoMonth === currentDate.getMonth() && !monthTodos.includes(todos[i])) {
+      if(currentYear === todoYear && todoMonth === currentDate.getMonth() && !monthTodos.includes(todos[i])) {
         setMonthTodos(prevMonthsTodos => [...prevMonthsTodos, todos[i]]);
-      }
-
-      
-      // Year check
-      
-      todoYear = `${todos[i].date[0]}${todos[i].date[1]}${todos[i].date[2]}${todos[i].date[3]}`;
-      currentYear = `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`;
-      if(currentYear === todoYear && !yearTodos.includes(todos[i])) {
-        setYearTodos(prevYearTodos => [...prevYearTodos, todos[i]]);
       }
 
       // Complete check
