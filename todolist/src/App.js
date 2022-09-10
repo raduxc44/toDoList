@@ -6,7 +6,6 @@ import Details from './components/Details/Details';
 import CreateForm from './components/CreateForm/CreateForm';
 import Edit from './components/Edit/Edit';
 import { useState, useEffect } from 'react';
-import { setYear } from 'date-fns';
 
 function App() {
 
