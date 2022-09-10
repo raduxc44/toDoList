@@ -45,7 +45,7 @@ function App() {
 {
   "id" : 3,
   "title": "Homework",
-  "date": "2022-09-08",
+  "date": "2022-09-10",
   "priority": "high",
   "details": "details4",
   "checked": true,
@@ -53,7 +53,7 @@ function App() {
 {
   "id" : 4,
   "title": "Walk the dog",
-  "date": "2022-09-08",
+  "date": "2022-09-10",
   "priority": "high",
   "details": "details5",
   "checked": true,
@@ -95,38 +95,51 @@ function App() {
 
     if(arr === todos) {
       setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
-      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
-      /*works*/  if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
+      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]))
     };
     if(arr === todayTodos) {
       setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todos.includes(selectedTodo)) {console.log('a')  ;setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]))};
-      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
-      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter(todo => todo !== selectedTodo));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter(todo => todo !== selectedTodo));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
+      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
     }
     if(arr === monthTodos) {
       setMonthTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todos.includes(selectedTodo)) setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
-      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
-      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter(todo => todo !== selectedTodo));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
+      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
     }
     if(arr === yearTodos) {
       setYearTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todos.includes(selectedTodo)) setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
-      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
-      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter((todo, todoIndex) => todoIndex === completeTodos[selectedTodo]));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter(todo => todo !== selectedTodo));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
+      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
     }
     if(arr === completeTodos) {
       setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todos.includes(selectedTodo)) setTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
-      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter((todo, todoIndex) => todoIndex === todayTodos[selectedTodo]));
-      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter((todo, todoIndex) => todoIndex === monthTodos[selectedTodo]));
-      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter((todo, todoIndex) => todoIndex === yearTodos[selectedTodo]));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter(todo => todo !== selectedTodo));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter(todo => todo !== selectedTodo));
+      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
+    }
+    if(arr === incompleteTodos) {
+      setIncompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
+      if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
+      if(monthTodos.includes(selectedTodo)) setMonthTodos(monthTodos.filter(todo => todo !== selectedTodo));
+      if(yearTodos.includes(selectedTodo)) setYearTodos(yearTodos.filter(todo => todo !== selectedTodo));
+      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
     }
     
     console.log(selectedTodo)
@@ -165,11 +178,10 @@ function App() {
 
       for(let i = 0; i < todos.length; i++) {
         if(!todos[i].checked && completeTodos.includes(todos[i])) {
-          console.log('a')
-          setCompleteTodos(completeTodos.splice(completeTodos[todos[i]], 1));
+          setCompleteTodos(todos.filter(todo => todo.checked));
         } 
         if(todos[i].checked && incompleteTodos.includes(todos[i])) {
-          setIncompleteTodos(incompleteTodos.splice(incompleteTodos[todos[i]], 1));
+          setIncompleteTodos(todos.filter(todo => !todo.checked));
         }
       }
     }
