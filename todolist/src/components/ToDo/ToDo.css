@@ -125,7 +125,11 @@
     color: #79ffffdf;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 1000px) {
+    .to-do-container {
+      padding-top: 6vh;
+      padding-bottom: 2vh;
+    }
     .todo {
       padding-right: 0.8vh;
       text-align: center;

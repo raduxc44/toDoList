@@ -1,8 +1,3 @@
-@media (max-width: 500px) {
-  .menu-add{
-    display: none;
-  }
-}
 .menu-add{
     height: 100vh;
     width: 25vh;
@@ -67,4 +62,10 @@
 
   .add-butt:hover {
     font-size: 12vh;
+  }
+
+  @media (max-width: 1000px) {
+    .menu-add{
+      display: none;
+    }
   }
