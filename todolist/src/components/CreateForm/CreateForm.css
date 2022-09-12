@@ -28,6 +28,7 @@
     display: flex;
     border: 2px solid #985F99;
     border-radius: 0 0 1vh 1vh;
+    height: 43vh;
 }
 .text-box {
     background-color: transparent;

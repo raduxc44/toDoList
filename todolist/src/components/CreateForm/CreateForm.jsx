@@ -85,11 +85,11 @@ function CreateForm ({
             setTodos([...todos, {id: currentId, title : inputTitle, date, details: inputDetails, priority}]);
             setCurrentId(currentId => currentId + 1);
             setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter + 1);
+            removeForm();
         }
         else{
             dateWarning.style.visibility = 'visible';
         }
-        removeForm();
       };
       //Targets the title selected by the user in the form
       const inputTitleHandler = e => {
