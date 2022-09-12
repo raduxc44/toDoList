@@ -30,7 +30,7 @@ function Edit ({
     
     function removeEditOverlay() {
 
-        let editOverlay = document.getElementsByClassName('edit-overlay')[0];
+        let editOverlay = document.getElementsByClassName('edit-form')[0];
         editOverlay.classList.add('invisible');
         editOverlay.classList.remove('visible');
         let mainPage = document.getElementById('main-page')
@@ -154,21 +154,21 @@ function Edit ({
 
 return (
     <>
-    <div className="edit-overlay">
-            <div className='create-nav'>
+    <div className="edit-form">
+            <div className='edit-nav'>
                 <h3>Edit your ToDo</h3>
-                <div className="create-close-butt" onClick={removeEditOverlay}>X</div>
+                <div className="edit-close-butt" onClick={removeEditOverlay}>X</div>
             </div>
-            <div className='create-main-content'>
+            <div className='edit-main-content'>
                 <form onSubmit={handleEditSubmit}>
                     <div>
                         <textarea className='text-box' name="title" id="title" maxLength={25} required value={inputEditTitle} onChange={inputTitleHandler} />
                     </div>
-                    <div className='create-details'>
+                    <div className='edit-details'>
                         <textarea name="details" maxLength={55} className='text-box' id="details" value={inputEditDetails} onChange={inputDetailsHandler} />
                     </div>
-                    <div className='create-date'>
-                        <label htmlFor="create-date">Due date: </label>
+                    <div className='edit-date'>
+                        <label htmlFor="edit-date">Due date: </label>
                         <input type="date" name="due-date" id="due-date" value={date} onChange={dateHandler}/>
                         <p className='edit-date-warn'>Please enter a valid date!</p>
                     </div>
@@ -188,8 +188,8 @@ return (
                             </div>
                             <input onClick={checkIfActive} type="radio" name="edit-new-priority" id="edit-new-high" className='edit-new-prio-input'/>
                         </div>
-                        <div className='create-submit-edit'>
-                            <button type='submit'>Confirm Edit</button>
+                        <div className='edit-submit'>
+                            <button type='submit'>Edit</button>
                         </div>
                     </div> 
                 </form>

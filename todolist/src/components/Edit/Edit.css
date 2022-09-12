@@ -1,4 +1,4 @@
-.edit-overlay{
+.edit-form{
     position: fixed;
     z-index: 5;
     width: 75vh;
@@ -6,12 +6,13 @@
     background-color: #F6E8EA;
     visibility: hidden;
     font-family: "Chelsea Market", cursive;
+    border-radius: 1vh;
 }
 .visible {
     visibility: visible;
 }
 
-.create-nav{
+.edit-nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,34 +20,21 @@
     background-color: #985F99;
     border-radius: 1vh 1vh 0 0;
 }
-.create-close-butt{
+.edit-close-butt{
     cursor: pointer;
 }
 
-.create-main-content{
+.edit-main-content{
     display: flex;
     justify-content: center;
     height: 85%;
     border: 2px solid #985F99;
     border-radius: 0 0 1vh 1vh;
 }
-.create-sidebar{
-    padding: 2vh 1vh 2vh 1vh;
-    font-size: 2.5vh;
-    margin-right: 2vh;
-    border-right: 1px solid #985F99;
-}
-.create-sidebar ul {
-    list-style-type: none;
-    padding: 2vh;
-}
-.create-sidebar li:hover {
-    color: #985F99;
-}
-
 form {
     padding-top: 3vh;
-    width: 70vh;
+    width: 75vh;
+    padding: 2vh 2vh 1vh 2vh;
 }
 .text-box {
     background-color: transparent;
@@ -56,8 +44,9 @@ form {
     outline: none;
     width: inherit
 }
-.create-details-edit {
+.edit {
     height: 15vh;
+    margin-bottom: 9vh;
 }
 .edit-date-warn {
     visibility: hidden;
@@ -70,8 +59,15 @@ form {
     margin-bottom: 10vh;
     width: 95%;
 }
-
-.create-date{
+.edit-details {
+    height: 15vh;
+    margin-bottom: 9vh;
+}
+.edit-date{
+    display: flex;
+    align-items: center;
+    gap: 2vh;
+    height: 4vh;
     margin-bottom: 1.5vh;
 }
 #due-date {
@@ -151,28 +147,37 @@ form {
     text-align: center;
     cursor: pointer;
 }
-.create-submit-edit{
+.edit-submit{
     background-color: #985F99;
     border-radius: 5%;
+    width: 7vh;
     height: 3vh;
     display: flex;
     justify-content: center;
     
 }
-.create-submit-edit button {
+.edit-submit button {
     background-color: transparent;
     border: none;
     color: #F6E8EA;
     font-family: "Chelsea Market", cursive;
     cursor: pointer;
 }
-.create-submit-edit:hover {
+.edit-submit:hover {
     background-color: transparent;
     border: 1px solid #985F99;
 }
-.create-submit-edit button {
+.edit-submit button {
     width: 100%;
 }
-.create-submit-edit button:hover {
+.edit-submit button:hover {
     color: #985F99;
+}
+@media (max-width: 1000px) {
+    .form {
+        width: 45vh;
+    }
+    .main-content {
+        width: 30vh;
+    }
 }
