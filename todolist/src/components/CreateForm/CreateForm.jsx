@@ -125,7 +125,7 @@ function CreateForm ({
                     </div>
                     <div className='priority-and-send'>
                         <div className='create-priority'>
-                            <label htmlFor="create-priority">Priority: </label>
+                            <label className='priority-tag-label' htmlFor="create-priority">Priority: </label>
                             <div className='create-new-prio-butt create-new-prio-low'>
                                 <label className='prio-label' htmlFor="create-new-low">Low</label>
                             </div>

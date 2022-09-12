@@ -26,9 +26,9 @@
 
 .create-main-content{
     display: flex;
-    border: 2px solid #985F99;
+    border: 0.25vh solid #985F99;
     border-radius: 0 0 1vh 1vh;
-    height: 43vh;
+    height: 42.5vh;
 }
 .text-box {
     background-color: transparent;
@@ -76,15 +76,11 @@
     display: flex;
     align-items: inherit;
 }
-.create-priority label {
+.priority-tag-label {
     margin-right: 2vh;
 }
 .create-priority input{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
+    display: none;
 }
 .create-new-prio-butt{
     margin-right: 2vh;
@@ -95,7 +91,7 @@
     align-items: center;
 }
 .create-new-prio-low {
-    border: 2px solid #79ffffdf;
+    border: 0.2vh solid #79ffffdf;
     color: #79ffffdf;
 }
 .create-new-prio-low:hover {
@@ -107,7 +103,7 @@
     color: white;
 }
 .create-new-prio-mid {
-    border: 2px solid #fbc45ee0;
+    border: 0.2vh solid #fbc45ee0;
     color: #fbc45ee0;
 }
 .create-new-prio-mid:hover {
@@ -119,7 +115,7 @@
     color: white;
 }
 .create-new-prio-high {
-    border: 2px solid #f96262d2;
+    border: 0.2vh solid #f96262d2;
     color: #f96262d2;
 }
 .create-new-prio-high:hover {
@@ -156,7 +152,7 @@
 }
 .create-submit:hover {
     background-color: transparent;
-    border: 1px solid #985F99;
+    border: 0.1vh solid #985F99;
 }
 .create-submit button {
     width: 100%;
@@ -170,17 +166,19 @@
         height: 50vh;
     }
     .create-main-content {
-        height: 43vh;
+        height: 42vh;
         width: 43vh;
+        border: 0.25vh solid #985F99;
+        border-top: none;
     }
     .create-main-content form {
-        width: 38vh;
+        width: 42vh;
     }
     .create-details {
         width: 35vh;
     }
     .create-date {
-        gap: 1vh;
+        gap: 2vh;
     }
     .create-main-content label {
         font-size: 1.7vh;
@@ -195,6 +193,17 @@
     }
     .create-new-prio-butt {
         height: 3vh;
-        width: 6vh;
+        margin-right: 0.5vh;
+        width: 5.5vh;
+    }
+    .create-priority {
+        width: 35vh;
+        gap: 1vh;
+    }
+    .priority-tag-label {
+        margin-right: 1vh;        
+    }
+    .create-submit {
+        margin-left: 1vh;
     }
 }
