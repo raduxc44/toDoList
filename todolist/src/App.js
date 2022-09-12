@@ -9,6 +9,49 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
+  const localTodos = localStorage.getItem('todos');
+  const localCompleteCounter = localStorage.getItem('completeCounter');
+  const localIncompleteCounter = localStorage.getItem('incompleteCounter');
+  const defaultArr = [{
+    "id" : 1,
+    "title": "Brush Teeth",
+    "date": "2023-09-15",
+    "priority": "mid",
+    "details": "details1",
+    "checked": false,
+  },
+  {
+    "id" : 2,
+    "title": "Wash the dog",
+    "date": "2022-09-11",
+    "priority": "low",
+    "details": "details2",
+    "checked": true,
+  },
+  {
+    "id" : 3,
+    "title": "Homework",
+    "date": "2022-09-11",
+    "priority": "high",
+    "details": "details4",
+    "checked": false,
+  },
+  {
+    "id" : 4,
+    "title": "Walk the dog",
+    "date": "2022-12-12",
+    "priority": "high",
+    "details": "details5",
+    "checked": true,
+  }
+];
+  const defaultCompleteCounter = 2;
+  const defaultIncompleteCounter = 2;
+
+  const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultArr);
+  const [completeCounter, setCompleteCounter] = useState(localCompleteCounter ? JSON.parse(localCompleteCounter) : defaultCompleteCounter);
+  const [incompleteCounter, setIncompleteCounter] = useState(localIncompleteCounter ? JSON.parse(localIncompleteCounter) : defaultIncompleteCounter);
+
   const [inputTitle, setInputTitle] = useState('');
   const [inputDetails, setInputDetails] = useState('');
   const [inputEditTitle, setInputEditTitle] = useState();
@@ -18,53 +61,31 @@ function App() {
   const [selectedToDoDetails, setSelectedToDoDetails] = useState();
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState();
   const [modifiedToDo, setModifiedToDo] = useState();
-  const [completeCounter, setCompleteCounter] = useState(2);
-  const [incompleteCounter, setIncompleteCounter] = useState(2);
   const [todayTodos, setTodayTodos] = useState([]);
   const [monthTodos, setMonthTodos] = useState([]);
   const [yearTodos, setYearTodos] = useState([]);
   const [completeTodos, setCompleteTodos] = useState([]);
   const [incompleteTodos, setIncompleteTodos] = useState([]);
-  const [todos, setTodos] = useState(
-[{
-  "id" : 1,
-  "title": "Brush Teeth",
-  "date": "2023-09-15",
-  "priority": "mid",
-  "details": "details1",
-  "checked": false,
-},
-{
-  "id" : 2,
-  "title": "Wash the dog",
-  "date": "2022-12-01",
-  "priority": "low",
-  "details": "details2",
-  "checked": true,
-},
-{
-  "id" : 3,
-  "title": "Homework",
-  "date": "2022-09-10",
-  "priority": "high",
-  "details": "details4",
-  "checked": false,
-},
-{
-  "id" : 4,
-  "title": "Walk the dog",
-  "date": "2022-09-10",
-  "priority": "high",
-  "details": "details5",
-  "checked": true,
-}
-]);
+  
+  
+  console.log(todos)
 
   // Saves the selected todo by it's details button in the selectedToDo state
   function showDetails (arr, index) {
     setSelectedToDoDetails(arr[index]);
   };
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos]);
+
+  useEffect(() => {
+    localStorage.setItem('completeCounter', JSON.stringify(completeCounter))
+  }, [completeCounter]);
+
+  useEffect(() => {
+    localStorage.setItem('incompleteCounter', JSON.stringify(incompleteCounter))
+  })
 
   function showEdit(arr, index) {
     const item = arr[index];
