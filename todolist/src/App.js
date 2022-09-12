@@ -93,7 +93,6 @@ function App() {
     setSelectedToDoForEdit(item);
     setInputEditDetails(item.details);
     setInputEditTitle(item.title);
-    console.log(item)
   }
   // if a toDo has been selected, each time it gets refreshed, the details Overlay gets rendered with the correct props
   // also, the main page content gets disabled and blurred
@@ -106,6 +105,16 @@ function App() {
     mainPage.classList.add('avoid-clicks');
    }
   }, [selectedToDoDetails]);
+
+  useEffect (() => {
+    if(selectedToDoForEdit) {
+    let editOverlay = document.getElementsByClassName('edit-form')[0];
+    editOverlay.classList.add('visible');
+    let mainPage = document.getElementById('main-page');
+    mainPage.classList.add('blur');
+    mainPage.classList.add('avoid-clicks');
+    }
+  }, [selectedToDoForEdit])
 
   // the function return the the todos left after the deletion
     function deleteToDo (arr, index) {
@@ -504,17 +513,6 @@ function App() {
     
   }
     // Picks a todo for editing and shows the edit overlay with it's data
-
-
-    useEffect (() => {
-      if(selectedToDoForEdit) {
-      let editOverlay = document.getElementsByClassName('edit-overlay')[0];
-      editOverlay.classList.add('visible');
-      let mainPage = document.getElementById('main-page');
-      mainPage.classList.add('blur');
-      mainPage.classList.add('avoid-clicks');
-      }
-    }, [selectedToDoForEdit])
 
     checkCategory();
 

@@ -6,6 +6,7 @@
     background-color: #F6E8EA;
     visibility: hidden;
     font-family: "Chelsea Market", cursive;
+    border-radius: 1vh;
 }
 .visible {
     visibility: visible;
@@ -25,27 +26,8 @@
 
 .create-main-content{
     display: flex;
-    height: 85%;
     border: 2px solid #985F99;
     border-radius: 0 0 1vh 1vh;
-}
-.create-sidebar{
-    padding: 2vh 1vh 2vh 1vh;
-    font-size: 2.5vh;
-    margin-right: 2vh;
-    border-right: 1px solid #985F99;
-}
-.create-sidebar ul {
-    list-style-type: none;
-    padding: 2vh;
-}
-.create-sidebar li:hover {
-    color: #985F99;
-}
-
-form {
-    padding-top: 3vh;
-    width: 70vh;
 }
 .text-box {
     background-color: transparent;
@@ -57,7 +39,7 @@ form {
 }
 .create-details {
     height: 15vh;
-    margin-bottom: 8vh;
+    margin-bottom: 9vh;
 }
 #title {
     width: 50vh;
@@ -73,6 +55,7 @@ form {
     align-items: center;
     gap: 2vh;
     height: 4vh;
+    margin-bottom: 1.5vh;
 }
 .create-date-warn {
     visibility: hidden;
@@ -179,4 +162,38 @@ form {
 }
 .create-submit button:hover {
     color: #985F99;
+}
+@media (max-width: 1000px) {
+    .create-form {
+        width: 43vh;
+        height: 50vh;
+    }
+    .create-main-content {
+        height: 43vh;
+        width: 43vh;
+    }
+    .create-main-content form {
+        width: 38vh;
+    }
+    .create-details {
+        width: 35vh;
+    }
+    .create-date {
+        gap: 1vh;
+    }
+    .create-main-content label {
+        font-size: 1.7vh;
+    }
+    #due-date {
+        width: 10vh;
+        font-size: 1.15vh;
+    }
+    .create-date p {
+        font-size: 1vh;
+        text-align: center;
+    }
+    .create-new-prio-butt {
+        height: 3vh;
+        width: 6vh;
+    }
 }
