@@ -148,3 +148,24 @@
       gap: 1.5vh;
     }
   }
+  @media (max-width: 350px) {
+    .todo{
+      height: 5vh;
+      font-size: 2vh;
+    }
+    .todo-first-half{
+      width: 14vh;
+      font-size: 1.2vh;
+    }
+    .check-container{
+      font-size: 2.5vh;
+    }
+    .todo-second-half{
+      gap: 1vh;
+      width: 20vh;
+    }
+    .date-container{
+      font-size: 1vh;
+      width: 7vh;
+    }
+  }
