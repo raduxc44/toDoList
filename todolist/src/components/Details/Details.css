@@ -35,3 +35,16 @@
 .details-close:hover {
     color: #985F99;
 }
+@media (max-width: 1000px) {
+    html, body {
+        margin: 0; height: 100%; overflow: hidden;
+    }
+    .details-overlay {
+        width: 40vh;
+        height: 40vh;
+    }
+    .details-content h2{
+        font-size: 3vh;
+        text-align: center;
+    }
+}
