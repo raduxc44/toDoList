@@ -162,7 +162,7 @@ return (
             <div className='create-main-content'>
                 <form onSubmit={handleEditSubmit}>
                     <div>
-                        <textarea className='text-box' name="title" id="title" maxLength={40} required value={inputEditTitle} onChange={inputTitleHandler} />
+                        <textarea className='text-box' name="title" id="title" maxLength={25} required value={inputEditTitle} onChange={inputTitleHandler} />
                     </div>
                     <div className='create-details'>
                         <textarea name="details" maxLength={55} className='text-box' id="details" value={inputEditDetails} onChange={inputDetailsHandler} />

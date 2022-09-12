@@ -114,7 +114,7 @@ function CreateForm ({
             </div>
             <div className='create-main-content'>
                 <form onSubmit={handleSubmit}>
-                    <div><textarea className='text-box' value={inputTitle} name="title" id="title" onChange={inputTitleHandler} maxLength={40} required placeholder={'Title'}></textarea></div>
+                    <div><textarea className='text-box' value={inputTitle} name="title" id="title" onChange={inputTitleHandler} maxLength={25} required placeholder={'Title'}></textarea></div>
                     <div className='create-details'>
                         <textarea name="details" maxLength={55} className='text-box' id="details" onChange={inputDetailsHandler} placeholder='Details' required></textarea>
                     </div>
