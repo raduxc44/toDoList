@@ -171,7 +171,7 @@ form {
 }
 @media (max-width: 1000px) {
     html, body {
-        margin: 0; height: 100%; overflow: hidden
+        margin: 0; height: 100%; overflow: hidden;
     }
     .edit-form {
         width: 40vh;
