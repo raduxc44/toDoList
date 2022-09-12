@@ -127,8 +127,8 @@
 
   @media (max-width: 1000px) {
     .to-do-container {
-      padding-top: 6vh;
-      padding-bottom: 2vh;
+      padding-top: 3vh;
+      padding-bottom: 3vh;
     }
     .todo {
       padding-right: 0.8vh;
@@ -142,6 +142,7 @@
     }
     .todo-first-half p{
       width: 11vh;
+      word-break: break-word;
     }
     .todo-second-half{
       gap: 1.5vh;
