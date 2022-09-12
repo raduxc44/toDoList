@@ -174,7 +174,7 @@ return (
                     </div>
                     <div className='priority-and-send'>
                         <div className='edit-priority'>
-                            <label htmlFor="edit-priority">Priority: </label>
+                            <label className='priority-tag-label' htmlFor="edit-priority">Priority: </label>
                             <div className='edit-new-prio-butt edit-new-prio-low'>
                                 <label className='edit-prio-label' htmlFor="edit-new-low">Low</label>
                             </div>

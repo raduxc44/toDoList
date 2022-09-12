@@ -84,15 +84,11 @@ form {
     display: flex;
     align-items: inherit;
 }
-.edit-priority label {
+.priority-tag-label {
     margin-right: 2vh;
 }
 .edit-priority input{
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
-    appearance: none;
+    display: none;
 }
 .edit-new-prio-butt{
     margin-right: 2vh;
@@ -174,10 +170,52 @@ form {
     color: #985F99;
 }
 @media (max-width: 1000px) {
-    .form {
-        width: 45vh;
+    html, body {
+        margin: 0; height: 100%; overflow: hidden
     }
-    .main-content {
-        width: 30vh;
+    .edit-form {
+        width: 40vh;
+        height: 50vh;
+    }
+    .edit-main-content {
+        height: 42vh;
+        width: 40vh;
+        border: 0.25vh solid #985F99;
+        border-top: none;
+    }
+    .edit-main-content form {
+        width: 40vh;
+    }
+    .edit-details {
+        width: 37vh;
+    }
+    .edit-date {
+        gap: 2vh;
+    }
+    .edit-main-content label {
+        font-size: 1.7vh;
+    }
+    #due-date {
+        width: 10vh;
+        font-size: 1.15vh;
+    }
+    .edit-date p {
+        font-size: 1vh;
+        text-align: center;
+    }
+    .edit-new-prio-butt {
+        height: 3vh;
+        margin-right: 0.5vh;
+        width: 5vh;
+    }
+    .edit-priority {
+        width: 32vh;
+        gap: 1vh;
+    }
+    .priority-tag-label {
+        margin-right: 1vh;        
+    }
+    .edit-submit {
+        margin-left: 1vh;
     }
 }
