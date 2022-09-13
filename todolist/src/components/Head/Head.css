@@ -1,17 +1,51 @@
 header{
     display: flex;
+    height: 10vh;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    gap: 20px;
-    height: 10vh;
     background-color: #F6E8EA;
     color: #985F99;
     position: sticky;
     top: 0;
     z-index: 100;
+}
+.title {
+  display: flex;
+  gap: 1.5vh;
+}
+header p{
+  font-size: 5vh;
+  font-family: 'Fredericka the Great', cursive;
+}
+.mobile-nav-button {
+  display: none;
+}
+@media (max-width : 1000px) {
+  header {
+    justify-content: flex-start;
   }
-  header p{
-    font-size: 5vh;
-    font-family: 'Fredericka the Great', cursive;
+  .mobile-nav-button {
+    display: block;
   }
+  .title p {
+    margin : 0;
+  }
+}
+@media (min-width : 500px) {
+  .mobile-nav-button {
+    margin-left: 7vh;
+    margin-right: 30vw;
+  }
+}
+@media (max-width : 499px) {
+  .mobile-nav-button {
+    margin-left: 4.25vh;
+    margin-right: 15vw;
+  }
+}
+@media (max-width : 350px) {
+  .mobile-nav-button {
+    margin-left: 3vh;
+    margin-right: 5vh;
+  }
+}

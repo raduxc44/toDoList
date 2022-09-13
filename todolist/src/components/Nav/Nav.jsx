@@ -18,6 +18,8 @@ function Nav ({
         let mainPage = document.getElementById('main-page');
         mainPage.classList.add('blur');
         mainPage.classList.add('avoid-clicks')
+        let mobileNav = document.getElementsByClassName('menu-add')[0];
+        if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
 
     }
 
