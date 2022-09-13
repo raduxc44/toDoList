@@ -66,15 +66,20 @@
   }
 
   @media (max-width: 1000px) {
+    .add-butt {
+      height: 10vh;
+    }
     .menu-add{
       display: none;
       position: absolute;
       z-index: 6;
       width: 100vw;
-      margin-top: 5vh;
-      height: 95vh;
+      height: 100vh;
     }
     .show {
       display: block;
+    }
+    .menu {
+      padding-bottom: 15vh;
     }
   }
