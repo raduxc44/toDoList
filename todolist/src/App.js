@@ -67,9 +67,6 @@ function App() {
   const [completeTodos, setCompleteTodos] = useState([]);
   const [incompleteTodos, setIncompleteTodos] = useState([]);
   
-  
-  console.log(todos)
-
   // Saves the selected todo by it's details button in the selectedToDo state
   function showDetails (arr, index) {
     setSelectedToDoDetails(arr[index]);
@@ -305,7 +302,8 @@ function App() {
     completeTodos.classList.add('display-hide');
     incompleteTodos.classList.add('display-hide');
 
-    console.log(todos)
+    let mobileNav = document.getElementsByClassName('menu-add')[0];
+    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
 
   }
 
@@ -347,6 +345,10 @@ function App() {
     yearTodos.classList.add('display-hide');
     completeTodos.classList.add('display-hide');
     incompleteTodos.classList.add('display-hide');
+
+    let mobileNav = document.getElementsByClassName('menu-add')[0];
+    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
+
   }
 
   function openMonth () {
@@ -387,6 +389,9 @@ function App() {
     yearTodos.classList.add('display-hide');
     completeTodos.classList.add('display-hide');
     incompleteTodos.classList.add('display-hide');
+
+    let mobileNav = document.getElementsByClassName('menu-add')[0];
+    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
 
     }
 
@@ -429,6 +434,9 @@ function App() {
     completeTodos.classList.add('display-hide');
     incompleteTodos.classList.add('display-hide');
   
+    let mobileNav = document.getElementsByClassName('menu-add')[0];
+    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
+
     }
 
   function openComplete () {
@@ -470,6 +478,9 @@ function App() {
     completeTodos.classList.remove('display-hide');
     incompleteTodos.classList.add('display-hide');
     
+    let mobileNav = document.getElementsByClassName('menu-add')[0];
+    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
+
   }
 
   function openIncomplete () {
@@ -511,6 +522,9 @@ function App() {
     completeTodos.classList.add('display-hide');
     incompleteTodos.classList.remove('display-hide');
     
+    let mobileNav = document.getElementsByClassName('menu-add')[0];
+    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
+
   }
     // Picks a todo for editing and shows the edit overlay with it's data
 
@@ -559,7 +573,7 @@ function App() {
                                 setIncompleteTodos={setIncompleteTodos}
                                 />)}
       <div id='main-page'>
-      <div className='menu-add'>
+      <div id='nav-with-add' className='menu-add'>
           <Nav 
           completeCounter={completeCounter} 
           incompleteCounter={incompleteCounter}
