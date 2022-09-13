@@ -9,16 +9,18 @@ function Head() {
     }
 
     return(
-        <header>
-            <i onClick={showMobileNav} className="fa-solid fa-bars mobile-nav-button"></i>
-            <div>
-                <div className='title'>
-                <i className="fa-solid fa-check"></i>
-                <p>TO-DO</p>
-                <i className="fa-solid fa-check"></i>
+        <div className='head-content'>
+            <header>
+                <div className='menu-div'>
+                    <i onClick={showMobileNav} className="fa-solid fa-bars mobile-nav-button"></i>
                 </div>
-            </div>
-        </header>
+                <div className='title'>
+                    <i className="fa-solid fa-check"></i>
+                    <p>TO-DO</p>
+                    <i className="fa-solid fa-check"></i>
+                </div>
+            </header>
+        </div>
     )
 }
 

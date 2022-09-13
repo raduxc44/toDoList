@@ -21,31 +21,24 @@ header p{
   display: none;
 }
 @media (max-width : 1000px) {
-  header {
-    justify-content: flex-start;
-  }
   .mobile-nav-button {
     display: block;
   }
   .title p {
     margin : 0;
   }
-}
-@media (min-width : 500px) {
-  .mobile-nav-button {
-    margin-left: 7vh;
-    margin-right: 30vw;
+  .head-content {
+    background-color: #F6E8EA;
+    display: flex;
+    justify-content: center;
   }
-}
-@media (max-width : 499px) {
-  .mobile-nav-button {
-    margin-left: 4.25vh;
-    margin-right: 15vw;
+  header {width: 90%;}
+  .menu-div {
+    margin-right: auto;
+    margin-left: 1.5vh;
   }
-}
-@media (max-width : 350px) {
-  .mobile-nav-button {
-    margin-left: 3vh;
-    margin-right: 5vh;
+  .title {
+    margin-right: auto;
+    margin-left: -1.5vh;
   }
 }
