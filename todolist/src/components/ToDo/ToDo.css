@@ -147,15 +147,6 @@
     .todo-second-half{
       gap: 1.5vh;
     }
-    .icon-high {
-      color: #f96262d2;
-    }
-    .icon-mid  {
-      color: #fbc45ee0;
-    }
-    .icon-low {
-      color: #79ffffdf;
-    }
   }
   @media (max-width: 350px) {
     .todo{
