@@ -49,9 +49,12 @@ function App() {
   const defaultIncompleteCounter = 2;
 
   const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultArr);
-  // const [todos, setTodos] = useState(defaultArr)
   const [completeCounter, setCompleteCounter] = useState(localCompleteCounter ? JSON.parse(localCompleteCounter) : defaultCompleteCounter);
   const [incompleteCounter, setIncompleteCounter] = useState(localIncompleteCounter ? JSON.parse(localIncompleteCounter) : defaultIncompleteCounter);
+  // const [todos, setTodos] = useState(defaultArr)
+  // const [completeCounter, setCompleteCounter] = useState(defaultCompleteCounter);
+  // const [incompleteCounter, setIncompleteCounter] = useState(defaultIncompleteCounter);
+
 
 
   const [inputTitle, setInputTitle] = useState('');
@@ -138,21 +141,22 @@ function App() {
     }
   }, [selectedToDoForEdit])
 
-  // the function return the the todos left after the deletion
-    function deleteToDo (arr, index) {
+  // The function gets the selected todo and deletes it from the main array
+  function deleteToDo (arr, todoIndex) {
     
-      let selectedTodo = arr[index];
-
-      if  (selectedTodo.checked) {setCompleteCounter(prevCompleteCounter => prevCompleteCounter - 1)}
-      else                       {setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter - 1)}
-
-      setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
+    for(let i = 0; i < arr.length; i++) {
+      if(i === todoIndex) {
+        let selectedTodo = arr[i];
+        if  (selectedTodo.checked) {setCompleteCounter(prevCompleteCounter => prevCompleteCounter - 1)}
+        else                       {setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter - 1)}
+        setTodos(todos.filter(todo => todo !== selectedTodo))
+      }
+    }
   }
 
-  // The function gets the selected to do and adds a checked property to it, returning an updated array
-
+  // The function gets the selected todo and adds a checked property to it, updating the main array with the modified todo
   function checkTodo(arr, todoIndex) {
-      
+
     for(let i = 0; i < arr.length; i++) {
       if(i === todoIndex) {
         let selectedTodo = arr[i]
