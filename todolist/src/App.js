@@ -31,7 +31,7 @@ function App() {
   {
     "id" : 3,
     "title": "Homework",
-    "date": "2022-09-15",
+    "date": "2022-09-16",
     "priority": "high",
     "details": "details4",
     "checked": false,
@@ -49,6 +49,7 @@ function App() {
   const defaultIncompleteCounter = 2;
 
   const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultArr);
+  // const [todos, setTodos] = useState(defaultArr)
   const [completeCounter, setCompleteCounter] = useState(localCompleteCounter ? JSON.parse(localCompleteCounter) : defaultCompleteCounter);
   const [incompleteCounter, setIncompleteCounter] = useState(localIncompleteCounter ? JSON.parse(localIncompleteCounter) : defaultIncompleteCounter);
 
@@ -65,13 +66,10 @@ function App() {
 
 
   const currentDate = useMemo(() => new Date(), []);
-  const currentMonth = currentDate.getMonth();
   let isoDate = currentDate.toISOString();
   let isoTodayArr = [];
   let currentDay;
-  let todoMonth;
   let currentYear;
-  let todoYear;
 
   for(let i = 0; i < isoDate.length - 14; i++) {
     isoTodayArr.push(isoDate[i]);
@@ -86,42 +84,20 @@ function App() {
     else {
       todos[i].currentMonth = todos[i].date[5] + todos[i].date[6] - 1;
     }
-    todoYear = `${todos[i].date[0]}${todos[i].date[1]}${todos[i].date[2]}${todos[i].date[3]}`
+    todos[i].currentYear = `${todos[i].date[0]}${todos[i].date[1]}${todos[i].date[2]}${todos[i].date[3]}`
     currentYear = `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`
   }
-
   
-      // if(currentYear === todoYear && !yearTodos.includes(todos[i])) {
-      //   setYearTodos(prevYearTodos => [...prevYearTodos, todos[i]]);
-      // }
-  
-  // if(currentYear === todoYear && todoMonth === currentDate.getMonth() && !monthTodos.includes(todos[i])) {
-  //   setMonthTodos(prevMonthsTodos => [...prevMonthsTodos, todos[i]]);
-  // }
   let todayTodos = useMemo(() => todos.filter(todo => todo.date === currentDay), [todos, currentDay]);
-  let yearTodos = useMemo(() => todos.filter(todo => `${todo.date[0]}${todo.date[1]}${todo.date[2]}${todo.date[3]}` === currentYear), [todos, currentYear] );
+  let yearTodos = useMemo(() => todos.filter(todo => todo.currentYear === currentYear), [todos, currentYear] );
   let monthTodos = useMemo(() => yearTodos.filter(todo => todo.currentMonth === currentDate.getMonth()), [yearTodos, currentDate]);
-
-  const [completeTodos, setCompleteTodos] = useState([]);
-  const [incompleteTodos, setIncompleteTodos] = useState([]);
+  let completeTodos = useMemo(() => todos.filter(todo => todo.checked), [todos])
+  let incompleteTodos = useMemo(() => todos.filter(todo => !todo.checked), [todos])
   
-  // Saves the selected todo by it's details button in the selectedToDo state
+  // Saves the selected todo by it's details/edit button in the corresponding state
   function showDetails (arr, index) {
     setSelectedToDoDetails(arr[index]);
   };
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos))
-  }, [todos]);
-
-  useEffect(() => {
-    localStorage.setItem('completeCounter', JSON.stringify(completeCounter))
-  }, [completeCounter]);
-
-  useEffect(() => {
-    localStorage.setItem('incompleteCounter', JSON.stringify(incompleteCounter))
-  }, [incompleteCounter]);
-
   function showEdit(arr, index) {
     const item = arr[index];
 
@@ -129,7 +105,19 @@ function App() {
     setInputEditDetails(item.details);
     setInputEditTitle(item.title);
   }
-  // if a toDo has been selected, each time it gets refreshed, the details Overlay gets rendered with the correct props
+
+  // Saves these variables in local storage each time a change occurs to them
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos]);
+  useEffect(() => {
+    localStorage.setItem('completeCounter', JSON.stringify(completeCounter))
+  }, [completeCounter]);
+  useEffect(() => {
+    localStorage.setItem('incompleteCounter', JSON.stringify(incompleteCounter))
+  }, [incompleteCounter]);
+
+  // if a todo has been selected, each time it gets refreshed, the details/edit menu gets rendered with the correct props
   // also, the main page content gets disabled and blurred
   useEffect (() => {
     if(selectedToDoDetails) {
@@ -140,7 +128,6 @@ function App() {
     mainPage.classList.add('avoid-clicks');
    }
   }, [selectedToDoDetails]);
-
   useEffect (() => {
     if(selectedToDoForEdit) {
     let editOverlay = document.getElementsByClassName('edit-form')[0];
@@ -159,99 +146,31 @@ function App() {
       if  (selectedTodo.checked) {setCompleteCounter(prevCompleteCounter => prevCompleteCounter - 1)}
       else                       {setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter - 1)}
 
-    if(arr === todos) {
       setTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      // if(todayTodos.includes(selectedTodo)) setTodayTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
-      if(monthTodos.includes(selectedTodo)) monthTodos = todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]);
-      if(yearTodos.includes(selectedTodo)) yearTodos = todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]);
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]));
-      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(todos.filter((todo, todoIndex) => todoIndex === todos[selectedTodo]))
-    };
-    if(arr === todayTodos) {
-      // setTodayTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
-      if(monthTodos.includes(selectedTodo)) monthTodos = monthTodos.filter(todo => todo !== selectedTodo);
-      if(yearTodos.includes(selectedTodo)) yearTodos = yearTodos.filter(todo => todo !== selectedTodo);
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
-      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
-    }
-    if(arr === monthTodos) {
-      monthTodos = arr.filter((todo, todoIndex) => todoIndex !== index);
-      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
-      // if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
-      if(yearTodos.includes(selectedTodo)) yearTodos = yearTodos.filter(todo => todo !== selectedTodo);
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
-      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
-    }
-    if(arr === yearTodos) {
-      yearTodos = arr.filter((todo, todoIndex) => todoIndex !== index);
-      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
-      // if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
-      if(monthTodos.includes(selectedTodo)) monthTodos = monthTodos.filter(todo => todo !== selectedTodo);
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
-      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
-    }
-    if(arr === completeTodos) {
-      setCompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
-      // if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
-      if(monthTodos.includes(selectedTodo)) monthTodos = monthTodos.filter(todo => todo !== selectedTodo);
-      if(yearTodos.includes(selectedTodo)) yearTodos = yearTodos.filter(todo => todo !== selectedTodo);
-      if(incompleteTodos.includes(selectedTodo)) setIncompleteTodos(incompleteTodos.filter(todo => todo !== selectedTodo));
-    }
-    if(arr === incompleteTodos) {
-      setIncompleteTodos(arr.filter((todo, todoIndex) => todoIndex !== index));
-      if(todos.includes(selectedTodo)) setTodos(todos.filter(todo => todo !== selectedTodo));
-      // if(todayTodos.includes(selectedTodo)) setTodayTodos(todayTodos.filter(todo => todo !== selectedTodo));
-      if(monthTodos.includes(selectedTodo)) monthTodos = monthTodos.filter(todo => todo !== selectedTodo);
-      if(yearTodos.includes(selectedTodo)) yearTodos = yearTodos.filter(todo => todo !== selectedTodo);
-      if(completeTodos.includes(selectedTodo)) setCompleteTodos(completeTodos.filter(todo => todo !== selectedTodo));
-    }
   }
 
   // The function gets the selected to do and adds a checked property to it, returning an updated array
 
-    function checkButton(arr, todoIndex) {
+  function checkTodo(arr, todoIndex) {
       
-      let updatedTodos = [];
-      for(let i = 0; i < arr.length; i++) {
-        let checkedTodo = arr[i];
-        if(i === todoIndex) {
-          checkedTodo.checked = !checkedTodo.checked;
-          if(checkedTodo.checked) {
-            setCompleteCounter(prevCompletedCounter => prevCompletedCounter + 1)
-            setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter - 1)
-          }
-          else {
-            setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
-            setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter + 1)
-          }
+    for(let i = 0; i < arr.length; i++) {
+      if(i === todoIndex) {
+        let selectedTodo = arr[i]
+        selectedTodo.checked = !selectedTodo.checked;
+        if(selectedTodo.checked) {
+          setCompleteCounter(prevCompletedCounter => prevCompletedCounter + 1)
+          setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter - 1)
         }
-        updatedTodos.push(checkedTodo);
-      }
-      if      (arr === todos)           setTodos(updatedTodos);
-      // else if (arr === todayTodos)      setTodayTodos(updatedTodos);
-      else if (arr === monthTodos)      monthTodos = updatedTodos;
-      else if (arr === yearTodos)       yearTodos = updatedTodos;
-      else if (arr === completeTodos)   setCompleteTodos(updatedTodos);
-
-      for(let i = 0; i < todos.length; i++) {
-        if(!todos[i].checked && completeTodos.includes(todos[i])) {
-          setCompleteTodos(todos.filter(todo => todo.checked));
-        } 
-        if(todos[i].checked && incompleteTodos.includes(todos[i])) {
-          setIncompleteTodos(todos.filter(todo => !todo.checked));
+        else {
+          setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
+          setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter + 1)
         }
-      }
+        setTodos([...todos], todos.splice(todos.indexOf(selectedTodo), 1, selectedTodo))
+      } 
     }
+  }
 
     function checkCategory() {
-    // Category filters
-
-    // Brings the full date in yyyy-mm-dd format
-    // let currentDate = new Date();
-    
-
     for(let i = 0; i < todos.length; i++) {
 
       //Today check
@@ -269,10 +188,10 @@ function App() {
       // Complete check
 
       if(todos[i].checked && !completeTodos.includes(todos[i])) {
-        setCompleteTodos(prevCompleteTodos => [...prevCompleteTodos, todos[i]]);
+        // setCompleteTodos(prevCompleteTodos => [...prevCompleteTodos, todos[i]]);
       }
       else if(!todos[i].checked && !incompleteTodos.includes(todos[i])) {
-        setIncompleteTodos(prevIncompleteTodos => [...prevIncompleteTodos, todos[i]]);
+        // setIncompleteTodos(prevIncompleteTodos => [...prevIncompleteTodos, todos[i]]);
         // if(!todos[i].checked && incompleteTodos.includes(todos[i])) {
         //   setIncompleteTodos(incompleteTodos.splice(incompleteTodos[todos[i]], 1));
         // }
@@ -585,9 +504,9 @@ function App() {
                                 yearTodos={yearTodos}
                                 // setYearTodos={setYearTodos}
                                 completeTodos={completeTodos}
-                                setCompleteTodos={setCompleteTodos}
+                                // setCompleteTodos={setCompleteTodos}
                                 incompleteTodos={incompleteTodos}
-                                setIncompleteTodos={setIncompleteTodos}
+                                // setIncompleteTodos={setIncompleteTodos}
                                 />)}
       <div id='main-page'>
       <div id='nav-with-add' className='menu-add'>
@@ -617,7 +536,7 @@ function App() {
               showEdit= {() => showEdit(todos, index)}
               showDetails={() => showDetails(todos, index)}
               deleteToDo= {() => deleteToDo(todos, index)}
-              checkButton={() => checkButton(todos, index)}
+              checkTodo={() => checkTodo(todos, index)}
             />))}
           </div>
         </div>
@@ -631,7 +550,7 @@ function App() {
               showEdit= {() => showEdit(todayTodos, index)}
               showDetails={() => showDetails(todayTodos, index)}
               deleteToDo= {() => deleteToDo(todayTodos, index)}
-              checkButton={() => checkButton(todayTodos, index)}
+              checkTodo={() => checkTodo(todayTodos, index)}
             />))}
           </div>
         </div>
@@ -645,7 +564,7 @@ function App() {
               showEdit= {() => showEdit(monthTodos ,index)}
               showDetails={() => showDetails(monthTodos ,index)}
               deleteToDo= {() => deleteToDo(monthTodos ,index)}
-              checkButton={() => checkButton(monthTodos ,index)}
+              checkTodo={() => checkTodo(monthTodos ,index)}
             />))}
           </div>
         </div>
@@ -659,7 +578,7 @@ function App() {
               showEdit= {() => showEdit(yearTodos, index)}
               showDetails={() => showDetails(yearTodos, index)}
               deleteToDo= {() => deleteToDo(yearTodos, index)}
-              checkButton={() => checkButton(yearTodos, index)}
+              checkTodo={() => checkTodo(yearTodos, index)}
             />))}
           </div>
         </div>
@@ -673,7 +592,7 @@ function App() {
               showEdit= {() => showEdit(completeTodos, index)}
               showDetails={() => showDetails(completeTodos, index)}
               deleteToDo= {() => deleteToDo(completeTodos, index)}
-              checkButton={() => checkButton(completeTodos, index)}
+              checkTodo={() => checkTodo(completeTodos, index)}
             />))}
           </div>
         </div>
@@ -687,7 +606,7 @@ function App() {
               showEdit= {() => showEdit(incompleteTodos, index)}
               showDetails={() => showDetails(incompleteTodos, index)}
               deleteToDo= {() => deleteToDo(incompleteTodos, index)}
-              checkButton={() => checkButton(incompleteTodos, index)}
+              checkTodo={() => checkTodo(incompleteTodos, index)}
             />))}
           </div>
         </div>
