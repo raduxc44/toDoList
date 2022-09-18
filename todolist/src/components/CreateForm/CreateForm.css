@@ -91,15 +91,15 @@
     align-items: center;
 }
 .create-new-prio-low {
-    border: 0.2vh solid #79ffffdf;
-    color: #79ffffdf;
+    border: 0.2vh solid #78ff7fd4;
+    color: #78ff7fd4;
 }
 .create-new-prio-low:hover {
-    background-color: #79ffffdf;
+    background-color: #78ff7fd4;
     color: white;
 }
 .create-new-prio-low-active {
-    background-color: #79ffffdf;
+    background-color: #78ff7fd4;
     color: white;
 }
 .create-new-prio-mid {

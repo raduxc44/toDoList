@@ -23,7 +23,7 @@ function App() {
   {
     "id" : 2,
     "title": "Wash the dog",
-    "date": "2022-09-15",
+    "date": "2022-09-18",
     "priority": "low",
     "details": "details2",
     "checked": true,
@@ -31,7 +31,7 @@ function App() {
   {
     "id" : 3,
     "title": "Homework",
-    "date": "2022-09-16",
+    "date": "2022-09-18",
     "priority": "high",
     "details": "details4",
     "checked": false,
@@ -51,12 +51,8 @@ function App() {
   const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultArr);
   const [completeCounter, setCompleteCounter] = useState(localCompleteCounter ? JSON.parse(localCompleteCounter) : defaultCompleteCounter);
   const [incompleteCounter, setIncompleteCounter] = useState(localIncompleteCounter ? JSON.parse(localIncompleteCounter) : defaultIncompleteCounter);
-  // const [todos, setTodos] = useState(defaultArr)
-  // const [completeCounter, setCompleteCounter] = useState(defaultCompleteCounter);
-  // const [incompleteCounter, setIncompleteCounter] = useState(defaultIncompleteCounter);
 
-
-
+  const [selectedFilter, setSelectedFilter] = useState('home');
   const [inputTitle, setInputTitle] = useState('');
   const [inputDetails, setInputDetails] = useState('');
   const [inputEditTitle, setInputEditTitle] = useState();
@@ -174,302 +170,14 @@ function App() {
     }
   }
 
-    function checkCategory() {
-    for(let i = 0; i < todos.length; i++) {
-
-      //Today check
-      // if(todos[i].date === currentDay && !todayTodos.includes(todos[i])) {
-      //   setTodayTodos(prevTodayTodos => [...prevTodayTodos, todos[i]]);
-      // }
-
-      // Year check
-      
-      
-
-      //Month check
-      
-
-      // Complete check
-
-      if(todos[i].checked && !completeTodos.includes(todos[i])) {
-        // setCompleteTodos(prevCompleteTodos => [...prevCompleteTodos, todos[i]]);
-      }
-      else if(!todos[i].checked && !incompleteTodos.includes(todos[i])) {
-        // setIncompleteTodos(prevIncompleteTodos => [...prevIncompleteTodos, todos[i]]);
-        // if(!todos[i].checked && incompleteTodos.includes(todos[i])) {
-        //   setIncompleteTodos(incompleteTodos.splice(incompleteTodos[todos[i]], 1));
-        // }
-      }
-    }
-  }
-
-  function openHome () {
-    
-    checkCategory();
-
-    let homeButton = document.getElementsByClassName('home-category')[0];
-    let todayButton = document.getElementsByClassName('today-category')[0];
-    let monthButton = document.getElementsByClassName('month-category')[0];
-    let yearButton = document.getElementsByClassName('year-category')[0];
-    let completeButton = document.getElementsByClassName('complete-category')[0];
-    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
-
-    let homeTodos = document.getElementsByClassName('home')[0];
-    let todayTodos = document.getElementsByClassName('today')[0];
-    let monthTodos = document.getElementsByClassName('month')[0];
-    let yearTodos = document.getElementsByClassName('year')[0];
-    let completeTodos = document.getElementsByClassName('complete')[0];
-    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
-
-    homeButton.classList.add('category-active');
-    todayButton.classList.remove('category-active');
-    monthButton.classList.remove('category-active');
-    yearButton.classList.remove('category-active');
-    completeButton.classList.remove('category-active');
-    incompleteButton.classList.remove('category-active');
-
-    homeTodos.classList.add('display-show')
-    todayTodos.classList.remove('display-show');
-    monthTodos.classList.remove('display-show');
-    yearTodos.classList.remove('display-show');
-    completeTodos.classList.remove('display-show');
-    incompleteTodos.classList.remove('display-show');
-
-    homeTodos.classList.remove('display-hide')
-    todayTodos.classList.add('display-hide');
-    monthTodos.classList.add('display-hide');
-    yearTodos.classList.add('display-hide');
-    completeTodos.classList.add('display-hide');
-    incompleteTodos.classList.add('display-hide');
-
-    let mobileNav = document.getElementsByClassName('menu-add')[0];
-    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
-
-  }
-
-  function openToday () {
-
-    checkCategory();
-
-    let homeButton = document.getElementsByClassName('home-category')[0];
-    let todayButton = document.getElementsByClassName('today-category')[0];
-    let monthButton = document.getElementsByClassName('month-category')[0];
-    let yearButton = document.getElementsByClassName('year-category')[0];
-    let completeButton = document.getElementsByClassName('complete-category')[0];
-    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
-
-    let homeTodos = document.getElementsByClassName('home')[0];
-    let todayTodos = document.getElementsByClassName('today')[0];
-    let monthTodos = document.getElementsByClassName('month')[0];
-    let yearTodos = document.getElementsByClassName('year')[0];
-    let completeTodos = document.getElementsByClassName('complete')[0];
-    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
-
-    homeButton.classList.remove('category-active');
-    todayButton.classList.add('category-active');
-    monthButton.classList.remove('category-active');
-    yearButton.classList.remove('category-active');
-    completeButton.classList.remove('category-active');
-    incompleteButton.classList.remove('category-active');
-
-    homeTodos.classList.remove('display-show');
-    todayTodos.classList.add('display-show');
-    monthTodos.classList.remove('display-show');
-    yearTodos.classList.remove('display-show');
-    completeTodos.classList.remove('display-show');
-    incompleteTodos.classList.remove('display-show');
-
-    homeTodos.classList.add('display-hide');
-    todayTodos.classList.remove('display-hide');
-    monthTodos.classList.add('display-hide');
-    yearTodos.classList.add('display-hide');
-    completeTodos.classList.add('display-hide');
-    incompleteTodos.classList.add('display-hide');
-
-    let mobileNav = document.getElementsByClassName('menu-add')[0];
-    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
-
-  }
-
-  function openMonth () {
-
-    checkCategory();
-
-    let homeButton = document.getElementsByClassName('home-category')[0];
-    let todayButton = document.getElementsByClassName('today-category')[0];
-    let monthButton = document.getElementsByClassName('month-category')[0];
-    let yearButton = document.getElementsByClassName('year-category')[0];
-    let completeButton = document.getElementsByClassName('complete-category')[0];
-    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
-
-    let homeTodos = document.getElementsByClassName('home')[0];
-    let todayTodos = document.getElementsByClassName('today')[0];
-    let monthTodos = document.getElementsByClassName('month')[0];
-    let yearTodos = document.getElementsByClassName('year')[0];
-    let completeTodos = document.getElementsByClassName('complete')[0];
-    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
-
-    homeButton.classList.remove('category-active');
-    todayButton.classList.remove('category-active');
-    monthButton.classList.add('category-active');
-    yearButton.classList.remove('category-active');
-    completeButton.classList.remove('category-active');
-    incompleteButton.classList.remove('category-active');
-
-    homeTodos.classList.remove('display-show');
-    todayTodos.classList.remove('display-show');
-    monthTodos.classList.add('display-show');
-    yearTodos.classList.remove('display-show');
-    completeTodos.classList.remove('display-show');
-    incompleteTodos.classList.remove('display-show');
-
-    homeTodos.classList.add('display-hide');
-    todayTodos.classList.add('display-hide');
-    monthTodos.classList.remove('display-hide');
-    yearTodos.classList.add('display-hide');
-    completeTodos.classList.add('display-hide');
-    incompleteTodos.classList.add('display-hide');
-
-    let mobileNav = document.getElementsByClassName('menu-add')[0];
-    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
-
-    }
-
-  function openYear () {
-
-    checkCategory();
-
-    let homeButton = document.getElementsByClassName('home-category')[0];
-    let todayButton = document.getElementsByClassName('today-category')[0];
-    let monthButton = document.getElementsByClassName('month-category')[0];
-    let yearButton = document.getElementsByClassName('year-category')[0];
-    let completeButton = document.getElementsByClassName('complete-category')[0];
-    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
-  
-    let homeTodos = document.getElementsByClassName('home')[0];
-    let todayTodos = document.getElementsByClassName('today')[0];
-    let monthTodos = document.getElementsByClassName('month')[0];
-    let yearTodos = document.getElementsByClassName('year')[0];
-    let completeTodos = document.getElementsByClassName('complete')[0];
-    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
-  
-    homeButton.classList.remove('category-active');
-    todayButton.classList.remove('category-active');
-    monthButton.classList.remove('category-active');
-    yearButton.classList.add('category-active');
-    completeButton.classList.remove('category-active');
-    incompleteButton.classList.remove('category-active');
-  
-    homeTodos.classList.remove('display-show');
-    todayTodos.classList.remove('display-show');
-    monthTodos.classList.remove('display-show');
-    yearTodos.classList.add('display-show');
-    completeTodos.classList.remove('display-show');
-    incompleteTodos.classList.remove('display-show');
-  
-    homeTodos.classList.add('display-hide');
-    todayTodos.classList.add('display-hide');
-    monthTodos.classList.add('display-hide');
-    yearTodos.classList.remove('display-hide');
-    completeTodos.classList.add('display-hide');
-    incompleteTodos.classList.add('display-hide');
-  
-    let mobileNav = document.getElementsByClassName('menu-add')[0];
-    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
-
-    }
-
-  function openComplete () {
-
-    checkCategory();
-  
-    let homeButton = document.getElementsByClassName('home-category')[0];
-    let todayButton = document.getElementsByClassName('today-category')[0];
-    let monthButton = document.getElementsByClassName('month-category')[0];
-    let yearButton = document.getElementsByClassName('year-category')[0];
-    let completeButton = document.getElementsByClassName('complete-category')[0];
-    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
-    
-    let homeTodos = document.getElementsByClassName('home')[0];
-    let todayTodos = document.getElementsByClassName('today')[0];
-    let monthTodos = document.getElementsByClassName('month')[0];
-    let yearTodos = document.getElementsByClassName('year')[0];
-    let completeTodos = document.getElementsByClassName('complete')[0];
-    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
-    
-    homeButton.classList.remove('category-active');
-    todayButton.classList.remove('category-active');
-    monthButton.classList.remove('category-active');
-    yearButton.classList.remove('category-active');
-    completeButton.classList.add('category-active');
-    incompleteButton.classList.remove('category-active');
-    
-    homeTodos.classList.remove('display-show');
-    todayTodos.classList.remove('display-show');
-    monthTodos.classList.remove('display-show');
-    yearTodos.classList.remove('display-show');
-    completeTodos.classList.add('display-show');
-    incompleteTodos.classList.remove('display-show');
-    
-    homeTodos.classList.add('display-hide');
-    todayTodos.classList.add('display-hide');
-    monthTodos.classList.add('display-hide');
-    yearTodos.classList.add('display-hide');
-    completeTodos.classList.remove('display-hide');
-    incompleteTodos.classList.add('display-hide');
-    
-    let mobileNav = document.getElementsByClassName('menu-add')[0];
-    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
-
-  }
-
-  function openIncomplete () {
-
-    checkCategory();
-  
-    let homeButton = document.getElementsByClassName('home-category')[0];
-    let todayButton = document.getElementsByClassName('today-category')[0];
-    let monthButton = document.getElementsByClassName('month-category')[0];
-    let yearButton = document.getElementsByClassName('year-category')[0];
-    let completeButton = document.getElementsByClassName('complete-category')[0];
-    let incompleteButton = document.getElementsByClassName('incomplete-category')[0];
-    
-    let homeTodos = document.getElementsByClassName('home')[0];
-    let todayTodos = document.getElementsByClassName('today')[0];
-    let monthTodos = document.getElementsByClassName('month')[0];
-    let yearTodos = document.getElementsByClassName('year')[0];
-    let completeTodos = document.getElementsByClassName('complete')[0];
-    let incompleteTodos = document.getElementsByClassName('incomplete')[0];
-    
-    homeButton.classList.remove('category-active');
-    todayButton.classList.remove('category-active');
-    monthButton.classList.remove('category-active');
-    yearButton.classList.remove('category-active');
-    completeButton.classList.remove('category-active');
-    incompleteButton.classList.add('category-active');
-    
-    homeTodos.classList.remove('display-show');
-    todayTodos.classList.remove('display-show');
-    monthTodos.classList.remove('display-show');
-    yearTodos.classList.remove('display-show');
-    completeTodos.classList.remove('display-show');
-    incompleteTodos.classList.add('display-show');
-    
-    homeTodos.classList.add('display-hide');
-    todayTodos.classList.add('display-hide');
-    monthTodos.classList.add('display-hide');
-    yearTodos.classList.add('display-hide');
-    completeTodos.classList.add('display-hide');
-    incompleteTodos.classList.remove('display-hide');
-    
-    let mobileNav = document.getElementsByClassName('menu-add')[0];
-    if(mobileNav.classList.contains('show'))     mobileNav.classList.remove('show')
-
-  }
-    // Picks a todo for editing and shows the edit overlay with it's data
-
-    checkCategory();
-
+  const shownTodos = useMemo(() => {
+    if     (selectedFilter === 'home')       {return todos}
+    else if(selectedFilter === 'today')      {return todayTodos}
+    else if(selectedFilter === 'month')      {return monthTodos}
+    else if(selectedFilter === 'year')       {return yearTodos}
+    else if(selectedFilter === 'complete')   {return completeTodos}
+    else if(selectedFilter === 'incomplete') {return incompleteTodos}
+  }, [selectedFilter, todos, todayTodos, monthTodos, yearTodos, completeTodos, incompleteTodos])
 
   return (
     <div className="App">
@@ -486,7 +194,6 @@ function App() {
       setTodos={setTodos}
       incompleteCounter={incompleteCounter}
       setIncompleteCounter={setIncompleteCounter}
-      checkCategory={checkCategory}
       />
       {selectedToDoDetails && (<Details  {...selectedToDoDetails} setSelectedToDoDetails={setSelectedToDoDetails}/>)}
       {selectedToDoForEdit && (<Edit {...selectedToDoForEdit}
@@ -500,17 +207,6 @@ function App() {
                                 setInputEditDetails={setInputEditDetails}
                                 setDate={setDate}
                                 setSelectedToDoForEdit={setSelectedToDoForEdit}
-                                checkCategory={checkCategory}
-                                todayTodos={todayTodos}
-                                // setTodayTodos={setTodayTodos}
-                                monthTodos={monthTodos}
-                                // setMonthTodos={setMonthTodos}
-                                yearTodos={yearTodos}
-                                // setYearTodos={setYearTodos}
-                                completeTodos={completeTodos}
-                                // setCompleteTodos={setCompleteTodos}
-                                incompleteTodos={incompleteTodos}
-                                // setIncompleteTodos={setIncompleteTodos}
                                 />)}
       <div id='main-page'>
       <div id='nav-with-add' className='menu-add'>
@@ -521,16 +217,12 @@ function App() {
           todayTodos={todayTodos}
           monthTodos={monthTodos}
           yearTodos={yearTodos}
-          openHome={openHome}
-          openToday={openToday}
-          openMonth={openMonth}
-          openYear={openYear}
-          openComplete={openComplete}
-          openIncomplete={openIncomplete}
+          selectedFilter={selectedFilter}
+          setSelectedFilter={setSelectedFilter}
           />
       </div>
       <div className='main-content'>
-        <div className='home display-show'>
+        <div className={`home display-hide ${selectedFilter === 'home' ? 'display-show' : ''}`}>
           <Head />
           <div className="to-do-container">
             {todos.map((todo, index) =>
@@ -544,7 +236,7 @@ function App() {
             />))}
           </div>
         </div>
-        <div className='today display-hide'>
+        <div className={`today display-hide ${selectedFilter === 'today' ? 'display-show' : ''}`}>
           <Head />
           <div className='to-do-container'>
             {todayTodos.map((todo, index) =>
@@ -558,7 +250,7 @@ function App() {
             />))}
           </div>
         </div>
-        <div className='month display-hide'>
+        <div className={`month display-hide ${selectedFilter === 'month' ? 'display-show' : ''}`}>
           <Head />
           <div className='to-do-container'>
             {monthTodos.map((todo, index) =>
@@ -572,7 +264,7 @@ function App() {
             />))}
           </div>
         </div>
-        <div className='year display-hide'>
+        <div className={`year display-hide ${selectedFilter === 'year' ? 'display-show' : ''}`}>
           <Head />
           <div className='to-do-container'>
             {yearTodos.map((todo, index) =>
@@ -586,7 +278,7 @@ function App() {
             />))}
           </div>
         </div>
-        <div className='complete display-hide'>
+        <div className={`complete display-hide ${selectedFilter === 'complete' ? 'display-show' : ''}`}>
           <Head />
           <div className='to-do-container'>
             {completeTodos.map((todo, index) =>
@@ -600,7 +292,7 @@ function App() {
             />))}
           </div>
         </div>
-        <div className='incomplete display-hide'>
+        <div className={`incomplete display-hide ${selectedFilter === 'incomplete' ? 'display-show' : ''}`}>
           <Head />
           <div className='to-do-container'>
             {incompleteTodos.map((todo, index) =>

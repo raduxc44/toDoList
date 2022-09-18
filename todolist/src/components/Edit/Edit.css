@@ -100,15 +100,15 @@ form {
     user-select: none;
 }
 .edit-new-prio-low {
-    border: 2px solid #79ffffdf;
-    color: #79ffffdf;
+    border: 2px solid #78ff7fd4;
+    color: #78ff7fd4;
 }
 .edit-new-prio-low:hover {
-    background-color: #79ffffdf;
+    background-color: #78ff7fd4;
     color: white;
 }
 .edit-new-prio-low-active {
-    background-color: #79ffffdf;
+    background-color: #78ff7fd4;
     color: white;
 }
 .edit-new-prio-mid {

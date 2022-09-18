@@ -8,7 +8,9 @@ function Nav ({
     openComplete,
     openIncomplete,
     completeCounter, 
-    incompleteCounter
+    incompleteCounter,
+    selectedFilter,
+    setSelectedFilter
 }) {
 
     function createToDo() {
@@ -25,23 +27,23 @@ function Nav ({
 
     return(
         <div className="menu">
-            <div onClick={openHome} className="category-active category home-category">
+            <div onClick={() => setSelectedFilter('home')} className={`home-category category ${selectedFilter === 'home' ? 'category-active' : ''}`}>
                 <p>Home</p>     
             </div>
-            <div onClick={openToday} className="category today-category">
+            <div onClick={() => setSelectedFilter('today')} className={`home-category category ${selectedFilter === 'today' ? 'category-active' : ''}`}>
                 <p>Today</p>
             </div>
-            <div onClick={openMonth} className="month-category category">
+            <div onClick={() => setSelectedFilter('month')} className={`home-category category ${selectedFilter === 'month' ? 'category-active' : ''}`}>
                 <p>Month</p>
             </div>
-            <div onClick={openYear} className="year-category category">
+            <div onClick={() => setSelectedFilter('year')} className={`home-category category ${selectedFilter === 'year' ? 'category-active' : ''}`}>
                 <p>Year</p>
             </div>
-            <div onClick={openComplete} className='complete-category category'>
+            <div onClick={() => setSelectedFilter('complete')} className={`home-category category ${selectedFilter === 'complete' ? 'category-active' : ''}`}>
                 <p>Completed</p>
                 <div className='check-counter'>{completeCounter}</div>
             </div>
-            <div onClick={openIncomplete} className='incomplete-category category'>
+            <div onClick={() => setSelectedFilter('incomplete')} className={`home-category category ${selectedFilter === 'incomplete' ? 'category-active' : ''}`}>
                 <p>Incomplete</p>
                 <div className='check-counter'>{incompleteCounter}</div>
                 </div>
