@@ -12,6 +12,7 @@ function App() {
   const localTodos = localStorage.getItem('todos');
   const localCompleteCounter = localStorage.getItem('completeCounter');
   const localIncompleteCounter = localStorage.getItem('incompleteCounter');
+  const localId = localStorage.getItem('id');
   const defaultArr = [{
     "id" : 1,
     "title": "Brush Teeth",
@@ -47,17 +48,18 @@ function App() {
 ];
   const defaultCompleteCounter = 2;
   const defaultIncompleteCounter = 2;
+  const defaultId = 5;
 
   const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultArr);
   const [completeCounter, setCompleteCounter] = useState(localCompleteCounter ? JSON.parse(localCompleteCounter) : defaultCompleteCounter);
   const [incompleteCounter, setIncompleteCounter] = useState(localIncompleteCounter ? JSON.parse(localIncompleteCounter) : defaultIncompleteCounter);
+  const [currentId, setCurrentId] = useState(localId ? JSON.parse(localId) : defaultId);
 
   const [selectedFilter, setSelectedFilter] = useState('home');
   const [inputTitle, setInputTitle] = useState('');
   const [inputDetails, setInputDetails] = useState('');
-  const [inputEditTitle, setInputEditTitle] = useState();
-  const [inputEditDetails, setInputEditDetails] = useState();
-  const [currentId, setCurrentId] = useState(5);
+  const [inputEditTitle, setInputEditTitle] = useState('');
+  const [inputEditDetails, setInputEditDetails] = useState('');
   const [date, setDate] = useState();
   const [selectedToDoDetails, setSelectedToDoDetails] = useState();
   const [selectedToDoForEdit, setSelectedToDoForEdit] = useState();
@@ -115,7 +117,9 @@ function App() {
   useEffect(() => {
     localStorage.setItem('incompleteCounter', JSON.stringify(incompleteCounter))
   }, [incompleteCounter]);
-
+  useEffect(() => {
+    localStorage.setItem('id', JSON.stringify(currentId))
+  })
   // if a todo has been selected, each time it gets refreshed, the details/edit menu gets rendered with the correct props
   // also, the main page content gets disabled and blurred
   useEffect (() => {
@@ -125,12 +129,12 @@ function App() {
     let mainPage = document.getElementById('main-page');
     mainPage.classList.add('blur');
     mainPage.classList.add('avoid-clicks');
-   }
+    }
   }, [selectedToDoDetails]);
   useEffect (() => {
     if(selectedToDoForEdit) {
-    let editOverlay = document.getElementsByClassName('edit-form')[0];
-    editOverlay.classList.add('visible');
+    let editForm = document.getElementsByClassName('edit-form')[0];
+    editForm.classList.add('visible');
     let mainPage = document.getElementById('main-page');
     mainPage.classList.add('blur');
     mainPage.classList.add('avoid-clicks');
@@ -170,13 +174,14 @@ function App() {
     }
   }
 
+  // Saves the selected array and filter for later use in rendering
   const shownTodos = useMemo(() => {
-    if     (selectedFilter === 'home')       {return todos}
-    else if(selectedFilter === 'today')      {return todayTodos}
-    else if(selectedFilter === 'month')      {return monthTodos}
-    else if(selectedFilter === 'year')       {return yearTodos}
-    else if(selectedFilter === 'complete')   {return completeTodos}
-    else if(selectedFilter === 'incomplete') {return incompleteTodos}
+    if     (selectedFilter === 'home')       return todos;
+    else if(selectedFilter === 'today')      return todayTodos;
+    else if(selectedFilter === 'month')      return monthTodos;
+    else if(selectedFilter === 'year')       return yearTodos;
+    else if(selectedFilter === 'complete')   return completeTodos;
+    else if(selectedFilter === 'incomplete') return incompleteTodos;
   }, [selectedFilter, todos, todayTodos, monthTodos, yearTodos, completeTodos, incompleteTodos])
 
   return (
@@ -213,96 +218,22 @@ function App() {
           <Nav 
           completeCounter={completeCounter} 
           incompleteCounter={incompleteCounter}
-          todos={todos}
-          todayTodos={todayTodos}
-          monthTodos={monthTodos}
-          yearTodos={yearTodos}
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
           />
       </div>
       <div className='main-content'>
-        <div className={`home display-hide ${selectedFilter === 'home' ? 'display-show' : ''}`}>
+        <div className={`${selectedFilter} display-show`}>
           <Head />
           <div className="to-do-container">
-            {todos.map((todo, index) =>
+            {shownTodos.map((todo, index) =>
             (<ToDo
               {...todo}
-              id={index}
-              showEdit= {() => showEdit(todos, index)}
-              showDetails={() => showDetails(todos, index)}
-              deleteToDo= {() => deleteToDo(todos, index)}
-              checkTodo={() => checkTodo(todos, index)}
-            />))}
-          </div>
-        </div>
-        <div className={`today display-hide ${selectedFilter === 'today' ? 'display-show' : ''}`}>
-          <Head />
-          <div className='to-do-container'>
-            {todayTodos.map((todo, index) =>
-            (<ToDo
-              {...todo}
-              id={index}
-              showEdit= {() => showEdit(todayTodos, index)}
-              showDetails={() => showDetails(todayTodos, index)}
-              deleteToDo= {() => deleteToDo(todayTodos, index)}
-              checkTodo={() => checkTodo(todayTodos, index)}
-            />))}
-          </div>
-        </div>
-        <div className={`month display-hide ${selectedFilter === 'month' ? 'display-show' : ''}`}>
-          <Head />
-          <div className='to-do-container'>
-            {monthTodos.map((todo, index) =>
-            (<ToDo
-              {...todo}
-              id={index}
-              showEdit= {() => showEdit(monthTodos ,index)}
-              showDetails={() => showDetails(monthTodos ,index)}
-              deleteToDo= {() => deleteToDo(monthTodos ,index)}
-              checkTodo={() => checkTodo(monthTodos ,index)}
-            />))}
-          </div>
-        </div>
-        <div className={`year display-hide ${selectedFilter === 'year' ? 'display-show' : ''}`}>
-          <Head />
-          <div className='to-do-container'>
-            {yearTodos.map((todo, index) =>
-            (<ToDo
-              {...todo}
-              id={index}
-              showEdit= {() => showEdit(yearTodos, index)}
-              showDetails={() => showDetails(yearTodos, index)}
-              deleteToDo= {() => deleteToDo(yearTodos, index)}
-              checkTodo={() => checkTodo(yearTodos, index)}
-            />))}
-          </div>
-        </div>
-        <div className={`complete display-hide ${selectedFilter === 'complete' ? 'display-show' : ''}`}>
-          <Head />
-          <div className='to-do-container'>
-            {completeTodos.map((todo, index) =>
-            (<ToDo
-              {...todo}
-              id={index}
-              showEdit= {() => showEdit(completeTodos, index)}
-              showDetails={() => showDetails(completeTodos, index)}
-              deleteToDo= {() => deleteToDo(completeTodos, index)}
-              checkTodo={() => checkTodo(completeTodos, index)}
-            />))}
-          </div>
-        </div>
-        <div className={`incomplete display-hide ${selectedFilter === 'incomplete' ? 'display-show' : ''}`}>
-          <Head />
-          <div className='to-do-container'>
-            {incompleteTodos.map((todo, index) =>
-            (<ToDo
-              {...todo}
-              id={index}
-              showEdit= {() => showEdit(incompleteTodos, index)}
-              showDetails={() => showDetails(incompleteTodos, index)}
-              deleteToDo= {() => deleteToDo(incompleteTodos, index)}
-              checkTodo={() => checkTodo(incompleteTodos, index)}
+              key={index}
+              showEdit= {() => showEdit(shownTodos, index)}
+              showDetails={() => showDetails(shownTodos, index)}
+              deleteToDo= {() => deleteToDo(shownTodos, index)}
+              checkTodo={() => checkTodo(shownTodos, index)}
             />))}
           </div>
         </div>
