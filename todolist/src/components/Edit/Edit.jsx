@@ -5,25 +5,12 @@ function Edit ({
     priority, 
     selectedToDoForEdit,
     setSelectedToDoForEdit,
-    // modifiedToDo,
-    setModifiedToDo, 
     todos, 
     setTodos, 
-    todayTodos,
-    setTodayTodos,
-    monthTodos,
-    setMonthTodos,
-    yearTodos,
-    setYearTodos,
-    completeTodos,
-    setCompleteTodos,
-    incompleteTodos,
-    setIncompleteTodos,
     inputEditDetails,
     setInputEditDetails, 
     inputEditTitle,
     setInputEditTitle,
-    checkCategory
 }) {
 
     const [date, setDate] = useState(selectedToDoForEdit.date);
@@ -61,6 +48,7 @@ function Edit ({
         }
     })
 
+    // When selecting a priority, the other 2 get deactivated
     const checkIfActive = () => {
 
         let lowPrioInput = document.getElementById('edit-new-low');
@@ -90,11 +78,11 @@ function Edit ({
 
     const inputTitleHandler = e => {
         setInputEditTitle(e.target.value)
-      }
+    }
 
     const inputDetailsHandler = e => {
         setInputEditDetails(e.target.value)
-      }
+    }
 
     const dateHandler = e => {
         setDate(e.target.value);
@@ -102,16 +90,16 @@ function Edit ({
     const replaceTodo = (priority, date) => {
         const result = [];
 
-
-        for (let i = 0; i < todos.length; i++) {
-            if (i + 1 === selectedToDoForEdit.id) {
-                result.push({ ...todos[i], title: inputEditTitle, details: inputEditDetails, priority, date });
-            } else {
-                result.push(todos[i]);
-            }
+    for (let i = 0; i < todos.length; i++) {
+        if (i + 1 === selectedToDoForEdit.id) {
+            result.push({ ...todos[i], title: inputEditTitle, details: inputEditDetails, priority, date });
+        } else {
+            result.push(todos[i]);
         }
-
-        return result;
+    }
+    
+    return result;
+    
     };
 
     const handleEditSubmit = e => {
@@ -138,19 +126,12 @@ function Edit ({
         if(selectedYear >= 2022 && selectedYear < 2100) {
             dateWarning.style.visibility = 'hidden';
             setTodos(replaceTodo(priority, date));
-            if(todayTodos.includes(selectedToDoForEdit)) {setTodayTodos(todayTodos.filter((todo, index) => index === todayTodos[selectedToDoForEdit]))}
-            if(monthTodos.includes(selectedToDoForEdit)) {setMonthTodos(monthTodos.filter((todo, index) => index === monthTodos[selectedToDoForEdit]))}
-            if(yearTodos.includes(selectedToDoForEdit)) {setYearTodos(yearTodos.filter((todo, index) => index === yearTodos[selectedToDoForEdit]))}
-            if(completeTodos.includes(selectedToDoForEdit)) {setCompleteTodos(completeTodos.filter((todo, index) => index === completeTodos[selectedToDoForEdit]))}
-            if(incompleteTodos.includes(selectedToDoForEdit)) {setIncompleteTodos(incompleteTodos.filter((todo, index) => index === incompleteTodos[selectedToDoForEdit]))}
-
             removeEditOverlay();
-            checkCategory();
         }
         else {
-            dateWarning.style.visibility = 'visible'
+            dateWarning.style.visibility = 'visible';
         }
-      };      
+        };      
 
 return (
     <>

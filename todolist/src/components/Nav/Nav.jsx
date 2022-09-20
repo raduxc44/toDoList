@@ -1,12 +1,6 @@
 import './Nav.css'
 
 function Nav ({
-    openHome, 
-    openToday, 
-    openMonth, 
-    openYear,
-    openComplete,
-    openIncomplete,
     completeCounter, 
     incompleteCounter,
     selectedFilter,
@@ -27,23 +21,23 @@ function Nav ({
 
     return(
         <div className="menu">
-            <div onClick={() => setSelectedFilter('home')} className={`home-category category ${selectedFilter === 'home' ? 'category-active' : ''}`}>
+            <div onClick={() => setSelectedFilter('home')} className={`category ${selectedFilter === 'home' ? 'category-active' : ''}`}>
                 <p>Home</p>     
             </div>
-            <div onClick={() => setSelectedFilter('today')} className={`home-category category ${selectedFilter === 'today' ? 'category-active' : ''}`}>
+            <div onClick={() => setSelectedFilter('today')} className={`category ${selectedFilter === 'today' ? 'category-active' : ''}`}>
                 <p>Today</p>
             </div>
-            <div onClick={() => setSelectedFilter('month')} className={`home-category category ${selectedFilter === 'month' ? 'category-active' : ''}`}>
+            <div onClick={() => setSelectedFilter('month')} className={`category ${selectedFilter === 'month' ? 'category-active' : ''}`}>
                 <p>Month</p>
             </div>
-            <div onClick={() => setSelectedFilter('year')} className={`home-category category ${selectedFilter === 'year' ? 'category-active' : ''}`}>
+            <div onClick={() => setSelectedFilter('year')} className={`category ${selectedFilter === 'year' ? 'category-active' : ''}`}>
                 <p>Year</p>
             </div>
-            <div onClick={() => setSelectedFilter('complete')} className={`home-category category ${selectedFilter === 'complete' ? 'category-active' : ''}`}>
+            <div onClick={() => setSelectedFilter('complete')} className={`category ${selectedFilter === 'complete' ? 'category-active' : ''}`}>
                 <p>Completed</p>
                 <div className='check-counter'>{completeCounter}</div>
             </div>
-            <div onClick={() => setSelectedFilter('incomplete')} className={`home-category category ${selectedFilter === 'incomplete' ? 'category-active' : ''}`}>
+            <div onClick={() => setSelectedFilter('incomplete')} className={`category ${selectedFilter === 'incomplete' ? 'category-active' : ''}`}>
                 <p>Incomplete</p>
                 <div className='check-counter'>{incompleteCounter}</div>
                 </div>

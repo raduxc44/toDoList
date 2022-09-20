@@ -11,7 +11,6 @@
 .visible {
     visibility: visible;
 }
-
 .edit-nav{
     display: flex;
     justify-content: space-between;
@@ -23,7 +22,6 @@
 .edit-close-butt{
     cursor: pointer;
 }
-
 .edit-main-content{
     display: flex;
     justify-content: center;
@@ -100,15 +98,15 @@ form {
     user-select: none;
 }
 .edit-new-prio-low {
-    border: 2px solid #78ff7fd4;
-    color: #78ff7fd4;
+    border: 2px solid #53db5a;
+    color: #53db5a;
 }
 .edit-new-prio-low:hover {
-    background-color: #78ff7fd4;
+    background-color: #53db5a;
     color: white;
 }
 .edit-new-prio-low-active {
-    background-color: #78ff7fd4;
+    background-color: #53db5a;
     color: white;
 }
 .edit-new-prio-mid {
