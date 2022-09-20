@@ -11,7 +11,6 @@
 .visible {
     visibility: visible;
 }
-
 .create-nav{
     display: flex;
     justify-content: space-between;
@@ -23,7 +22,6 @@
 .create-close-butt{
     cursor: pointer;
 }
-
 .create-main-content{
     display: flex;
     border: 0.25vh solid #985F99;
@@ -36,7 +34,7 @@
     border: none;
     resize: none;
     outline: none;
-    width: inherit
+    width: inherit;
 }
 .create-details {
     height: 15vh;
@@ -50,7 +48,6 @@
     margin-bottom: 10vh;
     width: 50vh;
 }
-
 .create-date{
     display: flex;
     align-items: center;
@@ -65,13 +62,11 @@
     cursor: pointer;
     height: 50%;
 }
-
 .priority-and-send {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .create-priority {
     display: flex;
     align-items: inherit;
@@ -91,15 +86,15 @@
     align-items: center;
 }
 .create-new-prio-low {
-    border: 0.2vh solid #78ff7fd4;
-    color: #78ff7fd4;
+    border: 0.2vh solid #53db5a;
+    color: #53db5a;
 }
 .create-new-prio-low:hover {
-    background-color: #78ff7fd4;
+    background-color: #53db5a;
     color: white;
 }
 .create-new-prio-low-active {
-    background-color: #78ff7fd4;
+    background-color: #53db5a;
     color: white;
 }
 .create-new-prio-mid {

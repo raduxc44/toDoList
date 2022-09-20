@@ -11,9 +11,7 @@ function CreateForm ({
     setDate, 
     todos, 
     setTodos,
-    incompleteCounter,
-    setIncompleteCounter,
-    checkCategory
+    setIncompleteCounter
 }) {
 
 
@@ -21,12 +19,10 @@ function CreateForm ({
     function removeForm () {
 
         let createForm = document.getElementsByClassName('create-form')[0];
-        
-        createForm.classList.remove('visible')
-        
-        let mainPage = document.getElementById('main-page')
-        mainPage.classList.remove('blur')
-        mainPage.classList.remove('avoid-clicks')
+        createForm.classList.remove('visible');        
+        let mainPage = document.getElementById('main-page');
+        mainPage.classList.remove('blur');
+        mainPage.classList.remove('avoid-clicks');
     }
 
     // Applies styling to the selected priority
@@ -52,7 +48,7 @@ function CreateForm ({
         else if (highPrioInput.checked) {
             lowPrioContainer.classList.remove('create-new-prio-low-active');
             midPrioContainer.classList.remove('create-new-prio-mid-active');
-            highPrioContainer.classList.add('create-new-prio-high-active')
+            highPrioContainer.classList.add('create-new-prio-high-active');
         }
         
     }
@@ -78,6 +74,7 @@ function CreateForm ({
             priority = "high";
         }
 
+        //The todo is created only if the submitted due date is valid
         let selectedYear = Number(date[0] + date[1] + date[2] + date[3])
 
         if(selectedYear >= 2022 && selectedYear < 2100){
