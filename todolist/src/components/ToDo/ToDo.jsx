@@ -1,6 +1,6 @@
 import './ToDo.css'
 
-function ToDo ({checked, priority, title, checkTodo, date, showDetails, showEdit ,deleteToDo}) {
+function ToDo ({checked, priority, title, checkTodo, date, showDetails, showEdit, deleteToDo}) {
     return (
         <div className={`todo ${priority}-border`}>
             <div className="todo-first-half">
