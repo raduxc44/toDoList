@@ -7,6 +7,8 @@ function Nav ({
     setSelectedFilter
 }) {
 
+    
+
     function createToDo() {
         
         let createForm = document.getElementsByClassName('create-form')[0];

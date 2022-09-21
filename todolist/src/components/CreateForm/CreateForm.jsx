@@ -1,12 +1,9 @@
-import './CreateForm.css'
+import './CreateForm.css';
+import { useState } from 'react';
 
 function CreateForm ({
     currentId, 
     setCurrentId, 
-    inputTitle,
-    setInputTitle, 
-    inputDetails, 
-    setInputDetails, 
     date, 
     setDate, 
     todos, 
@@ -14,6 +11,8 @@ function CreateForm ({
     setIncompleteCounter
 }) {
 
+    const [inputTitle, setInputTitle] = useState('');
+    const [inputDetails, setInputDetails] = useState('');
 
     // Disables the entire form
     function removeForm () {

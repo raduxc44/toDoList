@@ -56,8 +56,6 @@ function App() {
   const [currentId, setCurrentId] = useState(localId ? JSON.parse(localId) : defaultId);
 
   const [selectedFilter, setSelectedFilter] = useState('home');
-  const [inputTitle, setInputTitle] = useState('');
-  const [inputDetails, setInputDetails] = useState('');
   const [inputEditTitle, setInputEditTitle] = useState('');
   const [inputEditDetails, setInputEditDetails] = useState('');
   const [date, setDate] = useState();
@@ -186,11 +184,7 @@ function App() {
 
   return (
     <div className="App">
-      <CreateForm 
-      inputTitle={inputTitle}
-      setInputTitle={setInputTitle}
-      inputDetails={inputDetails}
-      setInputDetails={setInputDetails}
+      <CreateForm
       currentId={currentId}
       setCurrentId={setCurrentId}
       date={date}
