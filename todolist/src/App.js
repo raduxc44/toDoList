@@ -1,4 +1,5 @@
 import './App.css';
+import defaultValues from './defaultValues';
 import Head from './components/Head/Head';
 import Nav from './components/Nav/Nav';
 import ToDo from './components/ToDo/ToDo';
@@ -11,44 +12,9 @@ function App() {
 
   const localTodos = localStorage.getItem('todos');
   const localId = localStorage.getItem('id');
-  const defaultArr = [{
-    "id" : 1,
-    "title": "Brush Teeth",
-    "date": "2023-09-15",
-    "priority": "mid",
-    "details": "details1",
-    "checked": false,
-  },
-  {
-    "id" : 2,
-    "title": "Wash the dog",
-    "date": "2022-09-18",
-    "priority": "low",
-    "details": "details2",
-    "checked": true,
-  },
-  {
-    "id" : 3,
-    "title": "Homework",
-    "date": "2022-09-18",
-    "priority": "high",
-    "details": "details4",
-    "checked": false,
-  },
-  {
-    "id" : 4,
-    "title": "Walk the dog",
-    "date": "2022-12-12",
-    "priority": "high",
-    "details": "details5",
-    "checked": true,
-  }
-];
-  const defaultId = 5;
 
-  const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultArr);
-  const [currentId, setCurrentId] = useState(localId ? JSON.parse(localId) : defaultId);
-
+  const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultValues.defaultArr);
+  const [currentId, setCurrentId] = useState(localId ? JSON.parse(localId) : defaultValues.defaultId);
   const [selectedFilter, setSelectedFilter] = useState('home');
   const [inputEditTitle, setInputEditTitle] = useState('');
   const [inputEditDetails, setInputEditDetails] = useState('');
@@ -64,6 +30,7 @@ function App() {
   let currentDay;
   let currentYear;
 
+  //Formats the date object in the ideal form
   for(let i = 0; i < isoDate.length - 14; i++) {
     isoTodayArr.push(isoDate[i]);
     currentDay= isoTodayArr.join('').toString();
@@ -93,7 +60,6 @@ function App() {
   };
   function showEdit(arr, index) {
     const item = arr[index];
-
     setSelectedToDoForEdit(item);
     setInputEditDetails(item.details);
     setInputEditTitle(item.title);
@@ -129,7 +95,6 @@ function App() {
 
   // The function gets the selected todo and deletes it from the main array
   function deleteToDo (arr, todoIndex) {
-    
     for(let i = 0; i < arr.length; i++) {
       if(i === todoIndex) {
         let selectedTodo = arr[i];
@@ -140,7 +105,6 @@ function App() {
 
   // The function gets the selected todo and adds a checked property to it, updating the main array with the modified todo
   function checkTodo(arr, todoIndex) {
-
     for(let i = 0; i < arr.length; i++) {
       if(i === todoIndex) {
         let selectedTodo = arr[i]
