@@ -136,7 +136,7 @@
     height: 3vh;
     display: flex;
     justify-content: center;
-    
+    align-items: center;
 }
 .create-submit button {
     background-color: transparent;
@@ -164,9 +164,10 @@
         height: 50vh;
     }
     .create-main-content {
-        height: 42vh;
+        height: 44vh;
         width: 40vh;
         border: 0.25vh solid #985F99;
+        background-color: #F6E8EA;
         border-top: none;
     }
     .create-main-content form {

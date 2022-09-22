@@ -148,6 +148,7 @@ form {
     height: 3vh;
     display: flex;
     justify-content: center;
+    align-items: center;
     
 }
 .edit-submit button {
@@ -176,9 +177,10 @@ form {
         height: 50vh;
     }
     .edit-main-content {
-        height: 42vh;
+        height: 44vh;
         width: 40vh;
         border: 0.25vh solid #985F99;
+        background-color: #F6E8EA;
         border-top: none;
     }
     .edit-main-content form {

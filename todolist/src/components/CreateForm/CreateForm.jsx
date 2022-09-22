@@ -104,7 +104,7 @@ function CreateForm ({
     return(
         <div className="create-form">
             <div className='create-nav'>
-                <h3>Create a new ToDo</h3>
+                <h4>Create a new ToDo</h4>
                 <div className="create-close-butt" onClick={removeForm}>X</div>
             </div>
             <div className='create-main-content'>
