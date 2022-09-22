@@ -10,8 +10,6 @@ import { useState, useEffect, useMemo } from 'react';
 function App() {
 
   const localTodos = localStorage.getItem('todos');
-  const localCompleteCounter = localStorage.getItem('completeCounter');
-  const localIncompleteCounter = localStorage.getItem('incompleteCounter');
   const localId = localStorage.getItem('id');
   const defaultArr = [{
     "id" : 1,
@@ -46,13 +44,9 @@ function App() {
     "checked": true,
   }
 ];
-  const defaultCompleteCounter = 2;
-  const defaultIncompleteCounter = 2;
   const defaultId = 5;
 
   const [todos, setTodos] = useState(localTodos ? JSON.parse(localTodos) : defaultArr);
-  const [completeCounter, setCompleteCounter] = useState(localCompleteCounter ? JSON.parse(localCompleteCounter) : defaultCompleteCounter);
-  const [incompleteCounter, setIncompleteCounter] = useState(localIncompleteCounter ? JSON.parse(localIncompleteCounter) : defaultIncompleteCounter);
   const [currentId, setCurrentId] = useState(localId ? JSON.parse(localId) : defaultId);
 
   const [selectedFilter, setSelectedFilter] = useState('home');
@@ -64,7 +58,7 @@ function App() {
   const [modifiedToDo, setModifiedToDo] = useState();
 
 
-  const currentDate = useMemo(() => new Date(), []);
+  const currentDate = new Date();
   let isoDate = currentDate.toISOString();
   let isoTodayArr = [];
   let currentDay;
@@ -87,11 +81,11 @@ function App() {
     currentYear = `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`
   }
   
-  let todayTodos = useMemo(() => todos.filter(todo => todo.date === currentDay), [todos, currentDay]);
-  let yearTodos = useMemo(() => todos.filter(todo => todo.currentYear === currentYear), [todos, currentYear] );
-  let monthTodos = useMemo(() => yearTodos.filter(todo => todo.currentMonth === currentDate.getMonth()), [yearTodos, currentDate]);
-  let completeTodos = useMemo(() => todos.filter(todo => todo.checked), [todos])
-  let incompleteTodos = useMemo(() => todos.filter(todo => !todo.checked), [todos])
+  let todayTodos = todos.filter(todo => todo.date === currentDay);
+  let yearTodos = todos.filter(todo => todo.currentYear === currentYear)
+  let monthTodos = yearTodos.filter(todo => todo.currentMonth === currentDate.getMonth())
+  let completeTodos = todos.filter(todo => todo.checked)
+  let incompleteTodos = todos.filter(todo => !todo.checked)
   
   // Saves the selected todo by it's details/edit button in the corresponding state
   function showDetails (arr, index) {
@@ -109,12 +103,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos))
   }, [todos]);
-  useEffect(() => {
-    localStorage.setItem('completeCounter', JSON.stringify(completeCounter))
-  }, [completeCounter]);
-  useEffect(() => {
-    localStorage.setItem('incompleteCounter', JSON.stringify(incompleteCounter))
-  }, [incompleteCounter]);
   useEffect(() => {
     localStorage.setItem('id', JSON.stringify(currentId))
   })
@@ -145,8 +133,6 @@ function App() {
     for(let i = 0; i < arr.length; i++) {
       if(i === todoIndex) {
         let selectedTodo = arr[i];
-        if  (selectedTodo.checked) {setCompleteCounter(prevCompleteCounter => prevCompleteCounter - 1)}
-        else                       {setIncompleteCounter(prevIncompleteCounter => prevIncompleteCounter - 1)}
         setTodos(todos.filter(todo => todo !== selectedTodo))
       }
     }
@@ -159,14 +145,6 @@ function App() {
       if(i === todoIndex) {
         let selectedTodo = arr[i]
         selectedTodo.checked = !selectedTodo.checked;
-        if(selectedTodo.checked) {
-          setCompleteCounter(prevCompletedCounter => prevCompletedCounter + 1)
-          setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter - 1)
-        }
-        else {
-          setCompleteCounter(prevCompletedCounter => prevCompletedCounter - 1)
-          setIncompleteCounter(prevUncheckedCounter => prevUncheckedCounter + 1)
-        }
         setTodos([...todos], todos.splice(todos.indexOf(selectedTodo), 1, selectedTodo))
       } 
     }
@@ -191,8 +169,6 @@ function App() {
       setDate={setDate}
       todos={todos}
       setTodos={setTodos}
-      incompleteCounter={incompleteCounter}
-      setIncompleteCounter={setIncompleteCounter}
       />
       {selectedToDoDetails && (<Details  {...selectedToDoDetails} setSelectedToDoDetails={setSelectedToDoDetails}/>)}
       {selectedToDoForEdit && (<Edit {...selectedToDoForEdit}
@@ -210,8 +186,8 @@ function App() {
       <div id='main-page'>
       <div id='nav-with-add' className='menu-add'>
           <Nav 
-          completeCounter={completeCounter} 
-          incompleteCounter={incompleteCounter}
+          completeTodos={completeTodos}
+          incompleteTodos={incompleteTodos}
           selectedFilter={selectedFilter}
           setSelectedFilter={setSelectedFilter}
           />
