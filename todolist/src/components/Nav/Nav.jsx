@@ -1,13 +1,20 @@
+// import { useMemo } from 'react';
 import './Nav.css'
 
 function Nav ({
-    completeCounter, 
-    incompleteCounter,
+    completeTodos,
+    incompleteTodos,
     selectedFilter,
     setSelectedFilter
 }) {
 
-    
+    let completeCounter = completeTodos.length;
+    let incompleteCounter = incompleteTodos.length;
+
+    function hideMobileNav() {
+        let mobileNav = document.getElementsByClassName('menu-add')[0];
+        mobileNav.classList.remove('show')
+    }
 
     function createToDo() {
         
@@ -23,23 +30,23 @@ function Nav ({
 
     return(
         <div className="menu">
-            <div onClick={() => setSelectedFilter('home')} className={`category ${selectedFilter === 'home' ? 'category-active' : ''}`}>
+            <div onClick={() => {setSelectedFilter('home'); hideMobileNav()}} className={`category ${selectedFilter === 'home' ? 'category-active' : ''}`}>
                 <p>Home</p>     
             </div>
-            <div onClick={() => setSelectedFilter('today')} className={`category ${selectedFilter === 'today' ? 'category-active' : ''}`}>
+            <div onClick={() => {setSelectedFilter('today'); hideMobileNav()}} className={`category ${selectedFilter === 'today' ? 'category-active' : ''}`}>
                 <p>Today</p>
             </div>
-            <div onClick={() => setSelectedFilter('month')} className={`category ${selectedFilter === 'month' ? 'category-active' : ''}`}>
+            <div onClick={() => {setSelectedFilter('month'); hideMobileNav()}} className={`category ${selectedFilter === 'month' ? 'category-active' : ''}`}>
                 <p>Month</p>
             </div>
-            <div onClick={() => setSelectedFilter('year')} className={`category ${selectedFilter === 'year' ? 'category-active' : ''}`}>
+            <div onClick={() => {setSelectedFilter('year'); hideMobileNav()}} className={`category ${selectedFilter === 'year' ? 'category-active' : ''}`}>
                 <p>Year</p>
             </div>
-            <div onClick={() => setSelectedFilter('complete')} className={`category ${selectedFilter === 'complete' ? 'category-active' : ''}`}>
+            <div onClick={() => {setSelectedFilter('complete'); hideMobileNav()}} className={`category ${selectedFilter === 'complete' ? 'category-active' : ''}`}>
                 <p>Completed</p>
                 <div className='check-counter'>{completeCounter}</div>
             </div>
-            <div onClick={() => setSelectedFilter('incomplete')} className={`category ${selectedFilter === 'incomplete' ? 'category-active' : ''}`}>
+            <div onClick={() => {setSelectedFilter('incomplete'); hideMobileNav()}} className={`category ${selectedFilter === 'incomplete' ? 'category-active' : ''}`}>
                 <p>Incomplete</p>
                 <div className='check-counter'>{incompleteCounter}</div>
                 </div>
