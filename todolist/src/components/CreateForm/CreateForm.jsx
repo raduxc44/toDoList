@@ -84,21 +84,22 @@ function CreateForm ({
         else{
             dateWarning.style.visibility = 'visible';
         }
-      };
-      //Targets the title selected by the user in the form
-      const inputTitleHandler = e => {
+    };
+    
+    //Targets the title selected by the user in the form
+    const inputTitleHandler = e => {
         setInputTitle(e.target.value)
-      }
+    }
 
-      //Targets the details field
-      const inputDetailsHandler = e => {
+    //Targets the details field
+    const inputDetailsHandler = e => {
         setInputDetails(e.target.value)
-      }
+    }
 
-      //Targets the data selected by the user in the form
-      const dateHandler = e => {
+    //Targets the data selected by the user in the form
+    const dateHandler = e => {
         if(e.target.value) {setDate(e.target.value)} else {setDate('No due date')}
-      }
+    }
 
     return(
         <div className="create-form">
