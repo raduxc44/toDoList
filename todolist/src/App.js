@@ -36,21 +36,12 @@ function App() {
     currentDay= isoTodayArr.join('').toString();
   }
 
-  // Adds a current month property to each todo object used in later comparison
-  for(let i = 0; i < todos.length; i++) {
-    if(todos[i].date[5] === '0') {
-      todos[i].currentMonth = todos[i].date[6] - 1;
-    }
-    else {
-      todos[i].currentMonth = todos[i].date[5] + todos[i].date[6] - 1;
-    }
-    todos[i].currentYear = `${todos[i].date[0]}${todos[i].date[1]}${todos[i].date[2]}${todos[i].date[3]}`
-    currentYear = `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`
-  }
-  
   let todayTodos = todos.filter(todo => todo.date === currentDay);
-  let yearTodos = todos.filter(todo => todo.currentYear === currentYear)
-  let monthTodos = yearTodos.filter(todo => todo.currentMonth === currentDate.getMonth())
+  let yearTodos = todos.filter(todo => 
+    `${todo.date[0]}${todo.date[1]}${todo.date[2]}${todo.date[3]}` === 
+    `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`
+    )
+  let monthTodos = yearTodos.filter(todo => `${todo.date[5]}${todo.date[6]}` === (currentDate.getMonth() + 1).toString().padStart(2, '0'))
   let completeTodos = todos.filter(todo => todo.checked)
   let incompleteTodos = todos.filter(todo => !todo.checked)
   
