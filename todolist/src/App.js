@@ -24,26 +24,27 @@ function App() {
   const [modifiedToDo, setModifiedToDo] = useState();
 
 
-  const currentDate = new Date();
+  const currentDate = useMemo(() => new Date(), [])
   let isoDate = currentDate.toISOString();
   let isoTodayArr = [];
   let currentDay;
-  let currentYear;
 
-  //Formats the date object in the ideal form
+  //  Formats the date object in the ideal form
   for(let i = 0; i < isoDate.length - 14; i++) {
     isoTodayArr.push(isoDate[i]);
     currentDay= isoTodayArr.join('').toString();
   }
 
-  let todayTodos = todos.filter(todo => todo.date === currentDay);
-  let yearTodos = todos.filter(todo => 
+  // Array declarations
+  let todayTodos = useMemo(() => todos.filter(todo => todo.date === currentDay), [todos, currentDay])
+  let yearTodos = useMemo(() => todos.filter(todo => 
     `${todo.date[0]}${todo.date[1]}${todo.date[2]}${todo.date[3]}` === 
     `${currentDay[0]}${currentDay[1]}${currentDay[2]}${currentDay[3]}`
-    )
-  let monthTodos = yearTodos.filter(todo => `${todo.date[5]}${todo.date[6]}` === (currentDate.getMonth() + 1).toString().padStart(2, '0'))
-  let completeTodos = todos.filter(todo => todo.checked)
-  let incompleteTodos = todos.filter(todo => !todo.checked)
+    ), [todos, currentDay])
+  let monthTodos = useMemo(() => yearTodos.filter(todo => 
+    `${todo.date[5]}${todo.date[6]}` === (currentDate.getMonth() + 1).toString().padStart(2, '0')), [yearTodos, currentDate])
+  let completeTodos = useMemo(() => todos.filter(todo => todo.checked), [todos])
+  let incompleteTodos = useMemo(() => todos.filter(todo => !todo.checked), [todos])
   
   // Saves the selected todo by it's details/edit button in the corresponding state
   function showDetails (arr, index) {
