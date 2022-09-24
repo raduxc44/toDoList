@@ -155,7 +155,7 @@ function App() {
             {shownTodos.map((todo, index) =>
             (<ToDo
               {...todo}
-              key={index}
+              key={todo.id}
               showEdit= {() => showEdit(shownTodos, index)}
               showDetails={() => showDetails(shownTodos, index)}
               deleteToDo= {() => deleteToDo(shownTodos, index)}
